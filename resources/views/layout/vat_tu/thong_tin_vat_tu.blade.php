@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta name="description"
         content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
@@ -28,7 +29,7 @@
 
 <body class="app sidebar-mini">
     <!-- Navbar-->
-    <header class="app-header"><a class="app-header__logo" href="index.html">Admin</a>
+    <header class="app-header"><a class="app-header__logo" href="{{ url('/') }}">Admin</a>
         <!-- Sidebar toggle button-->
         <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
 
@@ -59,64 +60,56 @@
                         <div class="tile">
                             <div class="tile-body">
                                 <div class="table-responsive">
-                                    <button class="btn btn-primary" type="submit" style="background-color:blueviolet">+ Thêm Vật tư</button>
+                                    <a href="{{ url('/vat_tu/them_vat_tu') }}" class="btn btn-primary" type="submit"
+                            style="background-color:blueviolet">+ Thêm vật tư</a>
                                     <hr>
                                     <table class="table table-hover table-bordered" id="sampleTable">
-                                        <tr>
-                                            <th>#</th>
-                                            <td>Thông tin</td>
-                                        </tr>
-                                        <tr>
-                                            <th>ID</th>
-                                            <td></td>
-                                           
-                                        </tr>
-                                        <tr>
-                                            <th>Tên Danh mục</th>
-                                            <td></td>
-                                           
-                                        </tr>
-                                        <tr>
-                                            <th>Đường dẫn</th>
-                                            <td></td>
-                                           
-                                        </tr>
-                                        <tr>
-                                            <th>Mô tả</th>
-                                            <td></td>
-                                           
-                                        </tr>
-                                        <tr>
-                                            <th>Số lượng</th>
-                                            <td></td>
-                                           
-                                        </tr>
-                                        <tr>
-                                            <th>Đơn giá</th>
-                                            <td></td>
-                                           
-                                        </tr>
-                                        <tr>
-                                            <th>Đơn vị tính</th>
-                                            <td></td>
-                                           
-                                        </tr>
-                                        <tr>
-                                            <th>Danh mục </th>
-                                            <td></td>
-                                           
-                                        </tr>
-                                        <tr>
-                                            <th>Trạng thái </th>
-                                            <td></td>
-                                           
-                                        </tr>
+                                            <tr>
+                                                <th>#</th>
+                                                <td>Thông tin</td>
+                                            </tr>
+                                            <tr>
+                                                <th>ID</th>
+                                                <td>{{ $vt->MaVT }}</td>
+
+                                            </tr>
+                                            <tr>
+                                                <th>Tên Vật Tư</th>
+                                                <td>{{ $vt->TenVT }}</td>
+
+                                            </tr>
+                                            <tr>
+                                                <th>Đơn vị tính</th>
+                                                <td>{{ $vt->DVTinh }}</td>
+
+                                            </tr>
+                                            <tr>
+                                                <th>Số lượng</th>
+                                                <td>{{ $vt->SoLuong }}</td>
+
+                                            </tr>
+                                          @foreach ($nsx as $item1)
+                                              
+                                      
+                                            <tr>
+                                                <th>Nhà Sản Xuất</th>
+                                                <td >{{$item1->TenNSX}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Địa chỉ</th>
+                                                <td >{{$item1->DiaChi}}</td>
+                                            </tr>
+                                            
+                                        @endforeach
                                     </table>
                                 </div>
                                 <div class="tile-footer">
-                                    <button class="btn btn-primary" type="submit" style="background-color: darkblue">Sửa</button>
-                                    &ensp; <button class="btn btn-primary" type="submit" style="background-color:violet">Quay
-                                        lại</button>
+                                    <a href=" {{ url('/vat_tu/sua_vat_tu')}}/{{$vt->MaVT}}" class="btn btn-primary" type="submit"
+                                    style="background-color:rgb(20, 97, 116)">Sửa 
+                                    lại</a>
+                                    &ensp; <a href="{{url('/vat_tu/xem_vat_tu')}}" class="btn btn-primary" type="submit"
+                                        style="background-color:violet">Quay
+                                        lại</a>
                                 </div>
                             </div>
                         </div>
@@ -124,7 +117,7 @@
                 </div>
             </div>
         </div>
-      
+
     </main>
 
 
@@ -135,11 +128,15 @@
     <script src="{{ URL::asset('resources/css_js_admin/') }}/js/main.js"></script>
     <!-- The javascript plugin to display page loading on top-->
     <script src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/pace.min.js"></script>
-    <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/jquery.dataTables.min.js">
+    </script>
+    <script type="text/javascript"
+        src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/dataTables.bootstrap.min.js"></script>
     <!-- Page specific javascripts-->
     <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/chart.js"></script>
-    <script type="text/javascript">$('#sampleTable').DataTable();</script>
+    <script type="text/javascript">
+        $('#sampleTable').DataTable();
+    </script>
 
 
 </body>

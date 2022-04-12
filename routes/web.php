@@ -34,8 +34,12 @@ Route::prefix('/danh_muc')->group(function () {
 Route::prefix('/vat_tu')->group(function () {
     Route::get('/xem_vat_tu', [VatTuController::class,'index']);
     Route::get('/them_vat_tu', [VatTuController::class,'create']);
-    Route::get('/chi_tiet_vat_tu', [VatTuController::class,'detail']);
-    Route::get('/sua_vat_tu', [VatTuController::class,'fix']);
+    Route::post('/them_vat_tu', [VatTuController::class,'store']);
+    Route::get('/sua_vat_tu/{MaVT}', [VatTuController::class,'edit']);
+    Route::put('/sua_vat_tu/{MaVT}', [VatTuController::class,'update']);
+    Route::get('/{MaVT}', [VatTuController::class,'show']);
+    Route::get('/destroy/{MaVT}', [VatTuController::class,'destroy']);
+    
 });
 Route::prefix('/nha_san_xuat')->group(function () {
     Route::get('/xem_nha_san_xuat', [NhaSanXuatController::class,'index']);
