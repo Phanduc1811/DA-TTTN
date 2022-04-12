@@ -59,8 +59,9 @@
                 <table class="table table-hover table-bordered" id="sampleTable">
                   <thead>
                     <tr>
-                      <th>ID</th>
-                      <th>Số tiền</th> 
+                      <th>Mã Phiếu Thu</th>
+                      <th>Ngày thu tiền</th> 
+                      <th>Số tiền thu \</th>
                       <th>Trạng Thái</th>
                       <th></th>
                     </tr>
@@ -68,12 +69,13 @@
                   <tbody>
                     <tr>
                       <td>01</td>
-                      <td>100.000.000</td>
+                      <td>10/4/2022</td>
+                      <td>2000000</td>
                       <td>Nợ</td>
                       <td>
                         <a href="{{ url('/phieu_thu/chi_tiet_phieu_thu') }}"><i class="fa fa-list" style=" font-size : 30px"></i></a>&ensp;&ensp;
                         <a href=""><i class="fa fa-trash" style=" font-size : 30px"></i></a>&ensp;&ensp;
-                        <a href=""><i class=" fa fa-wrench" style=" font-size : 30px"></i></a>
+                        <a href="{{ url('/phieu_thu/sua_phieu_thu') }}"><i class=" fa fa-wrench" style=" font-size : 30px"></i></a>
                       </td>
                     </tr>
                   </tbody>
