@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta name="description"
         content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
@@ -41,11 +42,11 @@
     @include('layout/Navbar/SidebarMenu')
     <!--main content-->
     <main class="app-content">
-        
+
         <div class="app-title">
             <div>
                 <h1><i class="fa fa-university"></i> &ensp; Công nợ</h1>
-                
+
             </div>
             <ul class="app-breadcrumb breadcrumb">
                 <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -53,61 +54,48 @@
             </ul>
         </div>
         <div class="row">
-            <div class="col-md-6 col-lg-3"></div>
-            <div class="col-md-6 col-lg-3">
+            <div class="col-md-6 col-lg-4"></div>
+            <div class="col-md-6 col-lg-4">
                 <div class="widget-small danger coloured-icon"><i class=" icon fa fa-money  fa-3x"></i>
                     <div class="info">
                         <b style="font-size:20px">Nợ tháng</b>
                         <h6>40.000.000 VND</h6>
                     </div>
                 </div>
-            </div>
-            
-            <div class="col-md-6 col-lg-3">
-                <div class="widget-small warning coloured-icon"><i class="icon fa fa-money  fa-3x "></i>
-                    <div class="info">
-                        <b style="font-size:20px"> Nợ cần thu</b>
-                        <h6>50.000.000VND</h6>
+              </div>
+            <div class="col-md-6 col-lg-4"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="tile-body">
+                    <div class="table-responsive">
+                        <h4>Danh sách các đơn hàng chưa thanh toán</h4>
+                        <hr>
+                        <table class="table table-hover table-bordered" id="sampleTable">
+                            <thead>
+                                <tr>
+                                    <th>Mã Khách Hàng</th>
+                                    <th>Tên Khách Hàng</th>
+                                    <th>Số Nợ</th>
+                                    
+                                  
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>HD01</td>
+                                    <td>Trương Ngọc Khánh</td>
+                                    <td>20.000.000VND</td>
+                                 
+                                    
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3"></div>
         </div>
-        <div class="col-md-12">
-          <div class="tile">
-            <div class="tile-body">
-              <div class="table-responsive">
-                  <h4>Danh sách các đơn hàng chưa thanh toán</h4>
-                <hr>
-                <table class="table table-hover table-bordered" id="sampleTable">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Tổng tiền cần trả </th>
-                      <th>Tổng tiền đã thu </th>
-                      <th>Trạng thái</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>01</td>
-                      <td>200.000VND</td>
-                      <td>100.000VND</td>
-                      <td>Còn nợ</td>
-                      
-                      <td>
-                        <a href="{{url('/cong_no/phieu_ghi_cong_no')}}"><i class="fa fa-list" style=" font-size : 30px">
-              
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
     </main>
 
 
@@ -118,11 +106,15 @@
     <script src="{{ URL::asset('resources/css_js_admin/') }}/js/main.js"></script>
     <!-- The javascript plugin to display page loading on top-->
     <script src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/pace.min.js"></script>
-    <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/jquery.dataTables.min.js">
+    </script>
+    <script type="text/javascript"
+        src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/dataTables.bootstrap.min.js"></script>
     <!-- Page specific javascripts-->
     <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/chart.js"></script>
-    <script type="text/javascript">$('#sampleTable').DataTable();</script>
+    <script type="text/javascript">
+        $('#sampleTable').DataTable();
+    </script>
 
 
 </body>
