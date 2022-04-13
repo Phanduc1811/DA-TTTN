@@ -57,48 +57,19 @@
                     <div class="col-lg-12">
                         <h2 style="text-align: center" class="title">Tạo đơn hàng</h2>
                         <hr>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control">
+                            <button type="button">Search</button>
+                        </div>
                         <br>
                         <form>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="inputEmail4">Tên Khách</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Số Điện thoại</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Địa chỉ</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Lưu ý</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Ngày đặt</label>
-                                    <input type="date" class="form-control">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Ngày giao</label>
-                                    <input type="date" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-12" style="text-align:right;">
-                                <a href="{{ url('/don_dat_hang/them_san_phan_don_dat_hang') }}" class="btn btn-primary" type="submit" style="background-color:blueviolet">+ Thêm sản phẩm</a>
-                            </div>
-                            
-                            <br>    
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th >STT</th>
+                                        <th >ID</th>
                                         <th >Tên vật tư</th>
                                         <th >Giá bán</th>
                                         <th >Số lượng</th>
-                                        <th >VAT</th>
-                                        <th >Thành tiền</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -111,30 +82,22 @@
                                             <input type="number" name="qty" style="width: 70px" size="4" min="1" step="1" class="c-input-text qty text" oninput="this.value =!!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
                                             <input type="submit" style="width: auto;height: 33px;padding: 0px 6px;" name="update_qty" class="btn btn-default" value="Cập nhật">
                                         </td>
-                                        <td>5</td>
-                                        <td>6</td>
-                                        <td>
-                                            <a href=""><i class="fa fa-trash" style=" font-size : 30px"></i></a>
-                                        </td>
+                                        <td><button type="submit" class="btn btn-primary">Thêm</button></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">1</th>
                                         <td>2</td>
                                         <td>3</td>
-                                        <td style="width: 150px" > 
+                                        <td style="width: 200px" > 
                                             <input type="number" name="qty" style="width: 70px" size="4" min="1" step="1" class="c-input-text qty text" oninput="this.value =!!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
                                             <input type="submit" style="width: auto;height: 33px;padding: 0px 6px;" name="update_qty" class="btn btn-default" value="Cập nhật">
                                         </td>
-                                        <td>5</td>
-                                        <td>6</td>
-                                        <td>
-                                            <a href=""><i class="fa fa-trash" style=" font-size : 30px"></i></a>
-                                        </td>
+                                        <td><button type="submit" class="btn btn-primary">thêm</button></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </form>
-                        <button type="submit" class="btn btn-primary">Tạo đơn</button>
+                        <a href="{{ url('/don_dat_hang/them_don_dat_hang') }}" type="submit" class="btn btn-primary">Quay lại</a>
                     </div>
                 </div>
             </div>

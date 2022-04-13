@@ -56,6 +56,7 @@ Route::prefix('/don_dat_hang')->group(function () {
     Route::get('/them_don_dat_hang', [DonDatHang::class,'create']);
     Route::get('/chi_tiet_don_dat_hang', [DonDatHang::class,'detail']);
     Route::get('/sua_don_dat_hang', [DonDatHang::class,'fix']);
+    Route::get('/them_san_phan_don_dat_hang', [DonDatHang::class,'add']);
 });
 Route::prefix('/cong_no')->group(function () {
     Route::get('/xem_cong_no', [CongNo::class,'index']);

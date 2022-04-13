@@ -55,13 +55,14 @@
             <div class="tile-body">
               
               <div class="table-responsive">
-                <a href="{{ url('/don_dat_hang/them_don_dat_hang') }}" class="btn btn-primary" type="submit" style="background-color:blueviolet">+ Thêm Đơn</a>
+                <a href="{{ url('/don_dat_hang/them_don_dat_hang') }}" class="btn btn-primary" type="submit" style="background-color:blueviolet">+ Tạo đơn đặt hàng</a>
                 <hr>
                 <table class="table table-hover table-bordered" id="sampleTable">
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>ID_Khách</th>
+                      <th>Tên khách hàng</th>
+                      <th>Ngày đặt hàng</th>
                       <th>Tổng tiền</th>
                       <th>Trạng thái</th>
                       <th></th>
@@ -70,10 +71,10 @@
                   <tbody>
                     <tr>
                       <td>01</td>
-                      <td>02</td>
+                      <td>Nguyễn Văn A</td>
+                      <td>01/01/2022</td>
                       <td>200.000VND</td>
                       <td>Không nợ</td>
-                      
                       <td>
                         <a href="{{ url('/don_dat_hang/chi_tiet_don_dat_hang') }}"><i class="fa fa-list" style=" font-size : 30px"></i></a>&ensp;&ensp;
                         <a href=""><i class="fa fa-trash" style=" font-size : 30px"></i></a>&ensp;&ensp;
