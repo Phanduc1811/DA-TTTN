@@ -61,6 +61,7 @@
                                 <div class="table-responsive">
                                     <button class="btn btn-primary" type="submit" style="background-color:blueviolet">+ Thêm Vật tư</button>
                                     <hr>
+                                    @foreach($nv as $item)
                                     <table class="table table-hover table-bordered" id="sampleTable">
                                         <tr>
                                             <th>#</th>
@@ -68,35 +69,30 @@
                                         </tr>
                                         <tr>
                                             <th>ID</th>
-                                            <td></td>
-                                           
+                                            <td>{{$item->MaNV}}</td>
                                         </tr>
                                         <tr>
                                             <th>Tên Nhân viên</th>
-                                            <td></td>
-                                           
+                                            <td>{{$item->TenNV}}</td>
                                         </tr>
                                         <tr>
                                             <th>Giới tính</th>
-                                            <td></td>
-                                           
+                                            <td>{{$item->GioiTinh=='1'? 'Nam':'Nữ'}} </td>
                                         </tr>
                                         <tr>
                                             <th>Địa chỉ</th>
-                                            <td></td>
-                                           
+                                            <td>{{$item->DiaChi}}</td>                                          
                                         </tr>
                                         <tr>
                                             <th>Số Điện thoại</th>
-                                            <td></td>
-                                           
+                                            <td>{{$item->SDT}}</td>                                          
                                         </tr>
                                         <tr>
-                                            <th>Trạng thái </th>
-                                            <td></td>
-                                           
+                                            <th>chức vụ </th>
+                                            <td>{{$item->Role =='admin'? 'Quản lý':'Nhân viên'}}</td>                                      
                                         </tr>
                                     </table>
+                                    @endforeach
                                 </div>
                                 <div class="tile-footer">
                                     <button class="btn btn-primary" type="submit" style="background-color: darkblue">Sửa</button>

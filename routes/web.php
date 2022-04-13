@@ -60,9 +60,17 @@ Route::prefix('/phieu_thu')->group(function () {
 });
 Route::prefix('/nhan_vien')->group(function () {
     Route::get('/xem_nhan_vien', [NhanVienController::class,'index']);
+
     Route::get('/them_nhan_vien', [NhanVienController::class,'create']);
-    Route::get('/chi_tiet_nhan_vien', [NhanVienController::class,'detail']);
-    Route::get('/sua_nhan_vien', [NhanVienController::class,'fix']);
+    Route::post('/them_nhan_vien', [NhanVienController::class,'postcreate']);
+
+    Route::get('/chi_tiet_nhan_vien/{MaNV}', [NhanVienController::class,'show']);
+
+    Route::get('/sua_nhan_vien/{MaNV}', [NhanVienController::class,'edit']);
+    Route::post('/sua_nhan_vien/{MaNV}', [NhanVienController::class,'postedit']);
+
+    Route::get('/xoa_nhan_vien/{MaNV}', [NhanVienController::class,'destroy']);
+
 });
 Route::prefix('/khach_hang')->group(function () {
     Route::get('/xem_khach_hang', [KhachHangController::class,'index']);

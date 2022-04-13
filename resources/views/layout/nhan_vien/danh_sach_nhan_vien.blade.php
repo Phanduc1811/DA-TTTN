@@ -65,27 +65,32 @@
                       <th>Ngày sinh</th>
                       <th>Giới tính</th>
                       <th>Địa chỉ</th>
-                      <th>Điện thoại</th>
-                      <th>Ghi chú</th>
+                      <th>Số điện thoại</th>
+                      <th>Chức vụ</th>
                       <th></th>
                     </tr>
                   </thead>
                   <tbody>
+                    
+                        
+                      @foreach ($DsNV as $item)
                     <tr>
-                      <td>01</td>
-                      <td>Châu Đức</td>
-                      <td>2000</td>
-                      <td>Nam</td>
-                      <td>STU</td>
-                      <td>033******</td>
-                      <td>CEO</td>
-                      
+                   
+                      <td>{{$item->MaNV}}</td>
+                      <td>{{$item->TenNV}}</td>
+                      <td>{{$item->NgaySinh}}</td>
+                      <td>{{$item->GioiTinh=='1'? 'Nam':'Nữ'}} </td>
+                      <td>{{$item->DiaChi}}</td>
+                      <td>{{$item->SDT}}</td>
+                      <td>{{$item->Role =='admin'? 'Quản lý':'Nhân viên'}}</td>
                       <td>
-                        <a href="{{url('/nhan_vien/chi_tiet_nhan_vien')}}"><i class="fa fa-list" style=" font-size : 30px"></i></a>&ensp;&ensp;
-                        <a href=""><i class="fa fa-trash" style=" font-size : 30px"></i></a>&ensp;&ensp;
-                        <a href="{{url('/nhan_vien/sua_nhan_vien')}}"><i class=" fa fa-wrench" style=" font-size : 30px"></i></a>
+                        <a href="{{url('/nhan_vien/chi_tiet_nhan_vien/')}}/{{$item->MaNV}}"><i class="fa fa-list" style=" font-size : 30px"></i></a>&ensp;&ensp;
+                        <a href="{{url('/nhan_vien/xoa_nhan_vien/')}}/{{$item->MaNV}}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><i class="fa fa-trash" style=" font-size : 30px"></i></a>&ensp;&ensp;
+                        <a href="{{url('/nhan_vien/sua_nhan_vien')}}/{{$item->MaNV}}"><i class=" fa fa-wrench" style=" font-size : 30px"></i></a>
                       </td>
+                      
                     </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>
