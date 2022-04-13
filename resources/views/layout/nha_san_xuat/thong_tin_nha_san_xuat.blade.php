@@ -59,6 +59,7 @@
                     <div class="table-responsive">
                         <button class="btn btn-primary" type="submit" style="background-color:blueviolet">+ Thêm nhà sản xuất</button>
                         <hr>
+                        @foreach($nsx as $item)
                         <table class="table table-hover table-bordered" id="sampleTable">
                             <tr>
                                 <th>#</th>
@@ -66,25 +67,22 @@
                             </tr>
                             <tr>
                                 <th>ID</th>
-                                <td></td>
-                               
+                                <td>{{$item->MaNSX}}</td>
                             </tr>
                             <tr>
                                 <th>Tên nhà sản xuất</th>
-                                <td></td>
-                               
+                                <td>{{$item->TenNSX}}</td>
                             </tr>
                             <tr>
                                 <th>Địa chỉ</th>
-                                <td></td>
-                               
+                                <td>{{$item->DiaChi}}</td> 
                             </tr>
                             <tr>
                                 <th>Số điện thoại</th>
-                                <td></td>
-                               
+                                <td>{{$item->SDT}}</td>
                             </tr>    
                         </table>
+                        @endforeach
                     </div>
                     <div class="tile-footer">
                         <button class="btn btn-primary" type="submit" style="background-color: darkblue">Sửa</button>

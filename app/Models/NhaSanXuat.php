@@ -1,24 +1,17 @@
-git<?php
+<?php
 
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class NhanVien extends Model
+class NhaSanXuat extends Model
 {
-    protected $table='nhan_vien';
-
+    protected $table='nha_san_xuat';
     protected $fillable=[
-        'id',
-        'MaNV',
-        'TenNV', 
-        'NgaySinh', 
-        'GioiTinh', 
-        'DiaChi', 
+        'id','MaNSX', 'TenNSX', 'DiaChi'
     ];
-  
-    protected $primaryKey = 'MaNV';
+    protected $primaryKey = 'MaNSX';
     public $incrementing = false;
     protected $keyType = 'string';
     public $timestamps = false;

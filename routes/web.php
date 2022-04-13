@@ -39,9 +39,17 @@ Route::prefix('/vat_tu')->group(function () {
 });
 Route::prefix('/nha_san_xuat')->group(function () {
     Route::get('/xem_nha_san_xuat', [NhaSanXuatController::class,'index']);
+
     Route::get('/them_nha_san_xuat', [NhaSanXuatController::class,'create']);
-    Route::get('/chi_tiet_nha_san_xuat', [NhaSanXuatController::class,'detail']);
-    Route::get('/sua_nha_san_xuat', [NhaSanXuatController::class,'fix']);
+    Route::post('/them_nha_san_xuat', [NhaSanXuatController::class,'postcreate']);
+
+    Route::get('/chi_tiet_nha_san_xuat/{MaNSX}', [NhaSanXuatController::class,'show']);
+    
+    Route::get('/sua_nha_san_xuat/{MaNSX}', [NhaSanXuatController::class,'edit']);
+    Route::post('/sua_nha_san_xuat/{MaNSX}', [NhaSanXuatController::class,'postedit']);
+
+    Route::get('/xoa_nha_san_xuat/{MaNSX}', [NhaSanXuatController::class,'destroy']);
+
 });
 Route::prefix('/don_dat_hang')->group(function () {
     Route::get('/xem_don_dat_hang', [DonDatHang::class,'index']);

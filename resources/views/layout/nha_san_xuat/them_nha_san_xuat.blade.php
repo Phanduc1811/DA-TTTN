@@ -57,24 +57,31 @@
                     <div class="col-lg-12">
                         <h2 class="title">Thêm nhà sản xuất</h2>
                         <hr>
-                        <form>
+                        <form method="post" enctype="multipart/form-data" action="{{url('/nha_san_xuat/them_nha_san_xuat')}}">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Mã nhà sản xuất</label>
+                                <input class="form-control" name="ma_nsx"  type="text"
+                                    aria-describedby="emailHelp" placeholder="Mã nhà sản xuất">
+                            </div>
                             <div class="form-group">
                               <label for="exampleInputEmail1">Tên nhà sản xuất</label>
-                              <input class="form-control" id="exampleInputEmail1" type="text" aria-describedby="emailHelp" placeholder="Tên danh mục">
+                              <input class="form-control" name="ten_nsx"  type="text"  placeholder="Tên nhà sản xuất">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Địa chỉ</label>
-                                <input class="form-control" id="exampleInputEmail1" type="text"
+                                <input class="form-control" name="diachi_nsx"  type="text"
                                     aria-describedby="emailHelp" placeholder="địa chỉ">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Số Điện thoại</label>
-                                <input class="form-control" id="exampleInputEmail1" type="text"
+                                <input class="form-control"name="sdt_nsx" type="text"
                                     aria-describedby="emailHelp" placeholder="phone">
                             </div>
                               <div class="tile-footer">
-                                <button class="btn btn-primary"type="submit" style="background-color: darkblue">Sửa</button> &ensp; <button class="btn btn-primary"type="submit" style="background-color:violet">Quay lại</button>
+                                <input class="btn btn-primary" type="submit" value="Thêm" style="background-color: darkblue">&ensp;
+                                <a href="{{url('/nha_san_xuat/xem_nha_san_xuat')}}" class="btn btn-primary" style="background-color:violet">Quay lại</a>
                               </div>
+                            {{csrf_field()}}
                           </form>
                     </div>
                 </div>
