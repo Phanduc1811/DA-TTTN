@@ -25,5 +25,5 @@ public function validateCredentials(UserContract $user, array $credentials)
             return true;
         return false;
     }
-$ Ctrl + f tìm và thay thế tất cả chuỗi password thành Password
+$ Ctrl + f tìm và thay thế tất cả chuỗi password thành Password trong file EloquentUserProvider
 ```
