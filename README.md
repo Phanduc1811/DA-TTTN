@@ -16,8 +16,8 @@ $ composer install
 Fix Login
 
 ```
-$ open file EloquentUserProvider: (đường dẫn đến file) = \DA-TTTN\vendor\laravel\framework\src\Illuminate\Auth\EloquentUserProvider
-$ Copy and paste hàm bên dưới vào file file EloquentUserProvider:
+$ Open file EloquentUserProvider: (đường dẫn đến file) = ...\DA-TTTN\vendor\laravel\framework\src\Illuminate\Auth\EloquentUserProvider
+$ Copy and paste hàm bên dưới vào file EloquentUserProvider dòng 157:
 public function validateCredentials(UserContract $user, array $credentials)
     {
         $plain = $credentials['Password'];
