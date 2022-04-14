@@ -22,7 +22,7 @@ class KhachHangController extends Controller
 
     public function index()
     {
-        $this->checkLogin();
+      $this->checkLogin();
         // $all_khachHang = DB::table('khach_hang')->get();
         $all_khachHang = Customer::join('sdt_kh', 'sdt_kh.MaKH', '=', 'khach_hang.MaKH')
         ->select("khach_hang.*", "sdt_kh.SDT")->get();
