@@ -57,51 +57,53 @@
                     <div class="col-lg-12">
                         <h2 class="title">Sửa Nhân viên</h2>
                         <hr>
-                        <form>
+                        @foreach($nv as $item)
+                        <form method="post" enctype="multipart/form-data" action="{{url('/nhan_vien/sua_nhan_vien')}}/{{$item->MaNV}}">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Mã nhân viên</label>
+                                <input class="form-control" name="ma_nv" value="{{$item->MaNV}}"  type="text">
+                            </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên Nhân viên</label>
-                                <input class="form-control" id="exampleInputEmail1" type="text"
-                                    aria-describedby="emailHelp" placeholder="Tên danh mục">
+                                <input class="form-control" name="ten_nv" value="{{$item->TenNV}}" type="text">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Ngày sinh</label>
-                                <input class="form-control" id="exampleInputEmail1" type="date"
-                                    aria-describedby="emailHelp" placeholder="Tên danh mục">
+                                <input class="form-control" name="ngaysinh_nv" value="{{$item->NgaySinh}}" type="date">
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                                    value="option1">
-                                <label class="form-check-label" for="inlineRadio1">Nam</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                                    value="option2">
-                                <label class="form-check-label" for="inlineRadio2">Nữ</label>
+                            <div class="form-group">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gioitinh" id="inlineRadio1"
+                                        value="1" {{ $item->GioiTinh=='1' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="inlineRadio1">Nam</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gioitinh" id="inlineRadio2"
+                                        value="0" {{ $item->GioiTinh=='0' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="inlineRadio2">Nữ</label>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Địa chỉ</label>
-                                <input class="form-control" id="exampleInputEmail1" type="text"
-                                    aria-describedby="emailHelp" placeholder="Đơn giá">
+                                <input class="form-control" name="diachi_nv" value="{{$item->DiaChi}}" type="text">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Số Điện thoại</label>
-                                <input class="form-control" id="exampleInputEmail1" type="text"
-                                    aria-describedby="emailHelp" placeholder="Đvt">
+                                <input class="form-control" name="sdt_nv"value="{{$item->SDT}}" type="text">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Chức vụ</label>
-                                <select class="form-control" id="exampleSelect1">
-                                    <option>Nhân viên sell</option>
-                                    <option selected>Trưởng phòng</option>
+                                <select class="form-control" name="Quyen" id="exampleSelect1">
+                                    <option value="0" {{ $item->Quyen=='0' ? 'selected' : '' }}>Nhân viên</option>
+                                    <option value="1" {{ $item->Quyen=='1' ? 'selected' : '' }}>Trưởng phòng</option>
                                 </select>
                             </div>
-                           
                             <div class="tile-footer">
-                                <button class="btn btn-primary" type="submit"
-                                    style="background-color: darkblue">Sủa</button> &ensp; <button
-                                    class="btn btn-primary" type="submit" style="background-color: violet">Quay lại</button>
-                            </div>
+                                <input class="btn btn-primary" type="submit" value="Thêm" style="background-color: darkblue">&ensp;
+                                <a href="{{url('/nhan_vien/danh_sach_nhan_vien')}}" class="btn btn-primary" style="background-color:red">Quay lại</a>
+                            {{csrf_field('Put')}}
                         </form>
+                        @endforeach
                     </div>
                 </div>
             </div>

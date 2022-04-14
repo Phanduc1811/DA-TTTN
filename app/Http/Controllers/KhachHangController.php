@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Models\Customer;
 use Redirect;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -12,14 +13,17 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class KhachHangController extends Controller
 {
-     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function checkLogin(){
+        // Lấy id user từ trong session //
+        $isLogin = Auth::guard('admin')->check();
+        // Nếu id user = null - chưa đăng nhập, return về trang đăng nhập //
+        if(!$isLogin)
+            return redirect('/admin-login.html')->send();
+    }
+
     public function index()
     {
-        
+      $this->checkLogin();
         // $all_khachHang = DB::table('khach_hang')->get();
         $all_khachHang = Customer::join('sdt_kh', 'sdt_kh.MaKH', '=', 'khach_hang.MaKH')
         ->select("khach_hang.*", "sdt_kh.SDT")->get();
@@ -34,6 +38,7 @@ class KhachHangController extends Controller
      */
     public function create()
     {
+         $this->checkLogin();
         return view('layout/khach_hang/them_khach_hang');
     }
 
@@ -41,7 +46,7 @@ class KhachHangController extends Controller
     // Chức năng thêm khách hàng vào db // 
     public function handleCreateCustomer(Request $request){
         // Check Login //
-
+        $this->checkLogin();
 
         // End check login //
 
@@ -83,6 +88,7 @@ class KhachHangController extends Controller
 
      public function detail($cus_id)
      {
+        $this->checkLogin();
         $kh = Customer::join('sdt_kh', 'sdt_kh.MaKH', '=', 'khach_hang.MaKH')
         ->select("khach_hang.*", "sdt_kh.SDT")->where('khach_hang.MaKH', $cus_id)->get();
 
@@ -96,7 +102,7 @@ class KhachHangController extends Controller
      }
      public function fix($cus_id)
      {
-         
+        $this->checkLogin();
          $kh = Customer::join('sdt_kh', 'sdt_kh.MaKH', '=', 'khach_hang.MaKH')
          ->select("khach_hang.*", "sdt_kh.SDT")->where('khach_hang.MaKH', $cus_id)->get();
         
@@ -122,12 +128,12 @@ class KhachHangController extends Controller
 
         if(!$n){
             Alert::error('Cập nhật thất bại');
-            return Redirect::to('/khach_hang/xem_khach_hang');
+            return redirect('/khach_hang/xem_khach_hang');
         }else{
             DB::table('sdt_kh')->where('MaKH', $cus_id)->update(['SDT' => $request->customer_phone]);
 
             Alert::success('Cập nhật thành công');
-            return Redirect::to('/khach_hang/xem_khach_hang');
+            return redirect('/khach_hang/xem_khach_hang');
         }
 
      }
@@ -137,7 +143,7 @@ class KhachHangController extends Controller
         if($n){
             Customer::where('MaKH',$cus_id)->delete();
             Alert::success('Xóa thành công');
-            return Redirect::to('/khach_hang/xem_khach_hang');
+            return redirect('/khach_hang/xem_khach_hang');
         }else{
             Alert::error('Xóa thất bại');
         }

@@ -57,34 +57,6 @@
                     <div class="col-lg-12">
                         <h2 style="text-align: center" class="title">Tạo đơn hàng</h2>
                         <hr>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control">
-                            <button type="button">Search</button>
-                        </div>
-                        <br>
-                        <table class="table table-hover table-bordered" id="sampleTable">
-                            <tr>
-                                <th>#</th>
-                                <td>Thông tin</td>
-                            </tr>
-                            <tr>
-                                <th>ID</th>
-                                <td></td>
-
-                            </tr>
-                            <tr>
-                                <th>Tên Sản Phẩm</th>
-                                <td></td>
-
-                            </tr>
-                            <tr>
-                                <th>Trạng thái </th>
-                                <td></td>
-
-                            </tr>
-                            <button style="text-align:right" type="submit" class="btn btn-primary">Thêm</button>
-                        </table>
-
                         <br>
                         <form>
                             <div class="form-row">
@@ -113,15 +85,21 @@
                                     <input type="date" class="form-control">
                                 </div>
                             </div>
+                            <div class="col-md-12" style="text-align:right;">
+                                <a href="{{ url('/don_dat_hang/them_san_phan_don_dat_hang') }}" class="btn btn-primary" type="submit" style="background-color:blueviolet">+ Thêm sản phẩm</a>
+                            </div>
+                            
+                            <br>    
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th scope="col">STT</th>
-                                        <th scope="col">Tên vật tư</th>
-                                        <th scope="col">Giá bán</th>
-                                        <th scope="col">Số lượng</th>
-                                        <th scope="col">VAT</th>
-                                        <th scope="col">Thành tiền</th>
+                                        <th >STT</th>
+                                        <th >Tên vật tư</th>
+                                        <th >Giá bán</th>
+                                        <th >Số lượng</th>
+                                        <th >VAT</th>
+                                        <th >Thành tiền</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -129,33 +107,29 @@
                                         <th scope="row">1</th>
                                         <td>2</td>
                                         <td>3</td>
-                                        <td>
-                                            <select class="form-control" id="exampleFormControlSelect1">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
+                                        <td style="width: 200px" > 
+                                            <input type="number" name="qty" style="width: 70px" size="4" min="1" step="1" class="c-input-text qty text" oninput="this.value =!!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                                            <input type="submit" style="width: auto;height: 33px;padding: 0px 6px;" name="update_qty" class="btn btn-default" value="Cập nhật">
                                         </td>
                                         <td>5</td>
                                         <td>6</td>
+                                        <td>
+                                            <a href=""><i class="fa fa-trash" style=" font-size : 30px"></i></a>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">1</th>
                                         <td>2</td>
                                         <td>3</td>
-                                        <td>
-                                            <select class="form-control" id="exampleFormControlSelect1">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
+                                        <td style="width: 150px" > 
+                                            <input type="number" name="qty" style="width: 70px" size="4" min="1" step="1" class="c-input-text qty text" oninput="this.value =!!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                                            <input type="submit" style="width: auto;height: 33px;padding: 0px 6px;" name="update_qty" class="btn btn-default" value="Cập nhật">
                                         </td>
                                         <td>5</td>
                                         <td>6</td>
+                                        <td>
+                                            <a href=""><i class="fa fa-trash" style=" font-size : 30px"></i></a>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

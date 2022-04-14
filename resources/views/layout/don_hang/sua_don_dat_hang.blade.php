@@ -55,81 +55,87 @@
             <div class="tile">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h2 style="text-align: center" class="title">Sửa thông tin đơn đặt hàng</h2>
+                        <h2 style="text-align: center" class="title">Chỉnh sửa đơn hàng</h2>
                         <hr>
-                        <h6>Tên Khách Hàng:<input type="text"> </h6>
-                        <h6>Địa chỉ:<input type="text"></h6>
-                        <h6>Điện thoại:<input type="text"></h6>
-                        <div class="col-lg-12">
-                            <h6 style="text-align:right">Ngày đặt:<input type="date"></h6>
-                        </div>
-                        <hr>
-                        <div class="tile">
-                            <div class="tile-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">STT</th>
-                                                <th scope="col">Tên vật tư</th>
-                                                <th scope="col">Giá bán</th>
-                                                <th scope="col">Số lượng</th>
-                                                <th scope="col">VAT</th>
-                                                <th scope="col">Thành tiền</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>2</td>
-                                                <td>3</td>
-                                                <td>
-                                                    <select class="form-control" id="exampleFormControlSelect1">
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                    </select>
-                                                </td>
-                                                <td>5</td>
-                                                <td>6</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>2</td>
-                                                <td>3</td>
-                                                <td>
-                                                    <select class="form-control" id="exampleFormControlSelect1">
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                    </select>
-                                                </td>
-                                                <td>5</td>
-                                                <td>6</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                        <br>
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Tên Khách</label>
+                                    <input type="text" class="form-control">
                                 </div>
-                                <div class="col-lg-12">
-                                    <h6 style="text-align:right">Ngày giao:<input type="date"></h6>
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword4">Số Điện thoại</label>
+                                    <input type="text" class="form-control">
                                 </div>
-
-
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword4">Địa chỉ</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword4">Lưu ý</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword4">Ngày đặt</label>
+                                    <input type="date" class="form-control">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword4">Ngày giao</label>
+                                    <input type="date" class="form-control">
+                                </div>
                             </div>
-
-                        </div>
-                        <div class="tile-footer">
-                            <button class="btn btn-primary" type="submit"
-                                style="background-color: darkblue">Sửa</button>
-                            &ensp; <button class="btn btn-primary" type="submit"
-                                style="background-color:violet">Quaylại</button>
-                        </div>
+                            <div class="col-md-12" style="text-align:right;">
+                                <a href="{{ url('/don_dat_hang/them_san_phan_don_dat_hang') }}" class="btn btn-primary" type="submit" style="background-color:blueviolet">+ Thêm sản phẩm</a>
+                            </div>
+                            
+                            <br>    
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th >STT</th>
+                                        <th >Tên vật tư</th>
+                                        <th >Giá bán</th>
+                                        <th >Số lượng</th>
+                                        <th >VAT</th>
+                                        <th >Thành tiền</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>2</td>
+                                        <td>3</td>
+                                        <td style="width: 200px" > 
+                                            <input type="number" name="qty" style="width: 70px" size="4" min="1" step="1" class="c-input-text qty text" oninput="this.value =!!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                                            <input type="submit" style="width: auto;height: 33px;padding: 0px 6px;" name="update_qty" class="btn btn-default" value="Cập nhật">
+                                        </td>
+                                        <td>5</td>
+                                        <td>6</td>
+                                        <td>
+                                            <a href=""><i class="fa fa-trash" style=" font-size : 30px"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>2</td>
+                                        <td>3</td>
+                                        <td style="width: 150px" > 
+                                            <input type="number" name="qty" style="width: 70px" size="4" min="1" step="1" class="c-input-text qty text" oninput="this.value =!!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                                            <input type="submit" style="width: auto;height: 33px;padding: 0px 6px;" name="update_qty" class="btn btn-default" value="Cập nhật">
+                                        </td>
+                                        <td>5</td>
+                                        <td>6</td>
+                                        <td>
+                                            <a href=""><i class="fa fa-trash" style=" font-size : 30px"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                        <button type="submit" class="btn btn-primary">Cập nhật đơn</button>
                     </div>
-
                 </div>
             </div>
         </div>

@@ -44,54 +44,65 @@
     <main class="app-content">
         <div class="app-title">
             <div>
-                <h1><i class="fa fa-bars"></i> Nhà sản xuất</h1>
+                <h1><i class="fa fa-file-text"></i> Đơn đặt hàng</h1>
             </div>
             <ul class="app-breadcrumb breadcrumb">
                 <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-                <li class="breadcrumb-item"><a href="#">Nhà sản xuất</a></li>
+                <li class="breadcrumb-item"><a href="#">Đơn đặt hàng</a></li>
             </ul>
         </div>
         <div class="col-md-12">
-            <h2 class="title">Thông tin</h2>
-            <hr>
             <div class="tile">
-                <div class="tile-body">
-                    <div class="table-responsive">
-                        <button class="btn btn-primary" type="submit" style="background-color:blueviolet">+ Thêm nhà sản xuất</button>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 style="text-align: center" class="title">Tạo đơn hàng</h2>
                         <hr>
-                        @foreach($nsx as $item)
-                        <table class="table table-hover table-bordered" id="sampleTable">
-                            <tr>
-                                <th>#</th>
-                                <td>Thông tin</td>
-                            </tr>
-                            <tr>
-                                <th>ID</th>
-                                <td>{{$item->MaNSX}}</td>
-                            </tr>
-                            <tr>
-                                <th>Tên nhà sản xuất</th>
-                                <td>{{$item->TenNSX}}</td>
-                            </tr>
-                            <tr>
-                                <th>Địa chỉ</th>
-                                <td>{{$item->DiaChi}}</td> 
-                            </tr>
-                            <tr>
-                                <th>Số điện thoại</th>
-                                <td>{{$item->SDT}}</td>
-                            </tr>    
-                        </table>
-                        @endforeach
-                    </div>
-                    <div class="tile-footer">
-                        <button class="btn btn-primary" type="submit" style="background-color: darkblue">Sửa</button>
-                        &ensp; <button class="btn btn-primary" type="submit" style="background-color:violet">Quay
-                            lại</button>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control">
+                            <button type="button">Search</button>
+                        </div>
+                        <br>
+                        <form>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th >ID</th>
+                                        <th >Tên vật tư</th>
+                                        <th >Giá bán</th>
+                                        <th >Số lượng</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>2</td>
+                                        <td>3</td>
+                                        <td style="width: 200px" > 
+                                            <input type="number" name="qty" style="width: 70px" size="4" min="1" step="1" class="c-input-text qty text" oninput="this.value =!!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                                            <input type="submit" style="width: auto;height: 33px;padding: 0px 6px;" name="update_qty" class="btn btn-default" value="Cập nhật">
+                                        </td>
+                                        <td><button type="submit" class="btn btn-primary">Thêm</button></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>2</td>
+                                        <td>3</td>
+                                        <td style="width: 200px" > 
+                                            <input type="number" name="qty" style="width: 70px" size="4" min="1" step="1" class="c-input-text qty text" oninput="this.value =!!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                                            <input type="submit" style="width: auto;height: 33px;padding: 0px 6px;" name="update_qty" class="btn btn-default" value="Cập nhật">
+                                        </td>
+                                        <td><button type="submit" class="btn btn-primary">thêm</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                        <a href="{{ url('/don_dat_hang/them_don_dat_hang') }}" type="submit" class="btn btn-primary">Quay lại</a>
                     </div>
                 </div>
             </div>
         </div>
+
     </main>
 
 

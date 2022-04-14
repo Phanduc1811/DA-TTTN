@@ -44,54 +44,53 @@
     <main class="app-content">
         <div class="app-title">
             <div>
-                <h1><i class="fa fa-bars"></i> Nhà sản xuất</h1>
+                <h1><i class=" fa fa-credit-card-alt"></i>Phiếu thu</h1>
             </div>
             <ul class="app-breadcrumb breadcrumb">
                 <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-                <li class="breadcrumb-item"><a href="#">Nhà sản xuất</a></li>
+                <li class="breadcrumb-item"><a href="#">Phiếu thu</a></li>
             </ul>
         </div>
         <div class="col-md-12">
-            <h2 class="title">Thông tin</h2>
-            <hr>
             <div class="tile">
-                <div class="tile-body">
-                    <div class="table-responsive">
-                        <button class="btn btn-primary" type="submit" style="background-color:blueviolet">+ Thêm nhà sản xuất</button>
-                        <hr>
-                        @foreach($nsx as $item)
-                        <table class="table table-hover table-bordered" id="sampleTable">
-                            <tr>
-                                <th>#</th>
-                                <td>Thông tin</td>
-                            </tr>
-                            <tr>
-                                <th>ID</th>
-                                <td>{{$item->MaNSX}}</td>
-                            </tr>
-                            <tr>
-                                <th>Tên nhà sản xuất</th>
-                                <td>{{$item->TenNSX}}</td>
-                            </tr>
-                            <tr>
-                                <th>Địa chỉ</th>
-                                <td>{{$item->DiaChi}}</td> 
-                            </tr>
-                            <tr>
-                                <th>Số điện thoại</th>
-                                <td>{{$item->SDT}}</td>
-                            </tr>    
-                        </table>
-                        @endforeach
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form action="">
+                            <h2 style="text-align: center" class="title">Sửa Phiếu thu</h2>
+                            <div class="col-lg-12">
+                                <h6 style="text-align: center">Ngày thu tiền:<input type="date"></h6>
+                            </div>
+                            <hr>
+                            <h6>Mã Phiếu:<input type="text" readonly></h6>
+                            <h6>Mã Nhân viên:<input type="text" readonly></h6>
+                            <hr>
+                            <div class="tile">
+                                <div class="tile-body">
+                                    <div class="col-lg-12">
+                                        <h5>Số tiền thu:<input type="text"></h5>
+                                        <h5>Thu tiền đợt:</h5>
+                                        <h5>Mã hóa đơn:<input type="text"></h5>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <h6 style="text-align: right">Trạng thái:<input type="checkbox"></h6>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="tile-footer">
+                                <button class="btn btn-primary" type="submit"
+                                    style="background-color: darkblue">Sửa</button>
+                                &ensp; <button class="btn btn-primary" type="submit"
+                                    style="background-color:violet">Quaylại</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="tile-footer">
-                        <button class="btn btn-primary" type="submit" style="background-color: darkblue">Sửa</button>
-                        &ensp; <button class="btn btn-primary" type="submit" style="background-color:violet">Quay
-                            lại</button>
-                    </div>
+
                 </div>
             </div>
         </div>
+
     </main>
 
 

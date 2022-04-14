@@ -57,50 +57,71 @@
                     <div class="col-lg-12">
                         <h2 class="title">Thêm Nhân viên</h2>
                         <hr>
-                        <form>
+                        <form method="post" enctype="multipart/form-data" action="{{url('/nhan_vien/them_nhan_vien')}}">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Mã nhân viên</label>
+                                <input class="form-control" name="ma_nv"  type="text"
+                                    aria-describedby="emailHelp" placeholder="nhập mã">
+                            </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên Nhân viên</label>
-                                <input class="form-control" id="exampleInputEmail1" type="text"
-                                    aria-describedby="emailHelp" placeholder="Tên danh mục">
+                                <input class="form-control" name="ten_nv" type="text"
+                                    aria-describedby="emailHelp" placeholder="nhập tên">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Ngày sinh</label>
-                                <input class="form-control" id="exampleInputEmail1" type="date"
-                                    aria-describedby="emailHelp" placeholder="Tên danh mục">
+                                <input class="form-control" name="ngaysinh_nv" type="date"
+                                    aria-describedby="emailHelp" placeholder="">
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                                    value="option1">
-                                <label class="form-check-label" for="inlineRadio1">Nam</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                                    value="option2">
-                                <label class="form-check-label" for="inlineRadio2">Nữ</label>
+                            <div class="form-group">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gioitinh" id="inlineRadio1"
+                                        value="1">
+                                    <label class="form-check-label" for="inlineRadio1">Nam</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gioitinh" id="inlineRadio2"
+                                        value="0">
+                                    <label class="form-check-label" for="inlineRadio2">Nữ</label>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Địa chỉ</label>
-                                <input class="form-control" id="exampleInputEmail1" type="text"
-                                    aria-describedby="emailHelp" placeholder="Đơn giá">
+                                <input class="form-control" name="diachi_nv"  type="text"
+                                    aria-describedby="emailHelp" placeholder="">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Số Điện thoại</label>
-                                <input class="form-control" id="exampleInputEmail1" type="text"
-                                    aria-describedby="emailHelp" placeholder="Đvt">
+                                <input class="form-control" name="sdt_nv" type="text"
+                                    aria-describedby="emailHelp" placeholder="">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Chức vụ</label>
-                                <select class="form-control" id="exampleSelect1">
-                                    <option>Nhân viên sell</option>
-                                    <option selected>Trưởng phòng</option>
+                                <select class="form-control" name="Quyen" id="exampleSelect1">
+                                    <option value="0"{{ old('Quyen')=='0' ? 'selected' : '' }} >Quản lý</option>
+                                    <option value="1" {{ old('Quyen')=='1' ? 'selected' : '' }}>Nhân viên</option>
                                 </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email</label>
+                                <input class="form-control" name="email" type="email"
+                                    aria-describedby="emailHelp" placeholder="Enter Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Username</label>
+                                <input class="form-control" name="username" type="text"
+                                    aria-describedby="emailHelp" placeholder="Enter Username">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Password</label>
+                                <input class="form-control" name="password" type="text"
+                                    aria-describedby="emailHelp" placeholder="Enter Password">
                             </div>
                            
                             <div class="tile-footer">
-                                <button class="btn btn-primary" type="submit"
-                                    style="background-color: darkblue">Tạo</button> &ensp; <button
-                                    class="btn btn-primary" type="submit" style="background-color: red">Xóa</button>
-                            </div>
+                                <input class="btn btn-primary" type="submit" value="Thêm" style="background-color: darkblue">&ensp;
+                                <a href="{{url('/nhan_vien/danh_sach_nhan_vien')}}" class="btn btn-primary" style="background-color:red">Quay lại</a>
+                                {{csrf_field()}}
                         </form>
                     </div>
                 </div>

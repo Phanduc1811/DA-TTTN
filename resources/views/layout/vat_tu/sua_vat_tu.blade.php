@@ -56,49 +56,63 @@
                     <div class="col-lg-12">
                         <h2 class="title">Cập nhật Vật tư</h2>
                         <hr>
-                        <form>
+                         @foreach ($nsx as $item)
+                        <form action="{{ URL('vat_tu/sua_vat_tu')}}/{{$item->MaVT}}" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" name="_token" value="{{csrf_token()}}" />
+                            {{method_field('PUT')}}    
                             <div class="form-group">
-                              <label for="exampleInputEmail1">Tên vật tư</label>
-                              <input class="form-control" id="exampleInputEmail1" type="text" aria-describedby="emailHelp" placeholder="Tên danh mục">
-                            </div>
-                            <div class="form-group">
-                              <label for="exampleInputPassword1">Miêu tả</label>
-                              <textarea class="form-control" id="exampleTextarea" rows="2"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Số lượng</label>
-                                <input class="form-control" id="exampleInputEmail1" type="text" aria-describedby="emailHelp" placeholder="nhập số lượng">
-                              </div>
-                              <div class="form-group">
-                                <label for="exampleInputEmail1">Đơn giá</label>
-                                <input class="form-control" id="exampleInputEmail1" type="text" aria-describedby="emailHelp" placeholder="Đơn giá">
-                              </div>
-                              <div class="form-group">
-                                <label for="exampleInputEmail1">Đơn vị tính</label>
-                                <input class="form-control" id="exampleInputEmail1" type="text" aria-describedby="emailHelp" placeholder="Đvt">
-                              </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Trạng thái</label>
-                                <select class="form-control" id="exampleSelect1">
-                                    <option >Active</option>
-                                    <option selected >Disable</option>
-                                </select>
-                              </div>
-                              <div class="form-group">
-                                <label for="exampleInputPassword1">Chọn Danh mục cha</label>
-                                <select class="form-control" id="exampleSelect1">
-                                    <option >Select Group</option>
-                                </select>
-                              </div>
-                              <div class="tile-footer">
-                                <button class="btn btn-primary"type="submit" style="background-color: darkblue">Tạo</button> &ensp; <button class="btn btn-primary"type="submit" style="background-color:violet">Quay lại</button>
-                              </div>
-                          </form>
+                                <label for="exampleInputEmail1">Tên vật tư</label>
+                                <input class="form-control" type="text" placeholder="Tên vật tư" name="ma_vt"
+                                    value="{{ $item->MaVT }}" readonly >
+                            </div>                        
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Tên vật tư</label>
+                                    <input class="form-control" type="text" placeholder="Tên vật tư" name="ten_vt"
+                                        value="{{ $item->TenVT }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Đơn vị tính</label>
+                                    <input class="form-control" type="text" placeholder="Đvt" name="dvt"
+                                        value="{{ $item->DVTinh }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Đơn giá</label>
+                                    <input class="form-control" type="text" placeholder="nhập số lượng" name="don_gia"
+                                        value="{{ $item->DonGia }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Số lượng</label>
+                                    <input class="form-control" type="text" placeholder="Đơn giá" name="so_luong"
+                                        value="{{ $item->SoLuong }}">
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label>Nhà Sản Xuất:</label>
+                                        <select name="ma_nsx">
+                                            @foreach ($nhasanxuat as $item1)
+                                                <option value="{{ $item1->MaNSX }}"
+                                                    @if ($item1->MaNSX == $item->MaNSX) old('ma_nsx')
+                                          selected="selected" @endif>
+                                                    {{ $item1->TenNSX }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <hr>
+                                <button class="btn btn-primary" type="submit"
+                                    style="background-color: darkblue">Tạo</button>
+                                &ensp;
+                                <button class="btn btn-primary" type="submit" style="background-color: red">Xóa</button>
+                            @endforeach
+                        </form>
+
                     </div>
                 </div>
             </div>
         </div>
-      
     </main>
 
 
@@ -109,11 +123,15 @@
     <script src="{{ URL::asset('resources/css_js_admin/') }}/js/main.js"></script>
     <!-- The javascript plugin to display page loading on top-->
     <script src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/pace.min.js"></script>
-    <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/jquery.dataTables.min.js">
+    </script>
+    <script type="text/javascript"
+        src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/dataTables.bootstrap.min.js"></script>
     <!-- Page specific javascripts-->
     <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/chart.js"></script>
-    <script type="text/javascript">$('#sampleTable').DataTable();</script>
+    <script type="text/javascript">
+        $('#sampleTable').DataTable();
+    </script>
 
 
 </body>

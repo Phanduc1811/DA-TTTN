@@ -28,6 +28,7 @@
 </head>
 
 <body class="app sidebar-mini">
+@include('sweetalert::alert')
     <!-- Navbar-->
     <header class="app-header"><a class="app-header__logo" href="index.html">Admin</a>
         <!-- Sidebar toggle button-->
@@ -44,11 +45,11 @@
     <main class="app-content">
         <div class="app-title">
             <div>
-                <h1><i class="fa fa-bars"></i> Danh mục</h1>
+                <h1><i class="fa fa-bars"></i> Nhà sản xuất</h1>
             </div>
             <ul class="app-breadcrumb breadcrumb">
                 <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-                <li class="breadcrumb-item"><a href="#">Danh Mục</a></li>
+                <li class="breadcrumb-item"><a href="#">Nhà sản xuất</a></li>
             </ul>
         </div>
         <div class="col-md-12">
@@ -68,17 +69,20 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @foreach ($DsNSX as $item)
                     <tr>
-                      <td>01</td>
-                      <td>Đông Hải</td>
-                      <td>100 Ngô Quyền</td>
-                      <td>012345678</td>
+                   
+                      <td>{{$item->MaNSX}}</td>
+                      <td>{{$item->TenNSX}}</td>
+                      <td>{{$item->DiaChi}}</td>
+                      <td>{{$item->SDT}}</td>
                       <td>
-                        <a href="{{url('/nha_san_xuat/chi_tiet_nha_san_xuat')}}"><i class="fa fa-list" style=" font-size : 30px"></i></a>&ensp;&ensp;
-                        <a href="#"><i class="fa fa-trash" style=" font-size : 30px"></i></a>&ensp;&ensp;
-                        <a href="{{url('/nha_san_xuat/sua_nha_san_xuat')}}"><i class=" fa fa-wrench" style=" font-size : 30px"></i></a>
+                        <a href="{{url('/nha_san_xuat/chi_tiet_nha_san_xuat')}}/{{$item->MaNSX}}"><i class="fa fa-list" style=" font-size : 30px"></i></a>&ensp;&ensp;
+                        <a href="{{url('/nha_san_xuat/xoa_nha_san_xuat')}}/{{$item->MaNSX}}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><i class="fa fa-trash" style=" font-size : 30px"></i></a>&ensp;&ensp;
+                        <a href="{{url('/nha_san_xuat/sua_nha_san_xuat')}}/{{$item->MaNSX}}"><i class=" fa fa-wrench" style=" font-size : 30px"></i></a>
                       </td>
                     </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>

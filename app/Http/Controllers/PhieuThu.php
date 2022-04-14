@@ -61,6 +61,7 @@ class PhieuThu extends Controller
     public function edit($id)
     {
         //
+        return view('layout/phieu_thu/sua_phieu_thu');
     }
 
     /**

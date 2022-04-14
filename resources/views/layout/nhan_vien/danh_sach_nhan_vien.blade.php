@@ -24,8 +24,6 @@
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css"
         href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
-    
 </head>
 
 <body class="app sidebar-mini">
@@ -68,30 +66,37 @@
                       <th>Ngày sinh</th>
                       <th>Giới tính</th>
                       <th>Địa chỉ</th>
-                      <th>Điện thoại</th>
-                      <th>Ghi chú</th>
-                      <th>User Name</th>
-                      <th>Password</th>
+                      <th>Số điện thoại</th>
+                      <th>Email</th>
+                      <th>Username</th>
+                      <th>Chức vụ</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach($all_nv as $key => $nv)
+
+                
+                    
+                        
+                      @foreach ($DsNV as $item)
                     <tr>
-                      <td>{{$nv->MaNV}}</td>
-                      <td>{{$nv->TenNV}}</td>
-                      <td>{{$nv->NgaySinh}}</td>
-                      <td>{{($nv->GioiTinh) ? 'Nam': 'Nữ'}}</td>
-                      <td>{{$nv->DiaChi}}</td>
-                      <td>{{$nv->SDT}}</td>
-                      <td>{{$nv->GhiChu}}</td>
-                      <td>{{$nv->user_name}}</td>
-                      <td>{{$nv->password}}</td>
-                      
+           
+                   
+                      <td>{{$item->MaNV}}</td>
+                      <td>{{$item->TenNV}}</td>
+                      <td>{{$item->NgaySinh}}</td>
+                      <td>{{$item->GioiTinh=='1'? 'Nam':'Nữ'}} </td>
+                      <td>{{$item->DiaChi}}</td>
+                      <td>{{$item->SDT}}</td>
+                      <td>{{$item->Email}}</td>
+                      <td>{{$item->Username}}</td>
+                      <td>{{$item->Quyen == 0 ? 'Nhân viên': 'Trưởng phòng'}}</td>
                       <td>
-                        <a href="{{url('/nhan_vien/chi_tiet_nhan_vien')}}"><i class="fa fa-list" style=" font-size : 30px"></i></a>&ensp;&ensp;
-                        <a href=""><i class="fa fa-trash" style=" font-size : 30px"></i></a>&ensp;&ensp;
-                        <a href="{{url('/nhan_vien/sua_nhan_vien')}}"><i class=" fa fa-wrench" style=" font-size : 30px"></i></a>
+                        <a href="{{url('/nhan_vien/chi_tiet_nhan_vien/')}}/{{$item->MaNV}}"><i class="fa fa-list" style=" font-size : 30px"></i></a>&ensp;&ensp;
+                        <a href="{{url('/nhan_vien/xoa_nhan_vien/')}}/{{$item->MaNV}}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><i class="fa fa-trash" style=" font-size : 30px"></i></a>&ensp;&ensp;
+                        <a href="{{url('/nhan_vien/sua_nhan_vien')}}/{{$item->MaNV}}"><i class=" fa fa-wrench" style=" font-size : 30px"></i></a>
                       </td>
+                      
                     </tr>
                     @endforeach
                   </tbody>

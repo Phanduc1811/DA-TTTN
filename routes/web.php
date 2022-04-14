@@ -6,6 +6,7 @@ use App\Http\Controllers\DonDatHang;
 use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\NhanVienController;
 use App\Http\Controllers\NhaSanXuatController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PhieuThu;
 use App\Http\Controllers\VatTuController;
 use Illuminate\Support\Facades\Route;
@@ -20,17 +21,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::get('/login', function(){
-//     return view('/login', [userController::class, 'login']);
-// });
-   
-Route::get('/', function () {
-    return view('master');
 
-});
-Route::get('/login', function (){
-    return view('');
-});
+Route::get('/', [AuthController::class,'index']);
+
+Route::get('/admin-login.html', [AuthController::class,'adminLogin']);
+Route::post('/login-admin', [AuthController::class,'loginAdmin']);
+Route::get('/logoutAdmin.html', [AuthController::class,'logoutAdmin']);
+
 Route::prefix('/danh_muc')->group(function () {
     Route::get('/xem_danh_muc', [DanhMucController::class,'index']);
     Route::get('/them_danh_muc', [DanhMucController::class,'create']);
@@ -40,20 +37,33 @@ Route::prefix('/danh_muc')->group(function () {
 Route::prefix('/vat_tu')->group(function () {
     Route::get('/xem_vat_tu', [VatTuController::class,'index']);
     Route::get('/them_vat_tu', [VatTuController::class,'create']);
-    Route::get('/chi_tiet_vat_tu', [VatTuController::class,'detail']);
-    Route::get('/sua_vat_tu', [VatTuController::class,'fix']);
+    Route::post('/them_vat_tu', [VatTuController::class,'store']);
+    Route::get('/sua_vat_tu/{MaVT}', [VatTuController::class,'edit']);
+    Route::put('/sua_vat_tu/{MaVT}', [VatTuController::class,'update']);
+    Route::get('/{MaVT}', [VatTuController::class,'show']);
+    Route::get('/destroy/{MaVT}', [VatTuController::class,'destroy']);
+    
 });
 Route::prefix('/nha_san_xuat')->group(function () {
     Route::get('/xem_nha_san_xuat', [NhaSanXuatController::class,'index']);
+
     Route::get('/them_nha_san_xuat', [NhaSanXuatController::class,'create']);
-    Route::get('/chi_tiet_nha_san_xuat', [NhaSanXuatController::class,'detail']);
-    Route::get('/sua_nha_san_xuat', [NhaSanXuatController::class,'fix']);
+    Route::post('/them_nha_san_xuat', [NhaSanXuatController::class,'postcreate']);
+
+    Route::get('/chi_tiet_nha_san_xuat/{MaNSX}', [NhaSanXuatController::class,'show']);
+    
+    Route::get('/sua_nha_san_xuat/{MaNSX}', [NhaSanXuatController::class,'edit']);
+    Route::post('/sua_nha_san_xuat/{MaNSX}', [NhaSanXuatController::class,'postedit']);
+
+    Route::get('/xoa_nha_san_xuat/{MaNSX}', [NhaSanXuatController::class,'destroy']);
+
 });
 Route::prefix('/don_dat_hang')->group(function () {
     Route::get('/xem_don_dat_hang', [DonDatHang::class,'index']);
     Route::get('/them_don_dat_hang', [DonDatHang::class,'create']);
     Route::get('/chi_tiet_don_dat_hang', [DonDatHang::class,'detail']);
     Route::get('/sua_don_dat_hang', [DonDatHang::class,'fix']);
+    Route::get('/them_san_phan_don_dat_hang', [DonDatHang::class,'add']);
 });
 Route::prefix('/cong_no')->group(function () {
     Route::get('/xem_cong_no', [CongNo::class,'index']);
@@ -63,12 +73,21 @@ Route::prefix('/phieu_thu')->group(function () {
     Route::get('/xem_phieu_thu', [PhieuThu::class,'index']);
     Route::get('/lap_phieu_thu', [PhieuThu::class,'create']);
     Route::get('/chi_tiet_phieu_thu', [PhieuThu::class,'detail']);
+   // Route::get('/sua_phieu_thu', [PhieuThu::class,'edit']);
 });
 Route::prefix('/nhan_vien')->group(function () {
     Route::get('/xem_nhan_vien', [NhanVienController::class,'index']);
+
     Route::get('/them_nhan_vien', [NhanVienController::class,'create']);
-    Route::get('/chi_tiet_nhan_vien', [NhanVienController::class,'detail']);
-    Route::get('/sua_nhan_vien', [NhanVienController::class,'fix']);
+    Route::post('/them_nhan_vien', [NhanVienController::class,'postcreate']);
+
+    Route::get('/chi_tiet_nhan_vien/{MaNV}', [NhanVienController::class,'show']);
+
+    Route::get('/sua_nhan_vien/{MaNV}', [NhanVienController::class,'edit']);
+    Route::post('/sua_nhan_vien/{MaNV}', [NhanVienController::class,'postedit']);
+
+    Route::get('/xoa_nhan_vien/{MaNV}', [NhanVienController::class,'destroy']);
+
 });
 Route::prefix('/khach_hang')->group(function () {
     Route::get('/xem_khach_hang', [KhachHangController::class,'index']);

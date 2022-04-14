@@ -57,38 +57,32 @@
                     <div class="col-lg-12">
                         <h2 style="text-align: center" class="title">Phiếu thu</h2>
                         <div class="col-lg-12">
-                            <h6 style="text-align: center">Ngày thu tiền:1/4/2022</h6>
+                            <h6 style="text-align: center">Ngày thu tiền:10/4/2022</h6>
                         </div>
                         <hr>
                         <h6>Tên Nhân viên:</h6>
-                        <h6>Chức vụ:</h6>
-                        <h6>Điện thoại:</h6>
-                       
+                        <h6>Mã Phiếu:</h6>
+                        <h6 style="text-align: right">Mã Hóa Đơn:</h6>
                         <hr>
                         <div class="tile">
                             <div class="tile-body">
                                 <div class="col-lg-12">
-                                    <h5>Tên Khách Hàng:</h5>
+                                    <h5></i>Tên Khách Hàng:</h5>
                                     <h5>Thu tiền đợt:</h5>
                                     <h5>Tổng số tiền thu:</h5>
                                 </div>
                                 <div class="col-lg-12">
-                                        
-                                        <h6 style="text-align: right">Số nợ:</h6>
-                                        <h4 style="text-align: right">Tổng tiền còn nợ</h4>
+                                    <h4 style="text-align: right">Tổng tiền còn nợ:</h4>
                                 </div>
-                             
                             </div>
-                            
                         </div>
                         <div class="tile-footer">
-                            <button class="btn btn-primary" type="submit"
-                                style="background-color: darkblue">Sửa</button>
+                            <a href="{{ url('/phieu_thu/sua_phieu_thu') }}" class="btn btn-primary" type="submit"
+                                style="background-color: darkblue">Sửa</a>
                             &ensp; <button class="btn btn-primary" type="submit"
                                 style="background-color:violet">Quaylại</button>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
