@@ -62,20 +62,24 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 mb-5 ftco-animate">
-					<a href="images/product-1.jpg" class="image-popup"><img src="images/product-1.jpg" class="img-fluid"
+					<a href="{{ URL::asset('resources/css_js_user/') }}/images/{{$vt->Anh}}" class="image-popup"><img src="{{ URL::asset('resources/css_js_user/') }}/images/{{$vt->Anh}}" class="img-fluid"
 							alt="Colorlib Template"></a>
 				</div>
 				<div class="col-lg-6 product-details pl-md-5 ftco-animate">
-					<h3>Tên Vật tư</h3>
+					<h3>{{$vt->TenVT}}</h3>
 					<div class="rating d-flex">
+						@foreach ($nsx as $item)
 						<p class="text-left mr-4">
-							Nhà Sản Xuất:
+							Nhà Sản Xuất{{$item->TenNSX}}
 						</p>
+						@endforeach
+						
+						
 						<p class="text-left">
-							Đvt:
+							Đvt:{{$vt->DVTinh}}
 						</p>
 					</div>
-					<p class="price"><span>Price</span></p>
+					<p class="price"><span>{{number_format($vt->DonGia)}}VNĐ</span></p>
 					<p>Miêu tả Nếu có</p>
 					<div class="row mt-4">
 						<div class="col-md-6">
@@ -102,7 +106,7 @@
                 <!--Foreach-->
 				<div class="col-md-6 col-lg-3 ftco-animate">
 					<div class="product">
-						<a href="#" class="img-prod"><img class="img-fluid" src="images/product-1.jpg"
+						<a href="#" class="img-prod"><img class="img-fluid" src="{{ URL::asset('resources/css_js_user/') }}/images/satthep-chihieu-uver-4887.jpg"
 								alt="Colorlib Template">
 							<span class="status">30%</span>
 							<div class="overlay"></div>
