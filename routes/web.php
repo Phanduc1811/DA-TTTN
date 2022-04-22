@@ -9,6 +9,8 @@ use App\Http\Controllers\NhaSanXuatController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PhieuThu;
 use App\Http\Controllers\VatTuController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +29,15 @@ Route::get('/', [AuthController::class,'index']);
 Route::get('/admin-login.html', [AuthController::class,'adminLogin']);
 Route::post('/login-admin', [AuthController::class,'loginAdmin']);
 Route::get('/logoutAdmin.html', [AuthController::class,'logoutAdmin']);
+Route::prefix('/cart')->group(function () {
+    Route::get('/', [CartController::class,'index']);
+
+});
+Route::prefix('/checkout')->group(function () {
+    Route::get('/', [CheckoutController::class,'index']);
+    Route::get('/success', [CheckoutController::class,'success']);
+
+});
 
 Route::prefix('/danh_muc')->group(function () {
     Route::get('/xem_danh_muc', [DanhMucController::class,'index']);

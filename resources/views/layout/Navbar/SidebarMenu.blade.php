@@ -1,22 +1,10 @@
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
-@if(Auth::guard('admin')->check())
-            @php
-                $users_name = Auth::guard('admin')->user()->Username;
-                $user_roles = Auth::guard('admin')->user()->Quyen;
-        @endphp
 <aside class="app-sidebar">
     <div class="app-sidebar__user"><img class="app-sidebar__user-avatar"
-            src="{{ URL::asset('resources/css_js_admin/') }}/images/img_avatar.png" style="width: 100px" alt="User Image">
+            src="{{ URL::asset('resources/css_js_admin/') }}/images/demo1.png" alt="User Image">
         <div>
-            <p class="app-sidebar__user-name">@php echo $users_name @endphp</p>
-            <p class="app-sidebar__user-designation">
-                @php 
-                if($user_roles == 0) 
-                    echo 'Nhân viên';
-                else if($user_roles == 1)
-                    echo 'Trưởng phòng';
-                @endphp
-            </p>
+            <p class="app-sidebar__user-name">Châu Đức</p>
+            <p class="app-sidebar__user-designation">Trưởng Phòng</p>
         </div>
     </div>
     <ul class="app-menu">
@@ -56,4 +44,3 @@
         </li>
     </ul>
 </aside>
-@endif
