@@ -43,40 +43,37 @@
     <main class="app-content">
         <div class="app-title">
             <div>
-                <h1><i class=" fa fa-credit-card-alt"></i>Phiếu thu</h1>
+                <h1><i class=" fa fa-credit-card-alt"></i>Hóa Đơn</h1>
             </div>
             <ul class="app-breadcrumb breadcrumb">
                 <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-                <li class="breadcrumb-item"><a href="#">Phiếu thu</a></li>
+                <li class="breadcrumb-item"><a href="#">Hoá Đơn</a></li>
             </ul>
         </div>
         <div class="col-md-12">
           <div class="tile">
             <div class="tile-body">
               <div class="table-responsive">
+                
                 {{-- <a href="#" class="btn btn-primary" type="submit" style="background-color:blueviolet">+Lập phiếu thu</a> --}}
                 <hr>
                 <table class="table table-hover table-bordered" id="sampleTable">
                   <thead>
                     <tr>
-                      <th>Mã Phiếu Thu</th>
                       <th>Mã Hóa Đơn</th>
-                      <th>Ngày thu tiền</th> 
-                      <th>Số tiền thu </th>
-                      <th>Trạng Thái</th>
+                      <th>Mã Đơn Đặt Hàng</th> 
+                      <th>Thành tiền</th>
                       <th></th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($pt as $item)
+                    @foreach ($hd as $item)
                     <tr>
-                      <td>{{$item->MaPT}}</td>
                       <td>{{$item->MaHD}}</td>
-                      <td>{{$item->NgayTT}}</td>
-                      <td>{{$item->SoTienTT}}</td>
-                      <td>{{$item->TrangThai=="1"?"Hết Nợ":"Nợ"}}</td>
+                      <td>{{$item->MaDDH}}</td>
+                      <td>{{$item->ThanhTien}}</td>
                       <td>
-                        <a href="{{ url('/phieu_thu/chi_tiet_phieu_thu') }}"><i class="fa fa-list" style=" font-size : 30px"></i></a>&ensp;&ensp;
+                        <a href="{{ url('/phieu_thu/them_phieu_thu')}}/{{$item->MaHD}}"><i class="fa fa-list" style=" font-size : 30px"></i></a>&ensp;&ensp;
                         <a href=""><i class="fa fa-trash" style=" font-size : 30px"></i></a>&ensp;&ensp;
                         <a href="{{ url('/phieu_thu/sua_phieu_thu') }}"><i class=" fa fa-wrench" style=" font-size : 30px"></i></a>
                       </td>
@@ -102,7 +99,7 @@
     <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/dataTables.bootstrap.min.js"></script>
     <!-- Page specific javascripts-->
-    <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/chart.js"></script>
+   
     <script type="text/javascript">$('#sampleTable').DataTable();</script>
 
 

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HoaDon;
+use App\Models\PhieuThu;
 use Illuminate\Http\Request;
 
-class PhieuThu extends Controller
+class HoaDonController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,9 +15,10 @@ class PhieuThu extends Controller
      */
     public function index()
     {
-        return view('layout/phieu_thu/danh_sach_phieu_thu');
+        $hd=HoaDon::get();
+        return view('layout/hoa_don/danh_sach_hoa_don',['hd'=>$hd]);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -23,13 +26,9 @@ class PhieuThu extends Controller
      */
     public function create()
     {
-        return view('layout/phieu_thu/lap_phieu_thu');
+        //
     }
-     public function detail()
-     {
-         return view('layout/phieu_thu/chi_tiet_phieu_thu');
-     }
-     
+
     /**
      * Store a newly created resource in storage.
      *
@@ -38,7 +37,7 @@ class PhieuThu extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -61,7 +60,6 @@ class PhieuThu extends Controller
     public function edit($id)
     {
         //
-        return view('layout/phieu_thu/sua_phieu_thu');
     }
 
     /**
