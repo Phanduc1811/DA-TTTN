@@ -30,16 +30,17 @@ Route::prefix('/')->group(function () {
 });
 
 Route::get('/admin', [AuthController::class,'index']);
-Route::get('/admin-login.html', [AuthController::class,'adminLogin']);
+Route::get('/admin/dashboard', [AuthController::class,'index']);
+Route::get('/admin-login.php', [AuthController::class,'adminLogin']);
 Route::post('/login-admin', [AuthController::class,'loginAdmin']);
 Route::get('/logoutAdmin.html', [AuthController::class,'logoutAdmin']);
 
-Route::prefix('/danh_muc')->group(function () {
-    Route::get('/xem_danh_muc', [DanhMucController::class,'index']);
-    Route::get('/them_danh_muc', [DanhMucController::class,'create']);
-    Route::get('/chi_tiet_danh_muc', [DanhMucController::class,'detail']);
-    Route::get('/sua_danh_muc', [DanhMucController::class,'fix']);
-});
+// Route::prefix('/danh_muc')->group(function () {
+//     Route::get('/xem_danh_muc', [DanhMucController::class,'index']);
+//     Route::get('/them_danh_muc', [DanhMucController::class,'create']);
+//     Route::get('/chi_tiet_danh_muc', [DanhMucController::class,'detail']);
+//     Route::get('/sua_danh_muc', [DanhMucController::class,'fix']);
+// });
 Route::prefix('/vat_tu')->group(function () {
     Route::get('/xem_vat_tu', [VatTuController::class,'index']);
     Route::get('/them_vat_tu', [VatTuController::class,'create']);
