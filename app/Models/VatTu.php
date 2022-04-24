@@ -14,8 +14,9 @@ class VatTu extends Model
         'TenVT', 
         'DVTinh', 
         'DonGia', 
-        'SoLuong', 
-        'MaNSX',
+        'SoLuong',
+        'Anh', 
+        'MaNSX'
     ];
   
     protected $primaryKey = 'MaVT';

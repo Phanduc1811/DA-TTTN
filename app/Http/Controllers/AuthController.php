@@ -50,22 +50,25 @@ class AuthController extends Controller
             'adminPass.max' => 'Mật khẩu quá 255 ký tự',
         ]);
 
+
+        var_dump($request->adminPass);
+
         if (Auth::guard('admin')->attempt(['Email' => $request->adminEmail, 'Password' => $request->adminPass])) {
-            return redirect('/');
+            return redirect('/admin/dashboard');
         }
         else if (Auth::guard('admin')->attempt(['Username' => $request->adminEmail, 'Password' => $request->adminPass])) {
-            return redirect('/');
+            return redirect('/admin/dashboard');
         }
         else{
            Alert::error('Email hoặc mật khẩu sai');
-            return redirect('/admin-login.html');
+            return redirect('/admin-login.php');
         }
     }
 
     // Đăng xuất cho admin
     public function logoutAdmin(){
         Auth::guard('admin')->logout(); 
-        return redirect('/admin-login.html');
+        return redirect('/admin-login.php');
     }
 
     

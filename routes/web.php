@@ -9,6 +9,8 @@ use App\Http\Controllers\NhaSanXuatController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PhieuThu;
 use App\Http\Controllers\VatTuController;
+use App\Http\Controllers\VatTuUserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,18 +24,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [AuthController::class,'index']);
+Route::prefix('/')->group(function () {
+    Route::get('/', [VatTuUserController::class,'index']);
+    Route::get('/chi_tiet_vat_tu/{MaVT}',[VatTuUserController::class,'show']);
+});
 
-Route::get('/admin-login.html', [AuthController::class,'adminLogin']);
+Route::get('/admin', [AuthController::class,'index']);
+Route::get('/admin/dashboard', [AuthController::class,'index']);
+Route::get('/admin-login.php', [AuthController::class,'adminLogin']);
 Route::post('/login-admin', [AuthController::class,'loginAdmin']);
 Route::get('/logoutAdmin.html', [AuthController::class,'logoutAdmin']);
 
-Route::prefix('/danh_muc')->group(function () {
-    Route::get('/xem_danh_muc', [DanhMucController::class,'index']);
-    Route::get('/them_danh_muc', [DanhMucController::class,'create']);
-    Route::get('/chi_tiet_danh_muc', [DanhMucController::class,'detail']);
-    Route::get('/sua_danh_muc', [DanhMucController::class,'fix']);
-});
+// Route::prefix('/danh_muc')->group(function () {
+//     Route::get('/xem_danh_muc', [DanhMucController::class,'index']);
+//     Route::get('/them_danh_muc', [DanhMucController::class,'create']);
+//     Route::get('/chi_tiet_danh_muc', [DanhMucController::class,'detail']);
+//     Route::get('/sua_danh_muc', [DanhMucController::class,'fix']);
+// });
 Route::prefix('/vat_tu')->group(function () {
     Route::get('/xem_vat_tu', [VatTuController::class,'index']);
     Route::get('/them_vat_tu', [VatTuController::class,'create']);

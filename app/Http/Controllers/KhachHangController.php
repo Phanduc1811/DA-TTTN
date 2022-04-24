@@ -18,7 +18,7 @@ class KhachHangController extends Controller
         $isLogin = Auth::guard('admin')->check();
         // Nếu id user = null - chưa đăng nhập, return về trang đăng nhập //
         if(!$isLogin)
-            return redirect('/admin-login.html')->send();
+            return redirect('/admin-login.php')->send();
     }
 
     public function index()
