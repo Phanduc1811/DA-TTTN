@@ -9,6 +9,7 @@
             @foreach ($nsx as $item)
             <div class="col-sm ftco-animate">
                 <a href="{{url('chi_tiet_nha_san_xuat/')}}/{{$item->MaNSX}}" class="partner"><img style="height: 100px, width=150px" src="{{ URL::asset('resources/css_js_user/') }}/images/{{$item->Anh}}" class="img-fluid"
+
                         alt="Colorlib Template"></a>
             </div>
             @endforeach
