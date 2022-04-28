@@ -2,10 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Http\Request;
+use App\Models\Order;
+use App\Models\VatTu;
+use App\Models\ctBanHang;
+use App\Models\Customer;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DonDatHang extends Controller
 {
+
+    public function checkLogin()
+    {
+        // Lấy id user từ trong session //
+        $isLogin = Auth::guard('admin')->check();
+        // Nếu id user = null - chưa đăng nhập, return về trang đăng nhập //
+        if (!$isLogin)
+            return redirect('/admin-login.php')->send();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +31,14 @@ class DonDatHang extends Controller
      */
     public function index()
     {
-        return view('layout/don_hang/danh_sach_don_dat_hang');
+        $this->checkLogin();
+        $all_ddh = DB::table('don_dat_hang')
+            ->select('don_dat_hang.*', DB::raw('sum(ct_ban_hang.SoLuong) as SoLuong'))
+            ->join('ct_ban_hang', 'don_dat_hang.MaDDH', '=', 'ct_ban_hang.MaDDH')
+            ->groupBy('don_dat_hang.MaDDH')
+            ->get();
+
+        return view('layout/don_hang/danh_sach_don_dat_hang')->with('all_ddh', $all_ddh);
     }
 
     /**
@@ -23,16 +48,28 @@ class DonDatHang extends Controller
      */
     public function create()
     {
-        return view('layout/don_hang/tao_don_dat_hang');
+        $dsvt = VatTu::paginate(7);
+        return view('layout/don_hang/tao_don_dat_hang')->with('dsvt', $dsvt);
     }
-     public function detail()
-     {
-         return view('layout/don_hang/chi_tiet_don_dat_hang');
-     }
-     public function fix()
-     {
-         return view('layout/don_hang/sua_don_dat_hang');
-     }
+    public function detail($maddh)
+    {
+
+        $ddh = ctBanHang::join('vat_tu', 'ct_ban_hang.MaVT', '=', 'vat_tu.MaVT')
+            ->join('don_dat_hang', 'ct_ban_hang.MaDDH', '=', 'don_dat_hang.MaDDH')
+            ->select("vat_tu.*", "ct_ban_hang.*")
+            ->where('don_dat_hang.MaDDH', $maddh)
+            ->get();
+        // $kh = Order::join('khach_hang', 'don_dat_hang.MaKH', '=', 'khach_hang.MaKH')
+        //     ->select("don_dat_hang.*", "khach_hang.*")
+        //     ->where('khach')
+        //     ->get();
+        //var_dump($maddh);
+        return view('layout/don_hang/chi_tiet_don_dat_hang', ['ddh' => $ddh]);
+    }
+    public function fix()
+    {
+        return view('layout/don_hang/sua_don_dat_hang');
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -41,7 +78,6 @@ class DonDatHang extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**

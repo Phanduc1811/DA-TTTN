@@ -2,8 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta name="description"
-        content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <meta name="description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
     <!-- Twitter meta-->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:site" content="@pratikborsadiya">
@@ -14,8 +13,7 @@
     <meta property="og:title" content="Vali - Free Bootstrap 4 admin theme">
     <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
     <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
-    <meta property="og:description"
-        content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <meta property="og:description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
     <title> Admin </title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,8 +21,7 @@
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('resources/css_js_admin/') }}/css/main.css">
     <!-- Font-icon css-->
-    <link rel="stylesheet" type="text/css"
-        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body class="app sidebar-mini">
@@ -84,56 +81,48 @@
                                     <label for="inputPassword4">Ngày giao</label>
                                     <input type="date" class="form-control">
                                 </div>
+                                <span style="text-transform: uppercase; font-weight: bold; font-size: 25pt; ">
+                                    sản phẩm
+                                </span>
                             </div>
-                            <div class="col-md-12" style="text-align:right;">
-                                <a href="{{ url('/don_dat_hang/them_san_phan_don_dat_hang') }}" class="btn btn-primary" type="submit" style="background-color:blueviolet">+ Thêm sản phẩm</a>
-                            </div>
-                            
-                            <br>    
+
+                            <br>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th >STT</th>
-                                        <th >Tên vật tư</th>
-                                        <th >Giá bán</th>
-                                        <th >Số lượng</th>
-                                        <th >VAT</th>
-                                        <th >Thành tiền</th>
                                         <th></th>
+                                        <th>Mã vật tư</th>
+                                        <th>Tên vật tư</th>
+                                        <th>Đơn giá</th>
+                                        <th>DVTinh</th>
+                                        <th>Số lượng tồn</th>
                                     </tr>
                                 </thead>
+                                @foreach ($dsvt as $vt)
                                 <tbody>
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>2</td>
-                                        <td>3</td>
-                                        <td style="width: 200px" > 
-                                            <input type="number" name="qty" style="width: 70px" size="4" min="1" step="1" class="c-input-text qty text" oninput="this.value =!!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
-                                            <input type="submit" style="width: auto;height: 33px;padding: 0px 6px;" name="update_qty" class="btn btn-default" value="Cập nhật">
+                                        <td scope="row">
+                                            <input type="checkbox" value='{{$vt->MaVT}}'>
                                         </td>
-                                        <td>5</td>
-                                        <td>6</td>
-                                        <td>
-                                            <a href=""><i class="fa fa-trash" style=" font-size : 30px"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>2</td>
-                                        <td>3</td>
-                                        <td style="width: 150px" > 
-                                            <input type="number" name="qty" style="width: 70px" size="4" min="1" step="1" class="c-input-text qty text" oninput="this.value =!!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
-                                            <input type="submit" style="width: auto;height: 33px;padding: 0px 6px;" name="update_qty" class="btn btn-default" value="Cập nhật">
-                                        </td>
-                                        <td>5</td>
-                                        <td>6</td>
-                                        <td>
-                                            <a href=""><i class="fa fa-trash" style=" font-size : 30px"></i></a>
-                                        </td>
+                                        <td>{{$vt->MaVT}}</td>
+                                        <td>{{$vt->TenVT}}</td>
+                                        <td>{{$vt->DonGia}}</td>
+                                        <td>{{$vt->DVTinh}}</td>
+                                        <td>{{$vt->SoLuong}}</td>
                                     </tr>
                                 </tbody>
+                                @endforeach
                             </table>
                         </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <span>
+                        {{$dsvt->links()}}
+                    </span>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
                         <button type="submit" class="btn btn-primary">Tạo đơn</button>
                     </div>
                 </div>
@@ -152,8 +141,7 @@
     <script src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/pace.min.js"></script>
     <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/jquery.dataTables.min.js">
     </script>
-    <script type="text/javascript"
-        src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/dataTables.bootstrap.min.js"></script>
     <!-- Page specific javascripts-->
     <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/chart.js"></script>
     <script type="text/javascript">

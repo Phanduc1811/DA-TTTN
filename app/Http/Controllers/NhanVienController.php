@@ -17,8 +17,8 @@ class NhanVienController extends Controller
     public function index()
     {
         $DsNV = NhanVien::join('sdt_nv', 'sdt_nv.MaNV', '=', 'nhan_vien.MaNV')
-        ->select("nhan_vien.*", "sdt_nv.SDT")->get();
-        return view('layout/nhan_vien/danh_sach_nhan_vien',['DsNV' => $DsNV]);
+            ->select("nhan_vien.*", "sdt_nv.SDT")->get();
+        return view('layout/nhan_vien/danh_sach_nhan_vien', ['DsNV' => $DsNV]);
     }
 
     /**
@@ -30,22 +30,22 @@ class NhanVienController extends Controller
     {
         return view('layout/nhan_vien/them_nhan_vien');
     }
-  
+
     public function postCreate(Request $request)
-    {    
+    {
         $nv = new NhanVien;
-        $nv -> MaNV = $request->ma_nv;
-        $nv -> TenNV = $request->ten_nv;
-        $nv -> NgaySinh = $request->ngaysinh_nv;
-        $nv -> GioiTinh = $request->gioitinh;
-        $nv -> DiaChi = $request->diachi_nv;
-        $nv -> Quyen = $request->Quyen;
-        $nv -> Email = $request -> email;
-        $nv -> Username = $request -> username;
-        $nv -> Password = md5($request -> password);
+        $nv->MaNV = $request->ma_nv;
+        $nv->TenNV = $request->ten_nv;
+        $nv->NgaySinh = $request->ngaysinh_nv;
+        $nv->GioiTinh = $request->gioitinh;
+        $nv->DiaChi = $request->diachi_nv;
+        $nv->Quyen = $request->Quyen;
+        $nv->Email = $request->email;
+        $nv->Username = $request->username;
+        $nv->Password = md5($request->password);
 
         var_dump($nv);
-        $n =$nv->save();
+        $n = $nv->save();
 
         $data = array();
         $data['MaNV'] = $request->ma_nv;
@@ -77,8 +77,11 @@ class NhanVienController extends Controller
     {
         //$arr_chuoi = explode('/', $MaNV);
         //$_MaNV = $arr_chuoi[count($arr_chuoi) - 1];
-        $nv = NhanVien::join('sdt_nv', 'sdt_nv.MaNV', '=', 'nhan_vien.MaNV')->select("nhan_vien.*", "sdt_nv.SDT")->where('nhan_vien.MaNV', $MaNV)->get();
-        return view('layout/nhan_vien/thong_tin_nhan_vien',['nv'=>$nv]);
+        $nv = NhanVien::join('sdt_nv', 'sdt_nv.MaNV', '=', 'nhan_vien.MaNV')
+            ->select("nhan_vien.*", "sdt_nv.SDT")
+            ->where('nhan_vien.MaNV', $MaNV)
+            ->get();
+        return view('layout/nhan_vien/thong_tin_nhan_vien', ['nv' => $nv]);
     }
 
     /**
@@ -90,19 +93,19 @@ class NhanVienController extends Controller
     public function edit($MaNV)
     {
         $nv = NhanVien::join('sdt_nv', 'sdt_nv.MaNV', '=', 'nhan_vien.MaNV')->select("nhan_vien.*", "sdt_nv.SDT")->where('nhan_vien.MaNV', $MaNV)->get();
-        return view('layout/nhan_vien/sua_nhan_vien',['nv'=>$nv]);
+        return view('layout/nhan_vien/sua_nhan_vien', ['nv' => $nv]);
     }
 
-    public function postEdit(Request $request, $MaNV )
+    public function postEdit(Request $request, $MaNV)
     {
-        $nv=NhanVien::find($MaNV);
-        $nv -> TenNV = $request->ten_nv;
-        $nv -> NgaySinh = $request->ngaysinh_nv;
-        $nv -> GioiTinh = $request->gioitinh;
-        $nv -> DiaChi = $request->diachi_nv;
-        $nv -> Quyen = $request->Quyen;
+        $nv = NhanVien::find($MaNV);
+        $nv->TenNV = $request->ten_nv;
+        $nv->NgaySinh = $request->ngaysinh_nv;
+        $nv->GioiTinh = $request->gioitinh;
+        $nv->DiaChi = $request->diachi_nv;
+        $nv->Quyen = $request->Quyen;
         $n = $nv->save();
-        DB::table('sdt_nv')->where('MaNV', $MaNV)->update(['SDT' => $request->sdt_nv]);     
+        DB::table('sdt_nv')->where('MaNV', $MaNV)->update(['SDT' => $request->sdt_nv]);
 
         Alert::success('Cập nhật thành công');
         return redirect('nhan_vien/xem_nhan_vien');
@@ -126,10 +129,10 @@ class NhanVienController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($MaNV)
-    {  
-        $n = DB::table('sdt_nv')->where('MaNV',$MaNV)->delete();
-        if($n){
-            NhanVien::where('MaNV',$MaNV)->delete();
+    {
+        $n = DB::table('sdt_nv')->where('MaNV', $MaNV)->delete();
+        if ($n) {
+            NhanVien::where('MaNV', $MaNV)->delete();
             Alert::success('Xóa thành công');
         }
         return back();
