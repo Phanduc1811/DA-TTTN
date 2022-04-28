@@ -18,10 +18,10 @@
                         <div class="overlay"></div>
                     </a>
                     <div class="text py-3 pb-4 px-3 text-center">
-                        <h3><a href="#">{{$item->TenVT}}</a></h3>
+                        <h3><a href="{{url('chi_tiet_vat_tu/')}}/{{$item->MaVT}}">{{$item->TenVT}}</a></h3>
                         <div class="d-flex">
                             <div class="pricing">
-                                <p class="price"><span >{{$item->DonGia}}VNĐ</span>/<span
+                                <p class="price"><span >{{number_format($item->DonGia)}}VNĐ</span>/<span
                                         class="price-sale">{{$item->DVTinh}}</span></p>
                             </div>
                         </div>

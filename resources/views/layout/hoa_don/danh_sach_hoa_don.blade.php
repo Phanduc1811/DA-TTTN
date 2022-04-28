@@ -37,62 +37,56 @@
         @include('layout/Navbar/NavbarRight')
 
     </header>
-
     <!-- Sidebar menu-->
     @include('layout/Navbar/SidebarMenu')
     <!--main content-->
     <main class="app-content">
         <div class="app-title">
             <div>
-                <h1><i class="fa fa-university"></i> Công nợ</h1>
+                <h1><i class=" fa fa-credit-card-alt"></i>Hóa Đơn</h1>
             </div>
             <ul class="app-breadcrumb breadcrumb">
                 <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-                <li class="breadcrumb-item"><a href="#">Công nợ</a></li>
+                <li class="breadcrumb-item"><a href="#">Hoá Đơn</a></li>
             </ul>
         </div>
         <div class="col-md-12">
-            <div class="tile">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h2 style="text-align: center" class="title">Phiếu Nợ</h2>
-                        <hr>
-                        <h6>Tên Khách Hàng:<input type="text"></h6>
-                        <h6>Địa chỉ:<input type="text"></h6>
-                        <h6>Điện thoại:<input type="text"></h6>
-                        <div class="col-lg-12">
-                            <h6 style="text-align: right">Ngày lập phiếu:1/4/2022</h6>
-                        </div>
-                        <hr>
-                        <div class="tile">
-                            <div class="tile-body">
-                                <div class="col-lg-12">
-                                    <h6 style="text-align: right">Ngày thanh toán:1/4/2022</h6>
-                                </div>
-                                <div class="col-lg-12">
-                                    <h6 id="tientratruoc">Số tiền trả trước:</h6>
-                                    <h6>Số nợ:</h6>
-                                    <h4 id="tongtien">Tổng tiền cần thanh toán:</h4>
-                                </div>
-                                <div class="col-lg-12">
-                                    <h5 style="text-align: right "> Công ty Vật tư </h4>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <div class="tile-footer">
-                            <button class="btn btn-primary" type="submit"
-                                style="background-color: darkblue">Sửa</button>
-                            &ensp; <button class="btn btn-primary" type="submit"
-                                style="background-color:violet">Quaylại</button>
-                        </div>
-                    </div>
-
-                </div>
+          <div class="tile">
+            <div class="tile-body">
+              <div class="table-responsive">
+                
+                {{-- <a href="#" class="btn btn-primary" type="submit" style="background-color:blueviolet">+Lập phiếu thu</a> --}}
+                <hr>
+                <table class="table table-hover table-bordered" id="sampleTable">
+                  <thead>
+                    <tr>
+                      <th>Mã Hóa Đơn</th>
+                      <th>Mã Đơn Đặt Hàng</th> 
+                      <th>Thành tiền</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach ($hd as $item)
+                    <tr>
+                      <td>{{$item->MaHD}}</td>
+                      <td>{{$item->MaDDH}}</td>
+                      <td>{{$item->ThanhTien}}</td>
+                      <td>
+                        <a href="{{ url('/phieu_thu/them_phieu_thu')}}/{{$item->MaHD}}"><i class="fa fa-plus" style=" font-size : 30px"></i></a>&ensp;&ensp;
+                        <a href="{{url('/phieu_thu/danh_sach_phieu_thu')}}/{{$item->MaHD}}"><i class="fa fa-list" style=" font-size : 30px"></i></a>&ensp;&ensp;
+                        <a href=""><i class="fa fa-trash" style=" font-size : 30px"></i></a>&ensp;&ensp;
+                        <a href="{{ url('/phieu_thu/sua_phieu_thu') }}"><i class=" fa fa-wrench" style=" font-size : 30px"></i></a>
+                      </td>
+                    </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
             </div>
+          </div>
         </div>
-
+      </div>
     </main>
 
 
@@ -103,15 +97,11 @@
     <script src="{{ URL::asset('resources/css_js_admin/') }}/js/main.js"></script>
     <!-- The javascript plugin to display page loading on top-->
     <script src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/pace.min.js"></script>
-    <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/jquery.dataTables.min.js">
-    </script>
-    <script type="text/javascript"
-        src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/dataTables.bootstrap.min.js"></script>
     <!-- Page specific javascripts-->
-    <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/chart.js"></script>
-    <script type="text/javascript">
-        $('#sampleTable').DataTable();
-    </script>
+   
+    <script type="text/javascript">$('#sampleTable').DataTable();</script>
 
 
 </body>

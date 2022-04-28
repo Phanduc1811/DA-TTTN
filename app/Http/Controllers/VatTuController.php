@@ -63,8 +63,17 @@ class VatTuController extends Controller
             'don_gia' => 'required',
             'so_luong' => 'required',
             'ma_nsx' => 'required',
+            'hinh' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
 
         ]);
+        $name_hinh = '';
+        if ($request->hasFile('hinh')) {
+            if ($request->file('hinh')->isValid()) {
+                $file = $request->file('hinh');
+                $name_hinh = $file->getClientOriginalName();
+                $file->move('resources/css_js_user/images', $name_hinh);
+            }
+        }
         $data = $request->all();
         $vt = new VatTu();
         try {
@@ -75,7 +84,7 @@ class VatTuController extends Controller
             $vt->DonGia = $data['don_gia'];
             $vt->SoLuong = $data['so_luong'];
             $vt->MaNSX = $data['ma_nsx'];
-
+            $vt->Anh=$name_hinh;
             $vt->save();
             Alert::success('Thêm thành công');
             return redirect('vat_tu/xem_vat_tu');
@@ -136,7 +145,7 @@ class VatTuController extends Controller
         $vt = VatTu::find($_MaVT);
         $data = $request->all();
 
-        $data = $request->all();
+
         $vt->TenVT = $data['ten_vt'];
         $vt->DVTinh = $data['dvt'];
         $vt->DonGia = $data['don_gia'];

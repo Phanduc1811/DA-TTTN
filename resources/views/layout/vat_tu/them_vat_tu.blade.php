@@ -27,7 +27,7 @@
 <body class="app sidebar-mini">
     @include('sweetalert::alert')
     <!-- Navbar-->
-    <header class="app-header"><a class="app-header__logo" href="index.html">Admin</a>
+    <header class="app-header"><a class="app-header__logo" href="{{url('/admin')}}">Admin</a>
         <!-- Sidebar toggle button-->
         <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
 
@@ -96,6 +96,10 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Đơn giá</label>
                                 <input class="form-control" type="text" placeholder="nhập số lượng" name="don_gia">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Hình</label>
+                                <input class="form-control" type="file" placeholder="nhập số lượng" name="hinh">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Số lượng</label>

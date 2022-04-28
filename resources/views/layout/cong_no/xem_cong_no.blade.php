@@ -68,7 +68,7 @@
             <div class="tile">
                 <div class="tile-body">
                     <div class="table-responsive">
-                        <h4>Danh sách các đơn hàng chưa thanh toán</h4>
+                        <h4>Danh sách các Hóa Đơn còn nợ</h4>
                         <hr>
                         <table class="table table-hover table-bordered" id="sampleTable">
                             <thead>
@@ -85,8 +85,6 @@
                                     <td>HD01</td>
                                     <td>Trương Ngọc Khánh</td>
                                     <td>20.000.000VND</td>
-                                 
-                                    
                                 </tr>
                             </tbody>
                         </table>
