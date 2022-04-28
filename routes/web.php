@@ -81,8 +81,13 @@ Route::prefix('/cong_no')->group(function () {
 });
 Route::prefix('/phieu_thu')->group(function () {
     Route::get('/xem_phieu_thu', [PhieuThuController::class,'index']);
+    Route::get('/danh_sach_phieu_thu/{MaHD}', [PhieuThuController::class,'listtheoMaHD']);
+    Route::get('/chi_tiet_phieu_thu/{MaPT}',[PhieuThuController::class,'show']);
     Route::get('/them_phieu_thu/{MaHD}',[PhieuThuController::class,'create']);
     Route::post('/lap_phieu_thu/{MaHD}', [PhieuThuController::class,'store']);
+    Route::get('/sua_phieu_thu/{MaPT}',[PhieuThuController::class,'edit']);
+    Route::put('/sua_phieu_thu/{MaPT}',[PhieuThuController::class,'update']);
+    Route::get('/xoa_phieu_thu/{MaPT}', [PhieuThuController::class,'destroy']);
 
 });
 Route::prefix('/nhan_vien')->group(function () {

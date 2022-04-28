@@ -12,6 +12,7 @@ class PhieuThu extends Model
         'id','MaPT', 'NgayTT', 'SoTienTT', 'Dot', 'TrangThai', 'MaNV', 'MaHD', 'CongNo'
     ];
     protected $primaryKey = 'MaPT';
+    protected $dates = ['NgayTT'];
     public $incrementing = false;
     protected $keyType = 'string';
     public $timestamps = false;

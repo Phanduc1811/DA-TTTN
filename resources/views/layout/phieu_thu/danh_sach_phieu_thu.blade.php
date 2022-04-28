@@ -29,7 +29,7 @@
 
 <body class="app sidebar-mini">
     <!-- Navbar-->
-    <header class="app-header"><a class="app-header__logo" href="index.html">Admin</a>
+    <header class="app-header"><a class="app-header__logo" href="{{url('/admin')}}">Admin</a>
         <!-- Sidebar toggle button-->
         <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
 
@@ -76,9 +76,9 @@
                       <td>{{$item->SoTienTT}}</td>
                       <td>{{$item->TrangThai=="1"?"Hết Nợ":"Nợ"}}</td>
                       <td>
-                        <a href="{{ url('/phieu_thu/chi_tiet_phieu_thu') }}"><i class="fa fa-list" style=" font-size : 30px"></i></a>&ensp;&ensp;
-                        <a href=""><i class="fa fa-trash" style=" font-size : 30px"></i></a>&ensp;&ensp;
-                        <a href="{{ url('/phieu_thu/sua_phieu_thu') }}"><i class=" fa fa-wrench" style=" font-size : 30px"></i></a>
+                        <a href="{{ url('/phieu_thu/chi_tiet_phieu_thu') }}/{{$item->MaPT}}"><i class="fa fa-list" style=" font-size : 30px"></i></a>&ensp;&ensp;
+                        <a href="{{url('/phieu_thu/xoa_phieu_thu') }}/{{$item->MaPT}}"><i class="fa fa-trash" style=" font-size : 30px"></i></a>&ensp;&ensp;
+                        <a href="{{ url('/phieu_thu/sua_phieu_thu') }}/{{$item->MaPT}}"><i class=" fa fa-wrench" style=" font-size : 30px"></i></a>
                       </td>
                     </tr>
                     @endforeach

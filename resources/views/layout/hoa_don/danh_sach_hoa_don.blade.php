@@ -73,7 +73,8 @@
                       <td>{{$item->MaDDH}}</td>
                       <td>{{$item->ThanhTien}}</td>
                       <td>
-                        <a href="{{ url('/phieu_thu/them_phieu_thu')}}/{{$item->MaHD}}"><i class="fa fa-list" style=" font-size : 30px"></i></a>&ensp;&ensp;
+                        <a href="{{ url('/phieu_thu/them_phieu_thu')}}/{{$item->MaHD}}"><i class="fa fa-plus" style=" font-size : 30px"></i></a>&ensp;&ensp;
+                        <a href="{{url('/phieu_thu/danh_sach_phieu_thu')}}/{{$item->MaHD}}"><i class="fa fa-list" style=" font-size : 30px"></i></a>&ensp;&ensp;
                         <a href=""><i class="fa fa-trash" style=" font-size : 30px"></i></a>&ensp;&ensp;
                         <a href="{{ url('/phieu_thu/sua_phieu_thu') }}"><i class=" fa fa-wrench" style=" font-size : 30px"></i></a>
                       </td>

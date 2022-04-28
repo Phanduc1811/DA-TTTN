@@ -51,10 +51,10 @@ class AuthController extends Controller
         ]);
 
         if (Auth::guard('admin')->attempt(['Email' => $request->adminEmail, 'Password' => $request->adminPass])) {
-            return redirect('/');
+            return redirect('/admin');
         }
         else if (Auth::guard('admin')->attempt(['Username' => $request->adminEmail, 'Password' => $request->adminPass])) {
-            return redirect('/');
+            return redirect('/admin');
         }
         else{
            Alert::error('Email hoặc mật khẩu sai');

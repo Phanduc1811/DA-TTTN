@@ -31,7 +31,7 @@
 <body class="app sidebar-mini">
     @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
     <!-- Navbar-->
-    <header class="app-header"><a class="app-header__logo" href="index.html">Admin</a>
+    <header class="app-header"><a class="app-header__logo" href="{{url('/admin')}}">Admin</a>
         <!-- Sidebar toggle button-->
         <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
 
@@ -57,7 +57,7 @@
             <div class="tile">
                 <div class="row">
                     <div class="col-lg-12">
-                        <form action="{{ url('phieu_thu/lap_phieu_thu') }}/{{ $hd->MaHD }}" method="POST"
+                        <form action="{{ url('phieu_thu/lap_phieu_thu') }}/{{$hd->MaHD}}" method="POST"
                             enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                             <div class="form-group">
@@ -90,9 +90,9 @@
                                     value="{{ $hd->ThanhTien }}">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Mẫ Hóa Đơn</label>
+                                <label for="exampleInputEmail1">Mã Hóa Đơn</label>
                                 <input class="form-control" type="text" placeholder="Mã hóa đơn"
-                                    value="{{ $hd->MaHD }}" name="mahd">
+                                  id="mahd"  value="{{ $hd->MaHD }}" name="mahd">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Công nợ</label>
@@ -100,15 +100,16 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Còn Nợ Hay Không</label>
-                                <input class="form-control" id="trangthai" name="trangthai" type="checkbox">
+                                <input class="form-control" id="trangthai" name="trang_thai" <?php echo old('trang_thai') ? 'checked="checked"' : "" ?> value="1" type="checkbox">
                             </div>
                             <hr>
-                            <button class="btn btn-primary" type="submit"
-                                style="background-color: darkblue">Tạo</button>
+                            <div style="text-align: center" id="taophieu">
+                                <button class="btn btn-primary" type="submit"
+                                    style="background-color: darkblue">Tạo</button>
+                            </div>
 
                         </form>
-                        <button id="tinhno" class="btn btn-primary" type="submit"
-                            style="background-color: rgb(139, 83, 0)">Tính Công Nợ</button>
+
                     </div>
 
                 </div>
@@ -135,23 +136,29 @@
         $('#sampleTable').DataTable();
     </script>
     <script>
-       function tinhno(){
-            let tienthu = document.getElementById('sotienthu');
-            console.log(tienthu.value);
-            let = tongtien = document.getElementById('tongtien')
-            if(tongtien.value<tienthu.value)
-            {
+        let hd=document.getElementById('mahd').value;
+        console.log('mahd');
+        let tienthu = document.getElementById('sotienthu');
+        console.log(tienthu.value);
+        let = tongtien = document.getElementById('tongtien')
+        if (tongtien.value == 0) {
+                window.location = `http://localhost/DA-TTTN/phieu_thu/danh_sach_phieu_thu/${hd}`;
+                  alert(`Đã hết nợ ! Danh sách phiếu thu của Hóa Đơn ${hd}`)
+        } 
+
+        function tinhno() {
+           if (tongtien.value < tienthu.value) {
                 alert('Nhập tiền thu Sai');
             }
             let congno = parseFloat(tongtien.value) - parseFloat(tienthu.value);
-            if(congno==0){
+            if (congno == 0) {
                 alert('Đã hết nợ');
                 document.getElementById('trangthai').checked = true;
             }
-            
+
             console.log(congno);
             document.getElementById('congno').value = congno;
-       }
+        }
     </script>
 
 </body>
