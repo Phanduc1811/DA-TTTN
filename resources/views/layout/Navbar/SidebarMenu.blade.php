@@ -21,9 +21,16 @@
                 </p>
             </div>
         </div>
+
         <ul class="app-menu">
             <li><a class="app-menu__item active" href="{{ url('/') }}"><i
                         class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
+
+    </div>
+    <ul class="app-menu">
+        <li><a class="app-menu__item active" href="{{ url('/admin/dashboard') }}"><i
+                    class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
+
 
             <li><a class="app-menu__item active" href="{{ url('/danh_muc/xem_danh_muc') }}"><i
                         class="app-menu__icon fa fa-bars"></i><span class="app-menu__label">Danh mục</span></a></li>
