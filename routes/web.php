@@ -7,8 +7,12 @@ use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\NhanVienController;
 use App\Http\Controllers\NhaSanXuatController;
 use App\Http\Controllers\AuthController;
+
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\PhieuThu;
+
+use App\Http\Controllers\HoaDonController;
+
+use App\Http\Controllers\PhieuThuController;
 use App\Http\Controllers\VatTuController;
 use App\Http\Controllers\VatTuUserController;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +32,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/')->group(function () {
     Route::get('/', [VatTuUserController::class,'index']);
     Route::get('/chi_tiet_vat_tu/{MaVT}',[VatTuUserController::class,'show']);
+
     Route::get('/login', [VatTuUserController::class,'userLogin']);
     Route::post('/handle-login-user', [AuthController::class,'loginUser']);
     Route::get('/register', [VatTuUserController::class,'userRegister']);
@@ -39,6 +44,8 @@ Route::prefix('/')->group(function () {
     Route::get('/delete-item-cart', [CartController::class,'DeleteAllCart']);
     Route::post('/update-cart',  [CartController::class,'updateCart']);
     Route::get('/delete-item-cart/{row_id}', [CartController::class,'DeleteItemCart']);
+    Route::get('/chi_tiet_nha_san_xuat/{MaNSX}',[VatTuUserController::class,'showNSX']);
+
 });
 
 Route::get('/admin', [AuthController::class,'index']);
@@ -89,10 +96,15 @@ Route::prefix('/cong_no')->group(function () {
     Route::get('/phieu_ghi_cong_no', [CongNo::class,'create']);
 });
 Route::prefix('/phieu_thu')->group(function () {
-    Route::get('/xem_phieu_thu', [PhieuThu::class,'index']);
-    Route::get('/lap_phieu_thu', [PhieuThu::class,'create']);
-    Route::get('/chi_tiet_phieu_thu', [PhieuThu::class,'detail']);
-   // Route::get('/sua_phieu_thu', [PhieuThu::class,'edit']);
+    Route::get('/xem_phieu_thu', [PhieuThuController::class,'index']);
+    Route::get('/danh_sach_phieu_thu/{MaHD}', [PhieuThuController::class,'listtheoMaHD']);
+    Route::get('/chi_tiet_phieu_thu/{MaPT}',[PhieuThuController::class,'show']);
+    Route::get('/them_phieu_thu/{MaHD}',[PhieuThuController::class,'create']);
+    Route::post('/lap_phieu_thu/{MaHD}', [PhieuThuController::class,'store']);
+    Route::get('/sua_phieu_thu/{MaPT}',[PhieuThuController::class,'edit']);
+    Route::put('/sua_phieu_thu/{MaPT}',[PhieuThuController::class,'update']);
+    Route::get('/xoa_phieu_thu/{MaPT}', [PhieuThuController::class,'destroy']);
+
 });
 Route::prefix('/nhan_vien')->group(function () {
     Route::get('/xem_nhan_vien', [NhanVienController::class,'index']);
@@ -106,6 +118,11 @@ Route::prefix('/nhan_vien')->group(function () {
     Route::post('/sua_nhan_vien/{MaNV}', [NhanVienController::class,'postedit']);
 
     Route::get('/xoa_nhan_vien/{MaNV}', [NhanVienController::class,'destroy']);
+
+});
+Route::prefix('/hoa_don')->group(function () {
+    Route::get('/xem_hoa_don', [HoaDonController::class,'index']);
+    
 
 });
 Route::prefix('/khach_hang')->group(function () {

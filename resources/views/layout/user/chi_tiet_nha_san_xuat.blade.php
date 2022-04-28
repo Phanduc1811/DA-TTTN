@@ -59,98 +59,91 @@
 
 
     <section class="ftco-section">
-		 <form action="{{URL::to('/add-to-cart.php')}}" method='post' id="{{$vt->MaVT}}">
-		 {!! csrf_field() !!}
-            <input type='hidden' name='product_id' value='{{$vt->MaVT}}'>
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-6 mb-5 ftco-animate">
-						<a href="{{ URL::asset('resources/css_js_user/') }}/images/{{$vt->Anh}}" class="image-popup"><img src="{{ URL::asset('resources/css_js_user/') }}/images/{{$vt->Anh}}" class="img-fluid"
-								alt="Colorlib Template"></a>
-					</div>
-					<div class="col-lg-6 product-details pl-md-5 ftco-animate">
-						<h3>{{$vt->TenVT}}</h3>
-						<div class="rating d-flex">
-							@foreach ($nsx as $item)
-							<p class="text-left mr-4">
-								Nhà Sản Xuất{{$item->TenNSX}}
-							</p>
-							@endforeach
-							
-							
-							<p class="text-left">
-								Đvt:{{$vt->DVTinh}}
-							</p>
-						</div>
-						<p class="price"><span>{{number_format($vt->DonGia)}}VNĐ</span></p>
-						<p>Miêu tả Nếu có</p>
-						<div class="row mt-4">
-							<div class="col-md-6">
-								<input type="number" name="qty_pro" value="1" min="1" max="100" class="form-control" >
-								<br>
-								<p><a href="javascript:;" type="submit" onclick="document.getElementById('{{$vt->MaVT}}').submit()" class="btn btn-black py-3 px-5">Add to Cart</a></p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</form>
-	</section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-5 ftco-animate">
+                    <a href="{{ URL::asset('resources/css_js_user/') }}/images/{{ $nsx->Anh }}"
+                        class="image-popup"><img
+                            src="{{ URL::asset('resources/css_js_user/') }}/images/{{ $nsx->Anh }}"
+                            class="img-fluid" alt="Colorlib Template"></a>
+                </div>
+                <div class="col-lg-6 product-details pl-md-5 ftco-animate">
+                    <h3>{{ $nsx->TenNSX }}</h3>
+                    <div class="rating d-flex">
 
-	<section class="ftco-section">
-		<div class="container">
-			<div class="row justify-content-center mb-3 pb-3">
-				<div class="col-md-12 heading-section text-center ftco-animate">
-					<span class="subheading">Vật tư</span>
-					<h2 class="mb-4">Có thể bạn Quan tâm</h2>
-				
-				</div>
-			</div>
-		</div>
-		<div class="container">
-			<div class="row">
-			@foreach ($listvt as $item)
-				<div class="col-md-6 col-lg-3 ftco-animate">
-					<div class="product">
-						<a href="{{url('chi_tiet_vat_tu/')}}/{{$item->MaVT}}" class="img-prod"><img class="img-fluid"  style="height: 200px" src="{{ URL::asset('resources/css_js_user/') }}/images/{{$item->Anh}}"
-								alt="Colorlib Template">
-							
-							<div class="overlay"></div>
-						</a>
-						<div class="text py-3 pb-4 px-3 text-center">
-							<h3><a href="{{url('chi_tiet_vat_tu/')}}/{{$item->MaVT}}">{{$item->TenVT}}</a></h3>
-							<div class="d-flex">
-								<div class="pricing">
-									<p class="price"><span >{{number_format($item->DonGia)}}VNĐ</span>/<span
-											class="price-sale">{{$item->DVTinh}}</span></p>
-								</div>
-							</div>
-							<div class="bottom-area d-flex px-3">
-								<div class="m-auto d-flex">
-									<a href="#"
-										class="add-to-cart d-flex justify-content-center align-items-center text-center">
-										<span><i class="ion-ios-menu"></i></span>
-									</a>
-									<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-										<span><i class="ion-ios-cart"></i></span>
-									</a>
-									<a href="#" class="heart d-flex justify-content-center align-items-center ">
-										<span><i class="ion-ios-heart"></i></span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+                        <p class="text-left mr-4">
+                            Nhà Sản Xuất :&nbsp; {{ $nsx->DiaChi }}
+                        </p>
+                        <p class="text-left">
+                            Số Điện Thoại :{{ $sdt->SDT }}
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center mb-3 pb-3">
+                <div class="col-md-12 heading-section text-center ftco-animate">
+                    <span class="subheading">Vật tư</span>
+                    <h2 class="mb-4">Có thể bạn Quan tâm</h2>
+
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                @foreach ($listvt as $item)
+                    <div class="col-md-6 col-lg-3 ftco-animate">
+                        <div class="product">
+                            <a href="{{ url('chi_tiet_vat_tu/') }}/{{ $item->MaVT }}" class="img-prod"><img
+                                    class="img-fluid" style="height: 200px"
+                                    src="{{ URL::asset('resources/css_js_user/') }}/images/{{ $item->Anh }}"
+                                    alt="Colorlib Template">
+
+                                <div class="overlay"></div>
+                            </a>
+                            <div class="text py-3 pb-4 px-3 text-center">
+                                <h3><a
+                                        href="{{ url('chi_tiet_vat_tu/') }}/{{ $item->MaVT }}">{{ $item->TenVT }}</a>
+                                </h3>
+                                <div class="d-flex">
+                                    <div class="pricing">
+                                        <p class="price">
+                                            <span>{{ number_format($item->DonGia) }}VNĐ</span>/<span
+                                                class="price-sale">{{ $item->DVTinh }}</span></p>
+                                    </div>
+                                </div>
+                                <div class="bottom-area d-flex px-3">
+                                    <div class="m-auto d-flex">
+                                        <a href="#"
+                                            class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                            <span><i class="ion-ios-menu"></i></span>
+                                        </a>
+                                        <a href="#"
+                                            class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                            <span><i class="ion-ios-cart"></i></span>
+                                        </a>
+                                        <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                            <span><i class="ion-ios-heart"></i></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @endforeach
-			</div>
-		</div>
-	</section>
-  
- 
+            </div>
+        </div>
+    </section>
+
+
 
     @include('layout/user/footer')
-  
+
 
 
     <script src="{{ URL::asset('resources/css_js_user/') }}/js/jquery.min.js"></script>

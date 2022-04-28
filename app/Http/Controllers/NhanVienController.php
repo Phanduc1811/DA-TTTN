@@ -89,7 +89,8 @@ class NhanVienController extends Controller
      */
     public function edit($MaNV)
     {
-        $nv = NhanVien::join('sdt_nv', 'sdt_nv.MaNV', '=', 'nhan_vien.MaNV')->select("nhan_vien.*", "sdt_nv.SDT")->where('nhan_vien.MaNV', $MaNV)->get();
+        $nv = NhanVien::join('sdt_nv', 'sdt_nv.MaNV', '=', 'nhan_vien.MaNV')
+        ->select("nhan_vien.*", "sdt_nv.SDT")->where('nhan_vien.MaNV', $MaNV)->get();
         return view('layout/nhan_vien/sua_nhan_vien',['nv'=>$nv]);
     }
 
