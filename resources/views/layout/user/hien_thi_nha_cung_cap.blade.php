@@ -6,26 +6,13 @@
                 <h2 class="mb-4">Các nhà cung ứng </h2>
                 <p>Những nhà cung ứng và Sản xuất hàng đầu đang họp tác</p>
             </div>
+            @foreach ($nsx as $item)
             <div class="col-sm ftco-animate">
-                <a href="#" class="partner"><img src="images/partner-1.png" class="img-fluid"
+                <a href="{{url('chi_tiet_nha_san_xuat/')}}/{{$item->MaNSX}}" class="partner"><img style="height: 100px, width=150px" src="{{ URL::asset('resources/css_js_user/') }}/images/{{$item->Anh}}" class="img-fluid"
                         alt="Colorlib Template"></a>
             </div>
-            <div class="col-sm ftco-animate">
-                <a href="#" class="partner"><img src="images/partner-2.png" class="img-fluid"
-                        alt="Colorlib Template"></a>
-            </div>
-            <div class="col-sm ftco-animate">
-                <a href="#" class="partner"><img src="images/partner-3.png" class="img-fluid"
-                        alt="Colorlib Template"></a>
-            </div>
-            <div class="col-sm ftco-animate">
-                <a href="#" class="partner"><img src="images/partner-4.png" class="img-fluid"
-                        alt="Colorlib Template"></a>
-            </div>
-            <div class="col-sm ftco-animate">
-                <a href="#" class="partner"><img src="images/partner-5.png" class="img-fluid"
-                        alt="Colorlib Template"></a>
-            </div>
+            @endforeach
+           
         </div>
     </div>
 </section>

@@ -54,10 +54,17 @@ class AuthController extends Controller
         var_dump($request->adminPass);
 
         if (Auth::guard('admin')->attempt(['Email' => $request->adminEmail, 'Password' => $request->adminPass])) {
+
+            return redirect('/admin');
+        }
+        else if (Auth::guard('admin')->attempt(['Username' => $request->adminEmail, 'Password' => $request->adminPass])) {
+            return redirect('/admin');
+
             return redirect('/admin/dashboard');
         }
         else if (Auth::guard('admin')->attempt(['Username' => $request->adminEmail, 'Password' => $request->adminPass])) {
             return redirect('/admin/dashboard');
+
         }
         else{
            Alert::error('Email hoặc mật khẩu sai');
