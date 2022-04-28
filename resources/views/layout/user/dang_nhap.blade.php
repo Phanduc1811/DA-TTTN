@@ -62,21 +62,23 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-xl-7 ftco-animate">
-					<form action="#" class="billing-form">
-						<h3 class="mb-4 billing-heading">Đăng ký Tài Khoản</h3>
+					<form action="{{URL::to('/handle-login-user')}}" class="billing-form" method="post">
+                    {{ csrf_field() }}	
+                    <h3 class="mb-4 billing-heading">Đăng nhập</h3>
 						<div class="w-100"></div>
-						<div class="col-md-12">
+						<div class="col-md-12" style="padding-left: 0px">
 							<div class="form-group">
-								<label for="streetaddress">Số điện thoại</label>
-								<input type="text" class="form-control">
+								<label for="streetaddress">Username</label>
+								<input type="text" class="form-control" name="userName">
 							</div>
 						</div>
-						<div class="col-md-12">
+						<div class="col-md-12" style="padding-left: 0px"> 
 							<div class="form-group">
 								<label for="streetaddress">Mật khẩu</label>
-								<input type="password" class="form-control">
+								<input type="password" class="form-control" name="password">
 							</div>
 						</div>
+                        <button class="col-md-12 btn btn-submit" style="background-color: #82ae46; border-radius: 0; width: 100px; color: #fff">Submit</button>
 					</form><!-- END -->
 				</div>
 			</div>

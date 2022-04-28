@@ -52,7 +52,6 @@ class KhachHangController extends Controller
         // Kiểm tra trùng id //
         $kh = Customer::select('MaKH', 'TenKH')->where('MaKH', $request->customer_id)->get();
 
-        
         if(count($kh) > 0){
             Alert::error('Mã khách hàng đã tồn tại');
            return redirect()->back();
@@ -203,4 +202,6 @@ class KhachHangController extends Controller
     {
         //
     }
+
+    
 }

@@ -7,23 +7,23 @@
                 <p>Những nhà cung ứng và Sản xuất hàng đầu đang họp tác</p>
             </div>
             <div class="col-sm ftco-animate">
-                <a href="#" class="partner"><img src="images/partner-1.png" class="img-fluid"
+                <a href="#" class="partner"><img src="{{ URL::asset('resources/css_js_user/') }}/images/an-long.jpg" class="img-fluid"
                         alt="Colorlib Template"></a>
             </div>
             <div class="col-sm ftco-animate">
-                <a href="#" class="partner"><img src="images/partner-2.png" class="img-fluid"
+                <a href="#" class="partner"><img src="{{ URL::asset('resources/css_js_user/') }}/images/an-long.jpg" class="img-fluid"
                         alt="Colorlib Template"></a>
             </div>
             <div class="col-sm ftco-animate">
-                <a href="#" class="partner"><img src="images/partner-3.png" class="img-fluid"
+                <a href="#" class="partner"><img src="{{ URL::asset('resources/css_js_user/') }}/images/an-long.jpg" class="img-fluid"
                         alt="Colorlib Template"></a>
             </div>
             <div class="col-sm ftco-animate">
-                <a href="#" class="partner"><img src="images/partner-4.png" class="img-fluid"
+                <a href="#" class="partner"><img src="{{ URL::asset('resources/css_js_user/') }}/images/an-long.jpg" class="img-fluid"
                         alt="Colorlib Template"></a>
             </div>
             <div class="col-sm ftco-animate">
-                <a href="#" class="partner"><img src="images/partner-5.png" class="img-fluid"
+                <a href="#" class="partner"><img src="{{ URL::asset('resources/css_js_user/') }}/images/an-long.jpg" class="img-fluid"
                         alt="Colorlib Template"></a>
             </div>
         </div>

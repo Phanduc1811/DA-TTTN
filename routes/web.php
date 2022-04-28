@@ -7,6 +7,7 @@ use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\NhanVienController;
 use App\Http\Controllers\NhaSanXuatController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\PhieuThu;
 use App\Http\Controllers\VatTuController;
 use App\Http\Controllers\VatTuUserController;
@@ -27,6 +28,17 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/')->group(function () {
     Route::get('/', [VatTuUserController::class,'index']);
     Route::get('/chi_tiet_vat_tu/{MaVT}',[VatTuUserController::class,'show']);
+    Route::get('/login', [VatTuUserController::class,'userLogin']);
+    Route::post('/handle-login-user', [AuthController::class,'loginUser']);
+    Route::get('/register', [VatTuUserController::class,'userRegister']);
+    Route::get('/logoutUser', [AuthController::class,'logoutUser']);
+    Route::post('/signin-users', [AuthController::class,'signInUser']);
+
+    Route::get('/cart', [CartController::class,'index']);
+    Route::post('/add-to-cart.php',  [CartController::class,'addCart']);
+    Route::get('/delete-item-cart', [CartController::class,'DeleteAllCart']);
+    Route::post('/update-cart',  [CartController::class,'updateCart']);
+    Route::get('/delete-item-cart/{row_id}', [CartController::class,'DeleteItemCart']);
 });
 
 Route::get('/admin', [AuthController::class,'index']);

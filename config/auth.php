@@ -45,6 +45,10 @@ return [
             'driver' => 'session',
             'provider' => 'admin',
         ],
+        'user' => [
+            'driver' => 'session',
+            'provider' => 'user',
+        ],
     ],
 
     /*
@@ -73,6 +77,12 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\NhanVien::class,
         ],
+
+        'user' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Customer::class,
+        ],
+
 
         // 'users' => [
         //     'driver' => 'database',
@@ -104,6 +114,11 @@ return [
         ],
         'admin' => [
             'provider' => 'admin',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'user' => [
+            'provider' => 'user',
             'table' => 'password_resets',
             'expire' => 60,
         ],

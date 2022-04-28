@@ -6,7 +6,7 @@ use App\Models\VatTu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class VatTuUserController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,18 +17,6 @@ class VatTuUserController extends Controller
     {
         $vt=VatTu::Paginate(10);
         return view('master_user',['vt'=>$vt]);
-    }
-
-    public function userLogin(){
-        // Lấy id user từ trong session //
-        return view('layout/user/dang_nhap');
-        
-    }
-
-    public function userRegister(){
-        // Lấy id user từ trong session //
-        return view('layout/user/dang_ky');
-        
     }
 
     /**
