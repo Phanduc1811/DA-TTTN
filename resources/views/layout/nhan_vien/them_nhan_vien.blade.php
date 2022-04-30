@@ -121,7 +121,7 @@
                             <div class="tile-footer">
                                 <input class="btn btn-primary" type="submit" value="Thêm" style="background-color: darkblue">&ensp;
                                 <a href="{{url('/nhan_vien/danh_sach_nhan_vien')}}" class="btn btn-primary" style="background-color:red">Quay lại</a>
-                                {{csrf_field()}}
+                            
                         </form>
                     </div>
                 </div>

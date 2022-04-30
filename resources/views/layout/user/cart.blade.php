@@ -171,7 +171,7 @@ p.noItemCart a {
                                 </td>
                                 <td class="text-right">
                             
-                                <h6>{{Cart::subtotal()}}đ</h6>
+                                <h6> {{Cart::subtotal()}}đ</h6>
                                 </td>
                             </tr>
                             <tr>

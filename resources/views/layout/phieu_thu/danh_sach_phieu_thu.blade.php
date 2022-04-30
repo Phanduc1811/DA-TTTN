@@ -29,7 +29,7 @@
 
 <body class="app sidebar-mini">
     <!-- Navbar-->
-    <header class="app-header"><a class="app-header__logo" href="index.html">Admin</a>
+    <header class="app-header"><a class="app-header__logo" href="{{url('/admin')}}">Admin</a>
         <!-- Sidebar toggle button-->
         <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
 
@@ -54,30 +54,34 @@
           <div class="tile">
             <div class="tile-body">
               <div class="table-responsive">
-                <a href="{{ url('/phieu_thu/lap_phieu_thu') }}" class="btn btn-primary" type="submit" style="background-color:blueviolet">+Lập phiếu thu</a>
+                {{-- <a href="#" class="btn btn-primary" type="submit" style="background-color:blueviolet">+Lập phiếu thu</a> --}}
                 <hr>
                 <table class="table table-hover table-bordered" id="sampleTable">
                   <thead>
                     <tr>
                       <th>Mã Phiếu Thu</th>
+                      <th>Mã Hóa Đơn</th>
                       <th>Ngày thu tiền</th> 
-                      <th>Số tiền thu \</th>
+                      <th>Số tiền thu </th>
                       <th>Trạng Thái</th>
                       <th></th>
                     </tr>
                   </thead>
                   <tbody>
+                    @foreach ($pt as $item)
                     <tr>
-                      <td>01</td>
-                      <td>10/4/2022</td>
-                      <td>2000000</td>
-                      <td>Nợ</td>
+                      <td>{{$item->MaPT}}</td>
+                      <td>{{$item->MaHD}}</td>
+                      <td>{{$item->NgayTT}}</td>
+                      <td>{{$item->SoTienTT}}</td>
+                      <td>{{$item->TrangThai=="1"?"Hết Nợ":"Nợ"}}</td>
                       <td>
-                        <a href="{{ url('/phieu_thu/chi_tiet_phieu_thu') }}"><i class="fa fa-list" style=" font-size : 30px"></i></a>&ensp;&ensp;
-                        <a href=""><i class="fa fa-trash" style=" font-size : 30px"></i></a>&ensp;&ensp;
-                        <a href="{{ url('/phieu_thu/sua_phieu_thu') }}"><i class=" fa fa-wrench" style=" font-size : 30px"></i></a>
+                        <a href="{{ url('/phieu_thu/chi_tiet_phieu_thu') }}/{{$item->MaPT}}"><i class="fa fa-list" style=" font-size : 30px"></i></a>&ensp;&ensp;
+                        <a href="{{url('/phieu_thu/xoa_phieu_thu') }}/{{$item->MaPT}}"><i class="fa fa-trash" style=" font-size : 30px"></i></a>&ensp;&ensp;
+                        <a href="{{ url('/phieu_thu/sua_phieu_thu') }}/{{$item->MaPT}}"><i class=" fa fa-wrench" style=" font-size : 30px"></i></a>
                       </td>
                     </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>

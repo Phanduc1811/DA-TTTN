@@ -132,26 +132,26 @@
                 <form class="needs-validation" action="{{URL::to('/handle-order')}}" method="post">
                     {!! csrf_field() !!}
                     <input type="hidden" name="total_price" value="{{Cart::subtotal()}}">
-                    <input type="hidden" name="users_id" value="@php echo Auth::guard('user')->user()->users_id; @endphp">
+                    <input type="hidden" name="users_id" value="@php echo Auth::guard('user')->user()->MaKH; @endphp">
                     @foreach($info_user as $key =>$user)
                     <div class="row order">
                         <div class="col-md-12 mb-6">
                             <label for="firstName">Họ tên</label>
                             <input type="text" class="form-control" placeholder="" value="{{$user->TenKH}}"
-                                name="order_cusName" required="">
+                                name="order_cusName" required="" disabled>
                         </div>
                     </div>
 
                     <div class="row order">
-                        <!-- <div class="col-md-6 mb-3">
+                        <div class="col-md-6 mb-3">
                             <label for="firstName">Email</label>
-                            <input type="text" class="form-control" value="" name="order_cusEmail"
+                            <input type="text" class="form-control" value="{{$user->Email}}" name="order_cusEmail"
                                 required="">
-                        </div> -->
+                        </div>
                         <div class="col-md-6 mb-3">
                             <label for="lastName">Số điện thoại</label>
                             <input type="text" class="form-control" placeholder="" name="order_cusPhone"
-                                value="{{$sdt_user->SDT}}" required>
+                                value="{{$sdt_user->SDT}}" required disabled>
                         </div>
                     </div>
 
@@ -307,7 +307,8 @@
 
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Tổng cộng: </span>
-                        <strong>{{Cart::subtotal()}} đ</strong>
+                        <strong>{{ Cart::subtotal()}} đ</strong>
+                       
                     </li>
                 </ul>
 

@@ -70,9 +70,9 @@
                                     <h6 style="text-align: right">Ngày thanh toán:1/4/2022</h6>
                                 </div>
                                 <div class="col-lg-12">
-                                    <h6>Số tiền trả trước:</h6>
+                                    <h6 id="tientratruoc">Số tiền trả trước:</h6>
                                     <h6>Số nợ:</h6>
-                                    <h4>Tổng tiền cần thanh toán:</h4>
+                                    <h4 id="tongtien">Tổng tiền cần thanh toán:</h4>
                                 </div>
                                 <div class="col-lg-12">
                                     <h5 style="text-align: right "> Công ty Vật tư </h4>

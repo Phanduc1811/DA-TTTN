@@ -8,6 +8,9 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Redirect;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use Carbon\Carbon;
+use Mail;
+
 
 class CartController extends Controller
 {
@@ -16,6 +19,15 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function checkLogin(){
+        // Lấy id user từ trong session //
+        $isLogin = Auth::guard('user')->check();
+        // Nếu id user = null - chưa đăng nhập, return về trang đăng nhập //
+        if(!$isLogin)
+            return redirect('/login')->send();
+    }
+
     public function index()
     {
     
@@ -106,28 +118,16 @@ class CartController extends Controller
         return redirect()->back();
     }
 
+
     // Trang đặt hàng của frontend //
     public function order(){
         // Check login //
-       // $n = $this->checkLogin();
-        // Người dùng chưa đăng nhập // 
-        // if($n == -1){
-        //     Alert::error('Vui lòng đăng nhập tài khoản để đặt hàng');
-        //     return Redirect::to('/login.html');
-        // }else if($n == 0){ // Tài khoản người dùng chưa active //
-        //     Alert::error('Vui lòng kích hoạt tài khoản để đặt hàng');
-        //     return Redirect::to('/trang-chu.html');
-        // }
-
-        // // Header //
-        // $cate_of_Apple = DB::table("danhmucsanpham")
-        //     ->whereRaw('danhmucsanpham.maDanhMuc IN (select dbsanpham.maDanhMuc FROM dbsanpham JOIN thuonghieu on thuonghieu.maThuongHieu = dbsanpham.maThuongHieu WHERE thuonghieu.maThuongHieu = 1)')
-        //     ->get();
-        // $cate_of_Gear = DB::table("danhmucsanpham")
-        //     ->select('tenDanhMuc', 'slug')
-        //     ->where('danhMucCha', 14)
-        //     ->get();
-        // //var_dump($cate_of_Gear); exit;
+       $n = $this->checkLogin();
+       // Người dùng chưa đăng nhập // 
+        if($n == -1){
+            Alert::error('Vui lòng đăng nhập tài khoản để đặt hàng');
+            return Redirect::to('/login.html');
+        }
 
         // // end header
 
@@ -146,39 +146,70 @@ class CartController extends Controller
         ->with('sdt_user', $sdt_user);
     }
 
+    // Gửi mail xác nhận đặt hàng //
+    public function sendMailOrder($data, $cart_content, $email){
+        $title_mail = "Xác nhận đặt hàng ";
+        //$to_email = $email;
+        $data['email'] = $email; //send to this email
+    
+        Mail::send('layout.user.notify_orderMail', ['data'=>$data, 'oderDetail' =>$cart_content] , function($message) use ($title_mail,$data){
+		    $message->to($data['email'])->subject($title_mail);//send this mail with subject
+		    $message->from($data['email'], 'Ngọc Thủy');//send from this mail
+	    });
+        //--send mail
+        return true;
+    }
+
+    // Xử lý đặt hàng //
+    public function handleOrder(Request $request){
+        $data = array();
+
+        $total = $request->total_price;
+        $pos = strpos($total, '.');
+
+        $sub_total = str_replace(",","",substr($total, 0, $pos));
+
+        // Thêm vào data đơn hàng //
+        $email = $request->order_cusEmail;
+        $num = mt_rand(1, 99); 
+        $data['MaDDH'] = 'DDH' . $num;
+        $data['DiaChi'] = $request->order_cusAddress;
+        $data['TenNguoiNhan'] = $request->order_cusName;
+        $data['ThanhTien'] = $sub_total;
+        $data['TrangThai'] = 0;
+        $data['MaKH'] = $request->users_id;
+        $data['NgayLapDDH'] = Carbon::now('Asia/Ho_Chi_Minh');
+        $data['NgayGiaoHang'] = Carbon::now('Asia/Ho_Chi_Minh')->addDays(7);
+        var_dump($data);
+    
+        DB::table('don_dat_hang')->insert($data);
+
+        // Thêm vào data chi tiết đơn hàng //
+
+        // // Lấy id đơn hàng vừa thêm //
+        $get_id_order = DB::table('don_dat_hang')->select('MaDDH')->orderBy('MaDDH', 'DESC')->first();
+
+        $id_order = $get_id_order->MaDDH;
+   
+
+        $cart_content = Cart::content();
+        $dataChiTiet = array();
+        $dataChiTiet['MaDDH'] = $id_order;
+        // Lấy tất cả sản phẩm trong giỏ hàng thêm vào chi tiết đơn hàng //
+        foreach($cart_content as $key =>$cart_pro){
+            $dataChiTiet['MaVT'] = $cart_pro->id;
+            $dataChiTiet['DonGia'] = $cart_pro->price;
+            $dataChiTiet['SoLuong'] = $cart_pro->qty;
+            DB::table('ct_ban_hang')->insert($dataChiTiet);
+        }
+        // Gửi mail xác nhận đặt hàng - Tham số truyền vào: $data: đơn hàng, $cart_content: giỏ hàng, $email: email của khách hàng //
+        $this->sendMailOrder($data, $cart_content, $email);
+        Cart::destroy();
+        Alert::success('Đặt hàng thành công');
+        return Redirect::to('/');
+    }
+
     
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+   
 }
