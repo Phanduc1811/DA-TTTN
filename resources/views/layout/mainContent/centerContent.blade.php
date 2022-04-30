@@ -5,9 +5,9 @@
         const myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: ['Hà Tiên', 'Hòa Phát', 'Nghi Sơn', 'Tôn Hoa Sen', 'Bảy Dầu Giây', 'Hưng Thịnh'],
                 datasets: [{
-                    label: '# of Votes',
+                    label: 'Năng Lực Cung Cấp',
                     data: [12, 19, 3, 5, 2, 3],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
@@ -47,7 +47,7 @@
         const chart1 = new Chart(right, {
             type: 'polarArea',
             data: {
-                labels: ['Red', 'Green', 'Yellow', 'Grey', 'Blue'],
+                labels: ['Cát', 'Gạch', 'Đá Xây', 'Đá San Lấp', 'Sắt'],
                 datasets: [{
                     label: 'My First Dataset',
                     data: [11, 16, 7, 3, 14],
@@ -78,8 +78,9 @@
         const chart = new Chart(c, {
             type: 'line',
             data: {
+                labels: '1234567',
                 datasets: [{
-                    label: 'My First Dataset',
+                    label: 'Doanh Số Bán Hàng (ĐV: Triệu Đồng) ',
                     data: [65, 59, 80, 81, 56, 55, 40],
                     fill: false,
                     borderColor: 'rgb(75, 192, 192)',

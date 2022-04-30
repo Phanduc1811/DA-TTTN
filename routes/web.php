@@ -7,6 +7,9 @@ use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\NhanVienController;
 use App\Http\Controllers\NhaSanXuatController;
 use App\Http\Controllers\AuthController;
+
+use App\Http\Controllers\CartController;
+
 use App\Http\Controllers\HoaDonController;
 
 use App\Http\Controllers\PhieuThuController;
@@ -29,6 +32,18 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/')->group(function () {
     Route::get('/', [VatTuUserController::class, 'index']);
     Route::get('/chi_tiet_vat_tu/{MaVT}', [VatTuUserController::class, 'show']);
+
+    Route::get('/login', [VatTuUserController::class, 'userLogin']);
+    Route::post('/handle-login-user', [AuthController::class, 'loginUser']);
+    Route::get('/register', [VatTuUserController::class, 'userRegister']);
+    Route::get('/logoutUser', [AuthController::class, 'logoutUser']);
+    Route::post('/signin-users', [AuthController::class, 'signInUser']);
+
+    Route::get('/cart', [CartController::class, 'index']);
+    Route::post('/add-to-cart.php',  [CartController::class, 'addCart']);
+    Route::get('/delete-item-cart', [CartController::class, 'DeleteAllCart']);
+    Route::post('/update-cart',  [CartController::class, 'updateCart']);
+    Route::get('/delete-item-cart/{row_id}', [CartController::class, 'DeleteItemCart']);
     Route::get('/chi_tiet_nha_san_xuat/{MaNSX}', [VatTuUserController::class, 'showNSX']);
 });
 
@@ -69,6 +84,7 @@ Route::prefix('/nha_san_xuat')->group(function () {
 Route::prefix('/don_dat_hang')->group(function () {
     Route::get('/xem_don_dat_hang', [DonDatHang::class, 'index']);
     Route::get('/them_don_dat_hang', [DonDatHang::class, 'create']);
+    Route::post('/lap_don_dat_hang', [DonDatHang::class, 'createDDH']);
     Route::get('/chi_tiet_don_dat_hang/{MaDDH}', [DonDatHang::class, 'detail']);
     Route::get('/sua_don_dat_hang', [DonDatHang::class, 'fix']);
     Route::get('/them_san_phan_don_dat_hang', [DonDatHang::class, 'add']);

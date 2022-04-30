@@ -10,7 +10,10 @@ use App\Models\Order;
 use App\Models\VatTu;
 use App\Models\ctBanHang;
 use App\Models\Customer;
+use Carbon\Carbon;
+use DateTime;
 use RealRashid\SweetAlert\Facades\Alert;
+use Symfony\Component\Console\Input\Input;
 
 class DonDatHang extends Controller
 {
@@ -32,6 +35,7 @@ class DonDatHang extends Controller
     public function index()
     {
         $this->checkLogin();
+
         $all_ddh = DB::table('don_dat_hang')
             ->select('don_dat_hang.*', DB::raw('sum(ct_ban_hang.SoLuong) as SoLuong'))
             ->join('ct_ban_hang', 'don_dat_hang.MaDDH', '=', 'ct_ban_hang.MaDDH')
@@ -48,8 +52,16 @@ class DonDatHang extends Controller
      */
     public function create()
     {
+        $dskh = DB::table('don_dat_hang')
+            ->join('ct_ban_hang', 'don_dat_hang.MaDDH', '=', 'ct_ban_hang.MaDDH')
+            ->join('khach_hang', 'don_dat_hang.MaKH', '=', 'khach_hang.MaKH')
+            ->select('khach_hang.*')->distinct()
+            ->get();
         $dsvt = VatTu::paginate(7);
-        return view('layout/don_hang/tao_don_dat_hang')->with('dsvt', $dsvt);
+        $date = Carbon::now();
+
+        return view('layout/don_hang/tao_don_dat_hang', ['dsvt' => $dsvt, 'dskh' => $dskh, 'date' => $date]);
+        //return view('layout/don_hang/tao_don_dat_hang');
     }
     public function detail($maddh)
     {
@@ -76,8 +88,46 @@ class DonDatHang extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function createDDH(Request $request)
+    {
+        $ddh = new DonDatHang();
+        //$input = $request->all();
+        $ddh->MaDDH = $request->ma_ddh;
+        $ddh->NgayLapDDH = $request->ngay_dat;
+        $ddh->NgayGiaoHang = $request->ngay_giao;
+        $ddh->DiaChi = $request->dia_chi;
+
+        $ddh->MaKH = $request->ma_kh;
+
+        $n = $ddh->save();
+
+        Alert::success('Thêm Thành Công');
+        return redirect('don_dat_hang/xem_don_dat_hang');
+    }
     public function store(Request $request)
     {
+        $ddh = new DonDatHang();
+        //$input = $request->all();
+        $ddh->MaDDH = $request->ma_ddh;
+        $ddh->NgayLapDDH = Carbon::now();
+        $ddh->NgayGiaoHang = $request->ngay_giao;
+
+        //$ddh->MaKH = $request->ma_kh;
+
+        $n = $ddh->save();
+
+        Alert::success('Thêm Thành Công');
+        return redirect('don_dat_hang/xem_don_dat_hang');
+        // if (!$n) {
+        //     Alert::error('Thêm thất bại');
+        //     return redirect()->back();
+        // } else {
+        //     $data = array();
+        //     $data['MaDDH'] = $request->ma_ddh;
+        //     $data['SoLuong'] = count($request->ma_vt);
+        //     DB::table('ct_ban_hang')->insert($data);
+        //     return redirect()->back();
+        // }
     }
 
     /**

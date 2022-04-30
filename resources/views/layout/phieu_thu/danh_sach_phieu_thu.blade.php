@@ -51,7 +51,7 @@
       <div class="tile">
         <div class="tile-body">
           <div class="table-responsive">
-            <a href="{{ url('/phieu_thu/lap_phieu_thu/') }}" class="btn btn-primary" type="submit" style="background-color:blueviolet">+Lập phiếu thu</a>
+            <!-- <a href="{{ url('/phieu_thu/lap_phieu_thu/') }}" class="btn btn-primary" type="submit" style="background-color:blueviolet">+Lập phiếu thu</a> -->
             <hr>
             <table class="table table-hover table-bordered" id="sampleTable">
               <thead>

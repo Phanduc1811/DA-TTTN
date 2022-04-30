@@ -59,36 +59,42 @@
 
 
     <section class="ftco-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 mb-5 ftco-animate">
-					<a href="{{ URL::asset('resources/css_js_user/') }}/images/{{$vt->Anh}}" class="image-popup"><img src="{{ URL::asset('resources/css_js_user/') }}/images/{{$vt->Anh}}" class="img-fluid"
-							alt="Colorlib Template"></a>
-				</div>
-				<div class="col-lg-6 product-details pl-md-5 ftco-animate">
-					<h3>{{$vt->TenVT}}</h3>
-					<div class="rating d-flex">
-						@foreach ($nsx as $item)
-						<p class="text-left mr-4">
-							Nhà Sản Xuất{{$item->TenNSX}}
-						</p>
-						@endforeach
-						
-						
-						<p class="text-left">
-							Đvt:{{$vt->DVTinh}}
-						</p>
+		 <form action="{{URL::to('/add-to-cart.php')}}" method='post' id="{{$vt->MaVT}}">
+		 {!! csrf_field() !!}
+            <input type='hidden' name='product_id' value='{{$vt->MaVT}}'>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 mb-5 ftco-animate">
+						<a href="{{ URL::asset('resources/css_js_user/') }}/images/{{$vt->Anh}}" class="image-popup"><img src="{{ URL::asset('resources/css_js_user/') }}/images/{{$vt->Anh}}" class="img-fluid"
+								alt="Colorlib Template"></a>
 					</div>
-					<p class="price"><span>{{number_format($vt->DonGia)}}VNĐ</span></p>
-					<p>Miêu tả Nếu có</p>
-					<div class="row mt-4">
-						<div class="col-md-6">
-							<input type="number" value="1" class="form-control">
-							<br>
-							<p><a href="cart.html" class="btn btn-black py-3 px-5">Add to Cart</a></p>
+					<div class="col-lg-6 product-details pl-md-5 ftco-animate">
+						<h3>{{$vt->TenVT}}</h3>
+						<div class="rating d-flex">
+							@foreach ($nsx as $item)
+							<p class="text-left mr-4">
+								Nhà Sản Xuất{{$item->TenNSX}}
+							</p>
+							@endforeach
+							
+							
+							<p class="text-left">
+								Đvt:{{$vt->DVTinh}}
+							</p>
+						</div>
+						<p class="price"><span>{{number_format($vt->DonGia)}}VNĐ</span></p>
+						<p>Miêu tả Nếu có</p>
+						<div class="row mt-4">
+							<div class="col-md-6">
+								<input type="number" name="qty_pro" value="1" min="1" max="100" class="form-control" >
+								<br>
+								<p><a href="javascript:;" type="submit" onclick="document.getElementById('{{$vt->MaVT}}').submit()" class="btn btn-black py-3 px-5">Add to Cart</a></p>
+							</div>
 						</div>
 					</div>
 				</div>
+			</div>
+		</form>
 	</section>
 
 	<section class="ftco-section">

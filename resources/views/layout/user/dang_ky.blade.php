@@ -62,19 +62,32 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-xl-7 ftco-animate">
-					<form action="#" class="billing-form">
+					<form action="{{URL::to('/signin-users')}}" method="post" class="billing-form">
+                    {{ csrf_field() }}	
 						<h3 class="mb-4 billing-heading">Đăng ký Tài Khoản</h3>
 						<div class="row align-items-end">
+                            <div class="col-md-6">
+								<div class="form-group">
+									<label for="firstname">Username</label>
+									<input type="text" class="form-control" placeholder="" name="customer_username">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="lastname">Password</label>
+									<input type="password" class="form-control" placeholder="" name="customer_password">
+								</div>
+							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="firstname">Tên Khách Hàng </label>
-									<input type="text" class="form-control" placeholder="">
+									<input type="text" class="form-control" placeholder="" name="customer_name">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="lastname">Địa chỉ</label>
-									<input type="text" class="form-control" placeholder="">
+									<input type="text" class="form-control" placeholder="" name="customer_address">
 								</div>
 							</div>
 							<div class="w-100"></div>
@@ -82,8 +95,8 @@
 								<div class="form-group">
 									<label for="country">Giới Tính</label>
 									<div class="select-wrap">
-										<label><input type="radio" name="male" checked> Nam</label> &nbsp; <label><input
-												type="radio" name="male"> Nữ</label>
+										<label><input type="radio"  name="radGender" value="1" checked> Nam</label> &nbsp; <label><input
+                                            name="radGender" type="radio" value="0"> Nữ</label>
 									</div>
 								</div>
 							</div>
@@ -91,18 +104,20 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="streetaddress">Số điện thoại</label>
-									<input type="text" class="form-control" >
+									<input type="text" class="form-control" name="customer_phone" >
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="streetaddress">ghi chú</label>
-									<input type="text" class="form-control">
+									<label for="streetaddress">Ghi chú</label>
+									<input type="text" class="form-control" name="customer_note">
 								</div>
 							</div>
+                            <div class="col-md-2">
+                                <button class="btn btn-submit" style="background-color: #82ae46; border-radius: 0; color: #fff; padding-left: 15px">Submit</button>
+                            </div>     
 					</form><!-- END -->
 				</div>
-			
 	</section>
 
   
