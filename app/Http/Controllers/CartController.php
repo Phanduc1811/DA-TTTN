@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Redirect;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class CartController extends Controller
@@ -103,6 +104,46 @@ class CartController extends Controller
     public function DeleteItemCart($rowId){
         Cart::remove($rowId);
         return redirect()->back();
+    }
+
+    // Trang đặt hàng của frontend //
+    public function order(){
+        // Check login //
+       // $n = $this->checkLogin();
+        // Người dùng chưa đăng nhập // 
+        // if($n == -1){
+        //     Alert::error('Vui lòng đăng nhập tài khoản để đặt hàng');
+        //     return Redirect::to('/login.html');
+        // }else if($n == 0){ // Tài khoản người dùng chưa active //
+        //     Alert::error('Vui lòng kích hoạt tài khoản để đặt hàng');
+        //     return Redirect::to('/trang-chu.html');
+        // }
+
+        // // Header //
+        // $cate_of_Apple = DB::table("danhmucsanpham")
+        //     ->whereRaw('danhmucsanpham.maDanhMuc IN (select dbsanpham.maDanhMuc FROM dbsanpham JOIN thuonghieu on thuonghieu.maThuongHieu = dbsanpham.maThuongHieu WHERE thuonghieu.maThuongHieu = 1)')
+        //     ->get();
+        // $cate_of_Gear = DB::table("danhmucsanpham")
+        //     ->select('tenDanhMuc', 'slug')
+        //     ->where('danhMucCha', 14)
+        //     ->get();
+        // //var_dump($cate_of_Gear); exit;
+
+        // // end header
+
+        // Lấy id user //
+        $users_id = Auth::guard('user')->user()->MaKH;
+        
+        // Lấy thông tin user dựa vào id //
+        $info_user = DB::table('khach_hang')->where('MaKH', $users_id)->get();
+        $sdt_user = DB::table('sdt_kh')->where('MaKH', $users_id)->first();
+
+        $cart_content = Cart::content();
+
+        return view('layout/user/order')
+        ->with('cart_content',$cart_content)
+        ->with('info_user', $info_user)
+        ->with('sdt_user', $sdt_user);
     }
 
     

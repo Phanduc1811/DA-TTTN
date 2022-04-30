@@ -26,12 +26,10 @@
                
               @endphp
                 @if($users_name != null)
-                  <div class="dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #000; margin-top: 10px;">@php echo $users_name @endphp</a>
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #000; ">@php echo $users_name @endphp</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                       <a class="dropdown-item" href="{{URL::to('/logoutUser')}}">Logout</a>
                     </div>
-                  </div>
                 @endif
           @else
           <span class="nav-link">

@@ -39,6 +39,7 @@ Route::prefix('/')->group(function () {
     Route::get('/delete-item-cart', [CartController::class,'DeleteAllCart']);
     Route::post('/update-cart',  [CartController::class,'updateCart']);
     Route::get('/delete-item-cart/{row_id}', [CartController::class,'DeleteItemCart']);
+    Route::get('/order.html', [CartController::class,'order']);
 });
 
 Route::get('/admin', [AuthController::class,'index']);
