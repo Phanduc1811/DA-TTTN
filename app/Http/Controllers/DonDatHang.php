@@ -12,7 +12,7 @@ use App\Models\ctBanHang;
 use App\Models\Customer;
 use Carbon\Carbon;
 
-use Session;
+use Illuminate\Support\Facades\Session;
 
 use DateTime;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -76,13 +76,13 @@ class DonDatHang extends Controller
             ->where('don_dat_hang.MaDDH', $maddh)
             ->get();
         $kh = Order::join('khach_hang', 'don_dat_hang.MaKH', '=', 'khach_hang.MaKH')
-        ->join('sdt_kh', 'sdt_kh.MaKH', '=', 'don_dat_hang.MaKH')
+            ->join('sdt_kh', 'sdt_kh.MaKH', '=', 'don_dat_hang.MaKH')
             ->select("khach_hang.*", "sdt_kh.SDT")
             ->where('don_dat_hang.MaDDH', $maddh)
             ->first();
-       // var_dump($ddh[0]); exit;
+        // var_dump($ddh[0]); exit;
 
-       return view('layout/don_hang/chi_tiet_don_dat_hang')->with('ddh', $ddh)->with('kh', $kh);
+        return view('layout/don_hang/chi_tiet_don_dat_hang')->with('ddh', $ddh)->with('kh', $kh);
     }
     // public function fix()
     // {
@@ -119,7 +119,7 @@ class DonDatHang extends Controller
 
         $id_vattu = $request->check;
 
-        foreach($id_vattu as $key => $id){
+        foreach ($id_vattu as $key => $id) {
             $data_vt = array();
 
             $vt = VatTu::find($id);
@@ -134,7 +134,7 @@ class DonDatHang extends Controller
 
         $n = $ddh->save();
 
-        foreach($id_vattu as $key => $id){
+        foreach ($id_vattu as $key => $id) {
             $data_vt = array();
 
             $vt = VatTu::find($id);
@@ -175,7 +175,8 @@ class DonDatHang extends Controller
         // }
     }
 
-    public function setSession(Request $request){
+    public function setSession(Request $request)
+    {
 
         // $test = $request->chk_id;
 
@@ -231,7 +232,7 @@ class DonDatHang extends Controller
         $id_vattu = $request->check;
 
         //var_dump($id_vattu); exit;
-        foreach($id_vattu as $key => $id){
+        foreach ($id_vattu as $key => $id) {
             $data_vt = array();
 
             $vt = VatTu::find($id);
@@ -246,7 +247,7 @@ class DonDatHang extends Controller
 
         $n = $ddh->save();
 
-        foreach($id_vattu as $key => $id){
+        foreach ($id_vattu as $key => $id) {
             $data_vt = array();
 
             $vt = VatTu::find($id);
@@ -270,26 +271,23 @@ class DonDatHang extends Controller
             ->where('don_dat_hang.MaDDH', $ddh_id)->get();
 
         $ds_vt = ctBanHang::join('vat_tu', 'ct_ban_hang.MaVT', '=', 'vat_tu.MaVT')
-        ->select("ct_ban_hang.*", "vat_tu.*")
-        ->where('ct_ban_hang.MaDDH', $ddh_id)
-        ->get();
+            ->select("ct_ban_hang.*", "vat_tu.*")
+            ->where('ct_ban_hang.MaDDH', $ddh_id)
+            ->get();
 
         $dsvt = DB::table('vat_tu')->get();
 
 
         $data_vt = array();
-        foreach($dsvt as $key => $value) 
-        { 
+        foreach ($dsvt as $key => $value) {
             $flag = false;
-            foreach($ds_vt as $key1 => $value1) 
-            {      
-                if($dsvt[$key]->MaVT == $ds_vt[$key1]->MaVT)
-                { 
+            foreach ($ds_vt as $key1 => $value1) {
+                if ($dsvt[$key]->MaVT == $ds_vt[$key1]->MaVT) {
                     $flag = true;
                     break;
-                }                 
-            } 
-            if(!$flag){
+                }
+            }
+            if (!$flag) {
                 array_push($data_vt, $dsvt[$key]);
                 continue;
             }
@@ -305,11 +303,11 @@ class DonDatHang extends Controller
 
         if (count($ddh) > 0) {
             return view('layout/don_hang/sua_don_dat_hang')
-            ->with('ddh', $ddh)
-            ->with('dsvt', $ds_vt)
-            ->with('data_vt', $data_vt)
-            ->with('date', $date)
-            ->with('dskh', $dskh);
+                ->with('ddh', $ddh)
+                ->with('dsvt', $ds_vt)
+                ->with('data_vt', $data_vt)
+                ->with('date', $date)
+                ->with('dskh', $dskh);
         } else {
             Alert::error('Đơn hàng không tồn tại');
             return redirect()->back();
