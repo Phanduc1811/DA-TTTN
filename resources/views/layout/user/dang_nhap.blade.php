@@ -6,8 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
 
@@ -29,22 +28,22 @@
     <link rel="stylesheet" href="{{ URL::asset('resources/css_js_user/') }}/css/flaticon.css">
     <link rel="stylesheet" href="{{ URL::asset('resources/css_js_user/') }}/css/icomoon.css">
     <link rel="stylesheet" href="{{ URL::asset('resources/css_js_user/') }}/css/style.css">
+    <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
 </head>
 
 <body class="goto-here">
+    @include('sweetalert::alert')
     <div class="py-1 bg-primary">
         <div class="container">
             <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
                 <div class="col-lg-12 d-block">
                     <div class="row d-flex">
                         <div class="col-md pr-4 d-flex topper align-items-center">
-                            <div class="icon mr-2 d-flex justify-content-center align-items-center"><span
-                                    class="icon-phone2"></span></div>
+                            <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
                             <span class="text">0866530401</span>
                         </div>
                         <div class="col-md pr-4 d-flex topper align-items-center">
-                            <div class="icon mr-2 d-flex justify-content-center align-items-center"><span
-                                    class="icon-paper-plane"></span></div>
+                            <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
                             <span class="text">youremail@email.com</span>
                         </div>
 
@@ -59,36 +58,36 @@
 
 
     <section class="ftco-section">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-xl-7 ftco-animate">
-					<form action="{{URL::to('/handle-login-user')}}" class="billing-form" method="post">
-                    {{ csrf_field() }}	
-                    <h3 class="mb-4 billing-heading">Đăng nhập</h3>
-						<div class="w-100"></div>
-						<div class="col-md-12" style="padding-left: 0px">
-							<div class="form-group">
-								<label for="streetaddress">Username</label>
-								<input type="text" class="form-control" name="userName">
-							</div>
-						</div>
-						<div class="col-md-12" style="padding-left: 0px"> 
-							<div class="form-group">
-								<label for="streetaddress">Mật khẩu</label>
-								<input type="password" class="form-control" name="password">
-							</div>
-						</div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 ftco-animate">
+                    <form action="{{URL::to('/handle-login-user')}}" class="billing-form" method="post">
+                        {{ csrf_field() }}
+                        <h3 class="mb-4 billing-heading">Đăng nhập</h3>
+                        <div class="w-100"></div>
+                        <div class="col-md-12" style="padding-left: 0px">
+                            <div class="form-group">
+                                <label for="streetaddress">Username</label>
+                                <input type="text" class="form-control" name="userName">
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="padding-left: 0px">
+                            <div class="form-group">
+                                <label for="streetaddress">Mật khẩu</label>
+                                <input type="password" class="form-control" name="password">
+                            </div>
+                        </div>
                         <button class="col-md-12 btn btn-submit" style="background-color: #82ae46; border-radius: 0; width: 100px; color: #fff">Submit</button>
-					</form><!-- END -->
-				</div>
-			</div>
-	</section>
+                    </form><!-- END -->
+                </div>
+            </div>
+    </section>
 
-  
- 
+
+
 
     @include('layout/user/footer')
-  
+
 
 
     <script src="{{ URL::asset('resources/css_js_user/') }}/js/jquery.min.js"></script>

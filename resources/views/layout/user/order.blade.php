@@ -134,19 +134,17 @@
                     <input type="hidden" name="total_price" value="{{Cart::subtotal()}}">
                     <input type="hidden" name="users_id" value="@php echo Auth::guard('user')->user()->MaKH; @endphp">
                     @foreach($info_user as $key =>$user)
+
                     <div class="row order">
                         <div class="col-md-12 mb-6">
                             <label for="firstName">Họ tên</label>
-                            <input type="text" class="form-control" placeholder="" value="{{$user->TenKH}}"
-                                name="order_cusName" required="" disabled>
+                            <input type="text" class="form-control" value="{{$user->TenKH}}" name="order_cusName"
+                                required readonly>
                         </div>
-                    </div>
-
-                    <div class="row order">
                         <div class="col-md-6 mb-3">
                             <label for="firstName">Email</label>
-                            <input type="text" class="form-control" value="{{$user->Email}}" name="order_cusEmail"
-                                required="">
+                            <input type="email" class="form-control" value="{{$user->Email}}" name="order_cusEmail"
+                                required>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="lastName">Số điện thoại</label>

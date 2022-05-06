@@ -90,7 +90,6 @@
                         <a href="{{url('/khach_hang/chi_tiet_khach_hang/'.$kh->MaKH)}}"><i class="fa fa-list" style=" font-size : 30px"></i></a>&ensp;&ensp;
                         <a href="#my-modal_{{$kh->MaKH}}" data-toggle="modal" role="button"><i class="fa fa-trash" style=" font-size : 30px"></i></a>&ensp;&ensp;
                         <a href=" {{url('/khach_hang/sua_khach_hang/'.$kh->MaKH)}}"><i class=" fa fa-wrench" style=" font-size : 30px"></i></a>
-
                         <!-- Modal  -->
                         <div id="my-modal_{{$kh->MaKH}}" class="modal fade" tabindex="-1"
                                         role="dialog" aria-hidden="true">

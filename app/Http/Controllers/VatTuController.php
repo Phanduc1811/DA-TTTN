@@ -152,15 +152,13 @@ class VatTuController extends Controller
         $vt->SoLuong = $data['so_luong'];
         $vt->MaNSx =  $data['ma_nsx'];
         $result = $vt->save();
-        if ($result){
+        if ($result) {
             Alert::success('Cập nhật thành công');
             return redirect('/vat_tu/xem_vat_tu');
-        }
-        else{
+        } else {
             Alert::success('Cập nhật không thành công');
             return redirect('/vat_tu/xem_vat_tu');
         }
-            
     }
 
     /**

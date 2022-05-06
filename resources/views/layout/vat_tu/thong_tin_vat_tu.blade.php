@@ -2,8 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta name="description"
-        content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <meta name="description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
     <!-- Twitter meta-->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:site" content="@pratikborsadiya">
@@ -14,8 +13,7 @@
     <meta property="og:title" content="Vali - Free Bootstrap 4 admin theme">
     <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
     <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
-    <meta property="og:description"
-        content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <meta property="og:description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
     <title> Admin </title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,8 +21,7 @@
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('resources/css_js_admin/') }}/css/main.css">
     <!-- Font-icon css-->
-    <link rel="stylesheet" type="text/css"
-        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body class="app sidebar-mini">
@@ -60,55 +57,52 @@
                         <div class="tile">
                             <div class="tile-body">
                                 <div class="table-responsive">
-                                    <a href="{{ url('/vat_tu/them_vat_tu') }}" class="btn btn-primary" type="submit"
-                            style="background-color:blueviolet">+ Thêm vật tư</a>
+                                    <a href="{{ url('/vat_tu/them_vat_tu') }}" class="btn btn-primary" type="submit" style="background-color:blueviolet">+ Thêm vật tư</a>
                                     <hr>
                                     <table class="table table-hover table-bordered" id="sampleTable">
-                                            <tr>
-                                                <th>#</th>
-                                                <td>Thông tin</td>
-                                            </tr>
-                                            <tr>
-                                                <th>ID</th>
-                                                <td>{{ $vt->MaVT }}</td>
+                                        <tr>
+                                            <th>#</th>
+                                            <td>Thông tin</td>
+                                        </tr>
+                                        <tr>
+                                            <th>ID</th>
+                                            <td>{{ $vt->MaVT }}</td>
 
-                                            </tr>
-                                            <tr>
-                                                <th>Tên Vật Tư</th>
-                                                <td>{{ $vt->TenVT }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tên Vật Tư</th>
+                                            <td>{{ $vt->TenVT }}</td>
 
-                                            </tr>
-                                            <tr>
-                                                <th>Đơn vị tính</th>
-                                                <td>{{ $vt->DVTinh }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Đơn vị tính</th>
+                                            <td>{{ $vt->DVTinh }}</td>
 
-                                            </tr>
-                                            <tr>
-                                                <th>Số lượng</th>
-                                                <td>{{ $vt->SoLuong }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Số lượng</th>
+                                            <td>{{ $vt->SoLuong }}</td>
 
-                                            </tr>
-                                          @foreach ($nsx as $item1)
-                                              
-                                      
-                                            <tr>
-                                                <th>Nhà Sản Xuất</th>
-                                                <td >{{$item1->TenNSX}}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Địa chỉ</th>
-                                                <td >{{$item1->DiaChi}}</td>
-                                            </tr>
-                                            
+                                        </tr>
+                                        @foreach ($nsx as $item1)
+
+
+                                        <tr>
+                                            <th>Nhà Sản Xuất</th>
+                                            <td>{{$item1->TenNSX}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Địa chỉ</th>
+                                            <td>{{$item1->DiaChi}}</td>
+                                        </tr>
+
                                         @endforeach
                                     </table>
                                 </div>
                                 <div class="tile-footer">
-                                    <a href=" {{ url('/vat_tu/sua_vat_tu')}}/{{$vt->MaVT}}" class="btn btn-primary" type="submit"
-                                    style="background-color:rgb(20, 97, 116)">Sửa 
-                                    lại</a>
-                                    &ensp; <a href="{{url('/vat_tu/xem_vat_tu')}}" class="btn btn-primary" type="submit"
-                                        style="background-color:violet">Quay
+                                    <a href=" {{ url('/vat_tu/sua_vat_tu')}}/{{$vt->MaVT}}" class="btn btn-primary" type="submit" style="background-color:rgb(20, 97, 116)">Sửa
+                                        lại</a>
+                                    &ensp; <a href="{{url('/vat_tu/xem_vat_tu')}}" class="btn btn-primary" type="submit" style="background-color:violet">Quay
                                         lại</a>
                                 </div>
                             </div>
@@ -117,7 +111,6 @@
                 </div>
             </div>
         </div>
-
     </main>
 
 
@@ -130,8 +123,7 @@
     <script src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/pace.min.js"></script>
     <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/jquery.dataTables.min.js">
     </script>
-    <script type="text/javascript"
-        src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/dataTables.bootstrap.min.js"></script>
     <!-- Page specific javascripts-->
     <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/chart.js"></script>
     <script type="text/javascript">

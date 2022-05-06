@@ -6,26 +6,35 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 use App\Models\NhanVien;
+use App\Models\VatTu;
 use Session;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Redirect;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
 class AuthController extends Controller
 {
-    public function index(){
+    public function index()
+    {
+
+        $vat_tu = $this->countVT();
+        $kh = $this->countKH();
+        $nv = $this->countNV();
+        $ddh = $this->countDDH();
         // Lấy id user từ trong session //
         $isLogin = Auth::guard('admin')->check();
         // Nếu id user = null - chưa đăng nhập, return về trang đăng nhập //
-        if(!$isLogin)
+        if (!$isLogin)
             return view('layout/login');
-        return view('master');
-        
+
+
+        return view('master',  compact('vat_tu', 'kh', 'nv', 'ddh'));
     }
 
     // Chức năng đăng nhập user //
-    public function loginUser(Request $request){
+    public function loginUser(Request $request)
+    {
 
         // $this->validate($request, [
         //     'user_email'   => 'required|email|max:255', 
@@ -43,7 +52,7 @@ class AuthController extends Controller
         if (Auth::guard('user')->attempt(['Username' => $request->userName, 'Password' => $request->password])) {
             return redirect('/');
             //var_dump('OK');
-        }else{
+        } else {
             //var_dump('Fail');
             Alert::error('Email hoặc mật khẩu sai');
             return redirect('/login');
@@ -52,29 +61,33 @@ class AuthController extends Controller
 
 
     // Trả về trang đăng nhập của admin //
-    public function adminLogin(){
+    public function adminLogin()
+    {
         // Lấy id user từ trong session //
         $isLogin = Auth::guard('admin')->check();
         // Nếu id user = null - chưa đăng nhập, return về trang đăng nhập //
-        if(!$isLogin)
+        if (!$isLogin)
             return view('layout/login');
         return redirect()->back();
-        
     }
 
-     // Chức năng đăng nhập admin //
-     public function loginAdmin(Request $request){
-        $this->validate($request, [
-            'adminEmail'   => 'required|max:255', 
-            'adminPass' => 'required|min:6|max:255'
-        ],
-        [
-            'adminEmail.required' => 'Không được để trống',
-            'adminPass.required' => 'Mật khẩu không được để trống',
-            'adminPass.min' => 'Mật khẩu tối thiểu 6 kí tự',
-            'adminEmail.max' => 'Email hoặc Username quá 255 ký tự',
-            'adminPass.max' => 'Mật khẩu quá 255 ký tự',
-        ]);
+    // Chức năng đăng nhập admin //
+    public function loginAdmin(Request $request)
+    {
+        $this->validate(
+            $request,
+            [
+                'adminEmail'   => 'required|max:255',
+                'adminPass' => 'required|min:6|max:255'
+            ],
+            [
+                'adminEmail.required' => 'Không được để trống',
+                'adminPass.required' => 'Mật khẩu không được để trống',
+                'adminPass.min' => 'Mật khẩu tối thiểu 6 kí tự',
+                'adminEmail.max' => 'Email hoặc Username quá 255 ký tự',
+                'adminPass.max' => 'Mật khẩu quá 255 ký tự',
+            ]
+        );
 
 
         var_dump($request->adminPass);
@@ -82,37 +95,59 @@ class AuthController extends Controller
         if (Auth::guard('admin')->attempt(['Email' => $request->adminEmail, 'Password' => $request->adminPass])) {
 
             return redirect('/admin');
-        }
-        else if (Auth::guard('admin')->attempt(['Username' => $request->adminEmail, 'Password' => $request->adminPass])) {
+        } else if (Auth::guard('admin')->attempt(['Username' => $request->adminEmail, 'Password' => $request->adminPass])) {
             return redirect('/admin');
 
             return redirect('/admin/dashboard');
-        }
-        else if (Auth::guard('admin')->attempt(['Username' => $request->adminEmail, 'Password' => $request->adminPass])) {
+        } else if (Auth::guard('admin')->attempt(['Username' => $request->adminEmail, 'Password' => $request->adminPass])) {
             return redirect('/admin/dashboard');
-
-        }
-        else{
-           Alert::error('Email hoặc mật khẩu sai');
+        } else {
+            Alert::error('Email hoặc mật khẩu sai');
             return redirect('/admin-login.php');
         }
     }
 
     // Đăng xuất cho admin
-    public function logoutAdmin(){
-        Auth::guard('admin')->logout(); 
+    public function logoutAdmin()
+    {
+        Auth::guard('admin')->logout();
         return redirect('/admin-login.php');
     }
 
+    //dem vat tu
+    public function countVT()
+    {
+        $vat_tu = DB::table('vat_tu')->count();
+        return $vat_tu;
+    }
+    //dem khach hang
+    public function countKH()
+    {
+        $kh = DB::table('khach_hang')->count();
+        return $kh;
+    }
+    public function countNV()
+    {
+        $nv = DB::table('nhan_vien')->count();
+        return $nv;
+    }
+    public function countDDH()
+    {
+        $ddh = DB::table('don_dat_hang')->count();
+        return $ddh;
+    }
+
     // Đăng xuất user //
-    public function logoutUser(){
-        Auth::guard('user')->logout(); 
+    public function logoutUser()
+    {
+        Auth::guard('user')->logout();
         return redirect('/');
     }
 
-    public function signInUser(Request $request){
+    public function signInUser(Request $request)
+    {
 
-        
+
         $length = 4;
         $randomletter = substr(str_shuffle("abcdefghijklmnopqrstuvwxyz"), 0, $length);
         var_dump($randomletter);
@@ -145,9 +180,10 @@ class AuthController extends Controller
         $data['TenKH'] = $request->customer_name;
 
         $all_users = DB::table('khach_hang')->get();
+        //var_dump($all_users);
         // Kiểm tra email vừa nhập đã tồn tại trong hệ thống chưa //
-        foreach($all_users as $key => $u){
-            if($u->Username == $data['Username']){
+        foreach ($all_users as $key => $u) {
+            if ($u->Username == $data['Username']) {
                 Alert::error('Username đã tồn tại');
                 return redirect()->back();
             }
@@ -162,7 +198,7 @@ class AuthController extends Controller
 
         $n = DB::table('khach_hang')->insert($data);
 
-        if($n > 0){
+        if ($n > 0) {
             $data2 = array();
             $data2['MaKH'] = $randomletter;
             $data2['SDT'] = $request->customer_phone;
@@ -171,12 +207,11 @@ class AuthController extends Controller
 
             Alert::success('Thêm thành công');
             return redirect('/login');
-        }
-        else
+        } else
             Alert::error('Đăng ký thất bại');
         return redirect()->back();
 
-    
+
         // // Insert data vào db //
         // $n = DB::table('users')->insert($data);
         // if($n > 0){
@@ -193,6 +228,4 @@ class AuthController extends Controller
         //     Alert::error('Đăng ký thất bại');
         // return redirect()->back();
     }
-
-    
 }

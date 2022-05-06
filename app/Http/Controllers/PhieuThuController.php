@@ -43,7 +43,6 @@ class PhieuThuController extends Controller
      */
     public function store(Request $request, $MaHD)
     {
-
         $data = $request->all();
         $pt = new PhieuThu();
         $hd = HoaDon::find($MaHD);
@@ -63,8 +62,7 @@ class PhieuThuController extends Controller
                 $hd->save();
                 alert()->success('Lập phiếu thu', 'Lập Thành Công');
             }
-        }
-         catch (Exception $e) {
+        } catch (Exception $e) {
             $errorCode = $e->errorInfo[1];
             if ($errorCode == 1062) {
                 alert()->error('Lập phiếu thu', 'Lập thất bại');
@@ -139,8 +137,8 @@ class PhieuThuController extends Controller
     {
 
         $pt = PhieuThu::find($MaPT);
-      
-    
+
+
         $data = $request->all();
         $pt->MaPT = $data['mapt'];
         $pt->NgayTT = $data['ngaythu'];
@@ -151,8 +149,8 @@ class PhieuThuController extends Controller
         $pt->MaHD = $data['mahd'];
         $pt->CongNo = $data['congno'];
         $pt->save();
-        if ($pt) {  
-      
+        if ($pt) {
+
             alert()->success('Lập phiếu thu', 'Cập nhật Thành Công');
         } else {
             alert()->error('Lập phiếu thu', 'Cập nhật thất bại');
@@ -160,7 +158,7 @@ class PhieuThuController extends Controller
 
         return redirect()->back();
     }
-   
+
     /**
      * Remove the specified resource from storage.
      *
@@ -169,10 +167,10 @@ class PhieuThuController extends Controller
      */
     public function destroy($MaPT)
     {
-        $pt=PhieuThu::find($MaPT);
+        $pt = PhieuThu::find($MaPT);
         $pt->delete();
-        if ($pt) {  
-      
+        if ($pt) {
+
             alert()->success('Xóa phiếu thu', 'Xóa Thành Công');
         } else {
             alert()->error('Lập phiếu thu', 'Xóa thất bại');

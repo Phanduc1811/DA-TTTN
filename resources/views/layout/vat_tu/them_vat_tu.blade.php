@@ -2,8 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta name="description"
-        content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <meta name="description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
     <!-- Twitter meta-->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:site" content="@pratikborsadiya">
@@ -14,8 +13,7 @@
     <meta property="og:title" content="Vali - Free Bootstrap 4 admin theme">
     <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
     <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
-    <meta property="og:description"
-        content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <meta property="og:description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
     <title> Admin </title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,11 +21,11 @@
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('resources/css_js_admin/') }}/css/main.css">
     <!-- Font-icon css-->
-    <link rel="stylesheet" type="text/css"
-        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body class="app sidebar-mini">
+    @include('sweetalert::alert')
     <!-- Navbar-->
     <header class="app-header"><a class="app-header__logo" href="{{url('/admin')}}">Admin</a>
         <!-- Sidebar toggle button-->
@@ -41,7 +39,7 @@
     <!-- Sidebar menu-->
     @include('layout/Navbar/SidebarMenu')
     <!--main content-->
-    
+
     <main class="app-content">
         <div class="app-title">
             <div>
@@ -57,17 +55,17 @@
                 <div class="row">
                     <div class="col-md-12">
                         @if (count($errors) > 0)
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                    {{ $error }}<br>
-                                @endforeach
-                            </div>
-    
+                        <div class="alert alert-danger">
+                            @foreach ($errors->all() as $error)
+                            {{ $error }}<br>
+                            @endforeach
+                        </div>
+
                         @endif
                         @if (session('alert'))
-                            <div class="alert alert-danger">
-                                {{ session('alert') }}
-                            </div>
+                        <div class="alert alert-danger">
+                            {{ session('alert') }}
+                        </div>
                         @endif
                     </div>
                 </div>
@@ -113,17 +111,15 @@
                                     <label>Nhà Sản Xuất:</label>
                                     <select name="ma_nsx">
                                         @foreach ($NSX as $nsx)
-                                            <option value="{{ $nsx->MaNSX }}"
-                                                @if ($nsx->MaNSX == old('ma_nsx')) selected="selected" @endif>
-                                                {{ $nsx->TenNSX }}
-                                            </option>
+                                        <option value="{{ $nsx->MaNSX }}" @if ($nsx->MaNSX == old('ma_nsx')) selected="selected" @endif>
+                                            {{ $nsx->TenNSX }}
+                                        </option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
                             <hr>
-                            <button class="btn btn-primary" type="submit"
-                                style="background-color: darkblue">Tạo</button>
+                            <button class="btn btn-primary" type="submit" style="background-color: darkblue">Tạo</button>
                             &ensp;
                             <button class="btn btn-primary" type="submit" style="background-color: red">Xóa</button>
 
@@ -132,7 +128,6 @@
                 </div>
             </div>
         </div>
-
     </main>
 
 
@@ -145,15 +140,11 @@
     <script src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/pace.min.js"></script>
     <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/jquery.dataTables.min.js">
     </script>
-    <script type="text/javascript"
-        src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/dataTables.bootstrap.min.js"></script>
     <!-- Page specific javascripts-->
     <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/chart.js"></script>
     <script type="text/javascript">
         $('#sampleTable').DataTable();
-    </script>
-    <script>
-        @include('sweetalert::alert')
     </script>
 
 </body>

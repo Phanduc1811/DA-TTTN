@@ -169,9 +169,10 @@ class CartController extends Controller
 
         $sub_total = str_replace(",","",substr($total, 0, $pos));
 
+        // var_dump($request->order_NameCus); exit;
         // Thêm vào data đơn hàng //
         $email = $request->order_cusEmail;
-        $num = mt_rand(1, 99); 
+        $num = mt_rand(1, 9999); 
         $data['MaDDH'] = 'DDH' . $num;
         $data['DiaChi'] = $request->order_cusAddress;
         $data['TenNguoiNhan'] = $request->order_cusName;
@@ -180,21 +181,24 @@ class CartController extends Controller
         $data['MaKH'] = $request->users_id;
         $data['NgayLapDDH'] = Carbon::now('Asia/Ho_Chi_Minh');
         $data['NgayGiaoHang'] = Carbon::now('Asia/Ho_Chi_Minh')->addDays(7);
-        var_dump($data);
+
+        
     
         DB::table('don_dat_hang')->insert($data);
 
         // Thêm vào data chi tiết đơn hàng //
 
         // // Lấy id đơn hàng vừa thêm //
-        $get_id_order = DB::table('don_dat_hang')->select('MaDDH')->orderBy('MaDDH', 'DESC')->first();
+        // $get_id_order = DB::table('don_dat_hang')->select('MaDDH')->orderBy('MaDDH', 'DESC')->first();
 
-        $id_order = $get_id_order->MaDDH;
+        // $id_order = $get_id_order->MaDDH;
+
+        // var_dump($id_order); exit;
    
 
         $cart_content = Cart::content();
         $dataChiTiet = array();
-        $dataChiTiet['MaDDH'] = $id_order;
+        $dataChiTiet['MaDDH'] = $data['MaDDH'];
         // Lấy tất cả sản phẩm trong giỏ hàng thêm vào chi tiết đơn hàng //
         foreach($cart_content as $key =>$cart_pro){
             $dataChiTiet['MaVT'] = $cart_pro->id;

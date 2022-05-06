@@ -58,83 +58,122 @@
                         <h2 style="text-align: center" class="title">Chỉnh sửa đơn hàng</h2>
                         <hr>
                         <br>
-                        <form>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="inputEmail4">Tên Khách</label>
-                                    <input type="text" class="form-control">
+                        <form method="post" action="{{URL::to('/don_dat_hang/cap_nhat_don/'.$ddh[0]->MaDDH)}}"  >
+                        {{ csrf_field() }}
+                        <div class="row" style="justify-content: center;">
+                                <div class="input-group col-sm-6">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="">Mã Đơn Đặt Hàng</span>
+                                    </div>
+                                    <input type="text" class="form-control" disabled name="ma_ddh" value="{{$ddh[0]->MaDDH}}">
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Số Điện thoại</label>
-                                    <input type="text" class="form-control">
+                                <div class="input-group col-sm-6">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroupSelect01">Tên Khách Hàng</label>
+                                    </div>
+                                    <select class="custom-select" id="inputGroupSelect01" name="ma_kh">
+                                        <option selected>Choose...</option>
+                                        @foreach($dskh as $kh)
+                                        <option value="{{$kh->MaKH}}" @php if($kh->MaKH == $ddh[0]->MaKH) echo 'selected' @endphp >{{$kh->TenKH}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Địa chỉ</label>
-                                    <input type="text" class="form-control">
+
+                            </div>
+                            <div class="row mt-5" style="justify-content: center;">
+                                <div class="input-group col-sm-6">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="">Ngày Đặt Hàng</span>
+                                    </div>
+                                    <input type="text" class="form-control" value="{{ $date->format('d-m-Y')}}" name="ngay_dat" readonly>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Lưu ý</label>
-                                    <input type="text" class="form-control">
+                                <div class="input-group col-sm-6">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="">Ngày Nhận Hàng</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="ngay_giao" value="{{ $date->addDay(7)->format('d-m-Y')}}" readonly>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Ngày đặt</label>
-                                    <input type="date" class="form-control">
+                            </div>
+                            <div class="row mt-5" style="justify-content: center;">
+                                <div class="input-group col-sm-6">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="">Địa Chỉ</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="dia_chi" value="{{$ddh[0]->DiaChi}}">
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Ngày giao</label>
-                                    <input type="date" class="form-control">
-                                </div>
+
                             </div>
                             <div class="col-md-12" style="text-align:right;">
                                 <a href="{{ url('/don_dat_hang/them_san_phan_don_dat_hang') }}" class="btn btn-primary" type="submit" style="background-color:blueviolet">+ Thêm sản phẩm</a>
                             </div>
                             
                             <br>    
+                            <div class="row" style="justify-content: center;">
+                                <div class="com-sm-12">
+                                    <p style="font-weight: bold; font-size: 20pt;">Danh Sách Sản Phẩm</p>
+                                </div>
+                            </div>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th >STT</th>
-                                        <th >Tên vật tư</th>
-                                        <th >Giá bán</th>
-                                        <th >Số lượng</th>
-                                        <th >VAT</th>
-                                        <th >Thành tiền</th>
-                                        <th></th>
+                                   
+                                        <th>Mã vật tư</th>
+                                        <th>Tên vật tư</th>
+                                        <th>Đơn giá</th>
+                                        <th>DVTinh</th>
+                                        <th>Số lượng tồn</th>
                                     </tr>
                                 </thead>
+                                @foreach ($dsvt as $vt)
                                 <tbody>
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>2</td>
-                                        <td>3</td>
-                                        <td style="width: 200px" > 
-                                            <input type="number" name="qty" style="width: 70px" size="4" min="1" step="1" class="c-input-text qty text" oninput="this.value =!!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
-                                            <input type="submit" style="width: auto;height: 33px;padding: 0px 6px;" name="update_qty" class="btn btn-default" value="Cập nhật">
-                                        </td>
-                                        <td>5</td>
-                                        <td>6</td>
-                                        <td>
-                                            <a href=""><i class="fa fa-trash" style=" font-size : 30px"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>2</td>
-                                        <td>3</td>
-                                        <td style="width: 150px" > 
-                                            <input type="number" name="qty" style="width: 70px" size="4" min="1" step="1" class="c-input-text qty text" oninput="this.value =!!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
-                                            <input type="submit" style="width: auto;height: 33px;padding: 0px 6px;" name="update_qty" class="btn btn-default" value="Cập nhật">
-                                        </td>
-                                        <td>5</td>
-                                        <td>6</td>
-                                        <td>
-                                            <a href=""><i class="fa fa-trash" style=" font-size : 30px"></i></a>
-                                        </td>
+                                
+                                        <td>{{$vt->MaVT}}</td>
+                                        <td>{{$vt->TenVT}}</td>
+                                        <td>{{$vt->DonGia}}</td>
+                                        <td>{{$vt->DVTinh}}</td>
+                                        <td>{{$vt->SoLuong}}</td>
                                     </tr>
                                 </tbody>
+                                @endforeach
+
                             </table>
+
+                            <div class="row" style="justify-content: center;">
+                                <div class="com-sm-12">
+                                    <p style="font-weight: bold; font-size: 20pt;">Tất cả sản Phẩm</p>
+                                </div>
+                            </div>
+                            <table class="table table-bordered" id="table_vattu_update">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Mã vật tư</th>
+                                        <th>Tên vật tư</th>
+                                        <th>Đơn giá</th>
+                                        <th>DVTinh</th>
+                                        <th>Số lượng tồn</th>
+                                    </tr>
+                                </thead>
+                                @foreach ($data_vt as $vt)
+                                <tbody>
+                                    <tr>
+                                        <td scope="row">
+                                            <input type="checkbox" value='{{$vt->MaVT}}' id="chk" name="check[]">
+                                        </td>
+                                        <td>{{$vt->MaVT}}</td>
+                                        <td>{{$vt->TenVT}}</td>
+                                        <td>{{$vt->DonGia}}</td>
+                                        <td>{{$vt->DVTinh}}</td>
+                                        <td>{{$vt->SoLuong}}</td>
+                                    </tr>
+                                </tbody>
+                                @endforeach
+
+                            </table>
+                            <input class="btn btn-primary" type="submit" value="Cập nhật đơn" style="background-color: darkblue">&ensp;
                         </form>
-                        <button type="submit" class="btn btn-primary">Cập nhật đơn</button>
+                        
                     </div>
                 </div>
             </div>
@@ -158,6 +197,47 @@
     <script type="text/javascript" src="{{ URL::asset('resources/css_js_admin/') }}/js/plugins/chart.js"></script>
     <script type="text/javascript">
         $('#sampleTable').DataTable();
+    </script>
+
+    <script type="text/javascript">
+        function GetSelected() {
+
+        
+            //Reference the Table.
+            var grid = document.getElementById("table_vattu_update");
+    
+            //Reference the CheckBoxes in Table.
+            var checkBoxes = grid.getElementsByTagName("INPUT");
+            var chk_id = [];
+    
+            //Loop through the CheckBoxes.
+            for (var i = 0; i < checkBoxes.length; i++) {
+                if (checkBoxes[i].checked) {
+                    var row = checkBoxes[i].parentNode.parentNode;
+        
+                    chk_id.push(row.cells[1].innerHTML);
+                    // message += "   " + row.cells[2].innerHTML;
+                    // message += "   " + row.cells[3].innerHTML;
+                
+                }
+            }
+    
+            //Display selected Row data in Alert Box.
+            console.log(chk_id);
+        
+            var _token = $('meta[name="csrf-token"]').attr('content');
+
+
+            $.ajax({
+                url: "{{url('/set-chkSession')}}",
+                method: 'POST',
+                data: {
+                    chk_id_update: chk_id,
+                    _token: _token
+                }
+
+            });
+        }
     </script>
 
 
