@@ -90,11 +90,13 @@ Route::prefix('/don_dat_hang')->group(function () {
     Route::get('/xem_don_dat_hang', [DonDatHang::class, 'index']);
     Route::get('/them_don_dat_hang', [DonDatHang::class, 'create']);
     Route::post('/lap_don_dat_hang', [DonDatHang::class, 'createDDH']);
+
     Route::post('/cap_nhat_don/{MaDDH}', [DonDatHang::class, 'update']);
     Route::get('/chi_tiet_don_dat_hang/{MaDDH}', [DonDatHang::class, 'detail']);
     Route::get('/sua_don_dat_hang/{MaDDH}', [DonDatHang::class, 'fix']);
     Route::get('/them_san_phan_don_dat_hang', [DonDatHang::class, 'add']);
     Route::get('/xoa_don_dat_hang/{MaDDH}', [DonDatHang::class, 'destroy']);
+
 
 });
 Route::prefix('/cong_no')->group(function () {

@@ -8,6 +8,7 @@ class Order extends Model
 {
     public $timestamps = false;
     protected $fillable = [
+
         'MaKH', 'MaNV', 'TenNguoiNhan','NgayLapDDH', 'NgayGiaoHang', 'DiaChi','ThanhTien', 'TrangThai'
     ];
     protected $primaryKey = 'MaDDH';
@@ -16,4 +17,5 @@ class Order extends Model
     protected $table = 'don_dat_hang';
 
     protected $rememberTokenName = false;
+
 }

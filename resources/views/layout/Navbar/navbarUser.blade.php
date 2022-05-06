@@ -20,6 +20,7 @@
         <li class="nav-item cta cta-colored"><a href="{{ url('/cart') }}" class="nav-link"><span class="icon-shopping_cart"></span>@php echo "[" .Cart::content()->count(). "]" @endphp</a></li>
         <li class="nav-item dropdown">
           @if(Auth::guard('user')->check())
+
               @php
                   $users_name = Auth::guard('user')->user()->Username;
                
@@ -30,6 +31,7 @@
                       <a class="dropdown-item" href="{{URL::to('/logoutUser')}}">Logout</a>
                     </div>
                 @endif
+
           @else
           <span class="nav-link">
             <a href="{{ url('/register') }}">Đăng ký/</a>

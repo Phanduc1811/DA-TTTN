@@ -160,6 +160,7 @@
                                     <h6>Tổng cộng</h6>
                                 </td>
                                 <td class="text-right">
+
                             
                                 <h6> {{Cart::subtotal()}}đ</h6>
                                 </td>
@@ -219,6 +220,7 @@
                                     </button>
                                 </td>
                                 <td>
+
                                     <button type="button" class="btn btn-success" onclick="location.href='{{URL::to('/order.html')}}'" style="width: 120px;">
                                         Thanh toán <span class="fa fa-angle-right"></span>
 

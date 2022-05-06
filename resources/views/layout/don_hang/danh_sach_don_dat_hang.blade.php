@@ -22,12 +22,14 @@
   <link rel="stylesheet" type="text/css" href="{{ URL::asset('resources/css_js_admin/') }}/css/main.css">
   <!-- Font-icon css-->
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
   <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
 
 </head>
 
 <body class="app sidebar-mini">
 @include('sweetalert::alert')
+
 
   <!-- Navbar-->
   <header class="app-header"><a class="app-header__logo" href="index.html">Admin</a>
@@ -70,7 +72,9 @@
                   <th>Thành Tiền</th>
                   <th>Trạng Thái</th>
                   <th>Số Lượng</th>
+
                   <th>Action</th>
+
                 </tr>
               </thead>
               <tbody>
@@ -82,6 +86,7 @@
                   <td>{{$ddh->NgayLapDDH}}</td>
                   <td>{{$ddh->NgayGiaoHang}}</td>
                   <td>{{$ddh->ThanhTien}}</td>
+
                   <td>
                     @if($ddh->TrangThai === 0)
                       Chờ xác nhận
@@ -142,6 +147,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                   </td>
                 </tr>
                 @endforeach

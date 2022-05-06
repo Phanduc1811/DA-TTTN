@@ -11,7 +11,9 @@ use App\Models\VatTu;
 use App\Models\ctBanHang;
 use App\Models\Customer;
 use Carbon\Carbon;
+
 use Session;
+
 use DateTime;
 use RealRashid\SweetAlert\Facades\Alert;
 use Symfony\Component\Console\Input\Input;
@@ -63,6 +65,7 @@ class DonDatHang extends Controller
 
         return view('layout/don_hang/tao_don_dat_hang', ['dsvt' => $dsvt, 'dskh' => $dskh, 'date' => $date]);
         //return view('layout/don_hang/tao_don_dat_hang');
+
     }
     public function detail($maddh)
     {
@@ -85,6 +88,7 @@ class DonDatHang extends Controller
     // {
     //     return view('layout/don_hang/sua_don_dat_hang');
     // }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -93,6 +97,7 @@ class DonDatHang extends Controller
      */
     public function createDDH(Request $request)
     {
+
         $MaNV = Auth::guard('admin')->user()->MaNV;
 
         $ddh = new Order();

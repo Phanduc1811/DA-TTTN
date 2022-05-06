@@ -10,11 +10,10 @@
     <div class="container">
         <div class="row">
             @foreach ($vt as $item)
-           
-                <div class="col-md-6 col-lg-3 ftco-animate">
-                    <div class="product">
-                        <a href="{{url('chi_tiet_vat_tu/')}}/{{$item->MaVT}}" class="img-prod"><img class="img-fluid" style="height: 200px" src="{{ URL::asset('resources/css_js_user/') }}/images/{{$item->Anh}}"
-                                alt="Colorlib Template">
+
+            <div class="col-md-6 col-lg-3 ftco-animate">
+                <div class="product">
+                    <a href="{{url('chi_tiet_vat_tu/')}}/{{$item->MaVT}}" class="img-prod"><img class="img-fluid" style="height: 200px" src="{{ URL::asset('resources/css_js_user/') }}/images/{{$item->Anh}}" alt="Colorlib Template">
 
                             <div class="overlay"></div>
                         </a>
@@ -26,31 +25,31 @@
                                             class="price-sale">{{$item->DVTinh}}</span></p>
                                 </div>
                             </div>
-                            <div class="bottom-area d-flex px-3">
-                                <div class="m-auto d-flex">
-                                    <a href="{{url('chi_tiet_vat_tu/')}}/{{$item->MaVT}}"
-                                        class="add-to-cart d-flex justify-content-center align-items-center text-center">
-                                        <span><i class="ion-ios-menu"></i></span>
-                                    </a>
-                                    <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-                                        <span><i class="ion-ios-cart"></i></span>
-                                    </a>
-                                    <a href="#" class="heart d-flex justify-content-center align-items-center ">
-                                        <span><i class="ion-ios-heart"></i></span>
-                                    </a>
-                                </div>
+                        </div>
+                        <div class="bottom-area d-flex px-3">
+                            <div class="m-auto d-flex">
+                                <a href="{{url('chi_tiet_vat_tu/')}}/{{$item->MaVT}}" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                    <span><i class="ion-ios-menu"></i></span>
+                                </a>
+                                <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                    <span><i class="ion-ios-cart"></i></span>
+                                </a>
+                                <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                    <span><i class="ion-ios-heart"></i></span>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
-            @endforeach 
+            </div>
+            @endforeach
         </div>
         <div class="col-md-12">
             <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-center">
-                {{ $vt->links()}}
-              </ul>
+                <ul class="pagination justify-content-center">
+                    {{ $vt->links()}}
+                </ul>
             </nav>
-          </div>
+        </div>
     </div>
 </section>

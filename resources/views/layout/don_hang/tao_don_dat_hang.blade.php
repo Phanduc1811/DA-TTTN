@@ -13,7 +13,9 @@
     <meta property="og:title" content="Vali - Free Bootstrap 4 admin theme">
     <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
     <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
+
     <meta name="csrf-token" content="{{csrf_token()}}">
+
     <meta property="og:description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
     <title> Admin </title>
     <meta charset="utf-8">
@@ -23,7 +25,9 @@
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('resources/css_js_admin/') }}/css/main.css">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
+
 </head>
 
 <body class="app sidebar-mini">
@@ -58,6 +62,7 @@
                         <h2 style="text-align: center" class="title">Tạo đơn hàng</h2>
                         <hr>
                         <br>
+
                         <form method="post" action="{{URL::to('/don_dat_hang/lap_don_dat_hang/')}}" >
                         {{ csrf_field() }}
                             <div class="row" style="justify-content: center;">
@@ -71,10 +76,12 @@
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputGroupSelect01">Tên Khách Hàng</label>
                                     </div>
+
                                     <select class="custom-select" id="inputGroupSelect01" name="ma_kh">
                                         <option selected>Choose...</option>
                                         @foreach($dskh as $kh)
                                         <option value="{{$kh->MaKH}}">{{$kh->TenKH}}</option>
+
                                         @endforeach
                                     </select>
                                 </div>
@@ -103,14 +110,16 @@
                                 </div>
 
                             </div>
-                           
+
                             <br>
                             <div class="row" style="justify-content: center;">
                                 <div class="com-sm-12">
                                     <p style="font-weight: bold; font-size: 20pt;">Danh Sách Sản Phẩm</p>
                                 </div>
                             </div>
+
                             <table class="table table-bordered" id="table_vattu">
+
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -125,7 +134,9 @@
                                 <tbody>
                                     <tr>
                                         <td scope="row">
+
                                             <input type="checkbox" value='{{$vt->MaVT}}' id="chk" name="check[]">
+
                                         </td>
                                         <td>{{$vt->MaVT}}</td>
                                         <td>{{$vt->TenVT}}</td>

@@ -56,12 +56,14 @@
 
                         <h2 style="text-align: center" class="title">Chi tiết đơn đặt hàng</h2>
                         <hr>
+
                         <h6>Tên Khách Hàng: {{$kh->TenKH}}</h6>
                         
                         <h6>Địa chỉ: {{$kh->DiaChi}}</h6>
                         <h6>Điện thoại: {{$kh->SDT}}</h6>
                         <h6>Ngày đặt: {{$ddh[0]->NgayLapDDH}}</h6>
                         <h6>Ngày giao: {{$ddh[0]->NgayGiaoHang}}</h6>
+
                         <hr>
 
                         <div class="tile">
@@ -79,6 +81,7 @@
                                         </thead>
 
                                         <tbody>
+
                                             @php $sum = 0 @endphp
                                             @foreach($ddh as $item)
                                             <tr>
@@ -95,6 +98,7 @@
                                                 <td>
                                                     @php echo number_format($sum) @endphp đ
                                                 </td>
+
                                             </tr>
                                         </tbody>
 
