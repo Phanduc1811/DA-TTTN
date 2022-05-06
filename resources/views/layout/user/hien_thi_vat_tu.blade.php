@@ -15,13 +15,15 @@
                 <div class="product">
                     <a href="{{url('chi_tiet_vat_tu/')}}/{{$item->MaVT}}" class="img-prod"><img class="img-fluid" style="height: 200px" src="{{ URL::asset('resources/css_js_user/') }}/images/{{$item->Anh}}" alt="Colorlib Template">
 
-                        <div class="overlay"></div>
-                    </a>
-                    <div class="text py-3 pb-4 px-3 text-center">
-                        <h3><a href="#">{{$item->TenVT}}</a></h3>
-                        <div class="d-flex">
-                            <div class="pricing">
-                                <p class="price"><span>{{$item->DonGia}}VNĐ</span>/<span class="price-sale">{{$item->DVTinh}}</span></p>
+                            <div class="overlay"></div>
+                        </a>
+                        <div class="text py-3 pb-4 px-3 text-center">
+                            <h3><a href="#">{{$item->TenVT}}</a></h3>
+                            <div class="d-flex">
+                                <div class="pricing">
+                                    <p class="price"><span >{{$item->DonGia}}VNĐ</span>/<span
+                                            class="price-sale">{{$item->DVTinh}}</span></p>
+                                </div>
                             </div>
                         </div>
                         <div class="bottom-area d-flex px-3">

@@ -233,6 +233,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
 
+        'Carbon' => Illuminate\Support\Carbon::class,
+
     ],
 
 ];

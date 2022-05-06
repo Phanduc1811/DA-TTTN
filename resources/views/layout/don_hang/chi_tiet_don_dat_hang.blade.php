@@ -56,11 +56,14 @@
 
                         <h2 style="text-align: center" class="title">Chi tiết đơn đặt hàng</h2>
                         <hr>
-                        <h6>Tên Khách Hàng:</h6>
-                        <h6>Địa chỉ:</h6>
-                        <h6>Điện thoại:</h6>
-                        <h6>Ngày đặt:</h6>
-                        <h6>Ngày giao</h6>
+
+                        <h6>Tên Khách Hàng: {{$kh->TenKH}}</h6>
+                        
+                        <h6>Địa chỉ: {{$kh->DiaChi}}</h6>
+                        <h6>Điện thoại: {{$kh->SDT}}</h6>
+                        <h6>Ngày đặt: {{$ddh[0]->NgayLapDDH}}</h6>
+                        <h6>Ngày giao: {{$ddh[0]->NgayGiaoHang}}</h6>
+
                         <hr>
 
                         <div class="tile">
@@ -78,18 +81,24 @@
                                         </thead>
 
                                         <tbody>
+
+                                            @php $sum = 0 @endphp
                                             @foreach($ddh as $item)
                                             <tr>
-                                                <th scope="row">1</th>
+                                                <th scope="row">{{ $loop->index + 1 }}</th>
                                                 <td>{{$item->TenVT}}</td>
                                                 <td>{{ number_format($item->DonGia) }}</td>
                                                 <td>{{$item->SoLuong}}</td>
-                                                <td>{{ number_format($item->DonGia*$item->SoLuong) }}</td>
+                                                <td>{{ number_format($item->DonGia*$item->SoLuong) }} đ</td>
                                             </tr>
+                                            @php $sum+= $item->DonGia*$item->SoLuong  @endphp
                                             @endforeach
                                             <tr>
                                                 <td colspan="4" style="text-align: right">Tổng tiền dự kiến:</td>
-                                                <td></td>
+                                                <td>
+                                                    @php echo number_format($sum) @endphp đ
+                                                </td>
+
                                             </tr>
                                         </tbody>
 

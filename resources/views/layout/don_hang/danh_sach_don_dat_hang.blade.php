@@ -22,9 +22,15 @@
   <link rel="stylesheet" type="text/css" href="{{ URL::asset('resources/css_js_admin/') }}/css/main.css">
   <!-- Font-icon css-->
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
+
 </head>
 
 <body class="app sidebar-mini">
+@include('sweetalert::alert')
+
+
   <!-- Navbar-->
   <header class="app-header"><a class="app-header__logo" href="index.html">Admin</a>
     <!-- Sidebar toggle button-->
@@ -66,6 +72,9 @@
                   <th>Thành Tiền</th>
                   <th>Trạng Thái</th>
                   <th>Số Lượng</th>
+
+                  <th>Action</th>
+
                 </tr>
               </thead>
               <tbody>
@@ -77,12 +86,68 @@
                   <td>{{$ddh->NgayLapDDH}}</td>
                   <td>{{$ddh->NgayGiaoHang}}</td>
                   <td>{{$ddh->ThanhTien}}</td>
-                  <td></td>
+
+                  <td>
+                    @if($ddh->TrangThai === 0)
+                      Chờ xác nhận
+                    @elseif($ddh->TrangThai === 1)
+                      Đang chuẩn bị
+                    @else
+                      Đang giao
+                    @endif
+                  </td>
                   <td>{{$ddh->SoLuong}}</td>
                   <td>
                     <a href="{{ url('/don_dat_hang/chi_tiet_don_dat_hang/'.$ddh->MaDDH) }}"><i class="fa fa-list" style=" font-size : 30px"></i></a>&ensp;&ensp;
-                    <a href=""><i class="fa fa-trash" style=" font-size : 30px"></i></a>&ensp;&ensp;
-                    <a href="{{ url('/don_dat_hang/sua_don_dat_hang') }}"><i class=" fa fa-wrench" style=" font-size : 30px"></i></a>
+                    <a href="#my-modal_{{$ddh->MaDDH}}" data-toggle="modal" role="button"><i class="fa fa-trash" style=" font-size : 30px"></i></a>&ensp;&ensp;
+                    <a href="{{ url('/don_dat_hang/sua_don_dat_hang/'.$ddh->MaDDH)}}"><i class=" fa fa-wrench" style=" font-size : 30px"></i></a>
+                    <!-- Modal  -->
+                    <div id="my-modal_{{$ddh->MaDDH}}" class="modal fade" tabindex="-1"
+                                        role="dialog" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content border-0">
+                                                <div class="modal-body p-0">
+                                                    <div class="card border-0 p-sm-3 p-2 justify-content-center">
+                                                        <div class="card-header pb-0 bg-white border-0 ">
+
+                                                        <div class="row">
+                                                                <h4 style="padding:10px 10px 10px 12px">Xác nhận xóa
+                                                                </h4>
+                                                                <div class="col ml-auto"><button type="button"
+                                                                        class="close btnClose" data-dismiss="modal"
+                                                                        aria-label="Close"> <span
+                                                                            aria-hidden="true">&times;</span> </button>
+                                                                </div>
+
+                                                                <hr>
+                                                            </div>
+                                                            <p class="font-weight-bold mb-2" style="margin-bottom:20px">
+                                                                Bạn có muốn xóa không ?</p>
+
+                                                        </div>
+                                                        <div class="card-body px-sm-4 mb-2 pt-1 pb-0">
+                                                            <div class="row">
+                                                                <hr>
+                                                            </div>
+                                                            <div class="row justify-content-end no-gutters">
+                                                                <div class="col-auto"
+                                                                    style="float:right; margin-right:20px">
+                                                                    <button type="button"
+                                                                        class="btn btn-light text-muted"
+                                                                        data-dismiss="modal">Cancel</button>
+                                                                    <button type="button" class="btn btn-danger px-4"><a
+                                                                            class="btnDeleteUser"
+                                                                            href="{{url('/don_dat_hang/xoa_don_dat_hang/'.$ddh->MaDDH)}}" style="color: #fff">Delete</a></button>
+                                                                </div>
+                                                                <!-- <div class="col-auto"><button type="button" class="btn btn-danger px-4" data-dismiss="modal">Delete</button></div> -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                   </td>
                 </tr>
                 @endforeach
