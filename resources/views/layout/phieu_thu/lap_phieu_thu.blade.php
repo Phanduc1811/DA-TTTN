@@ -100,7 +100,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Còn Nợ Hay Không</label>
-                                <input class="form-control" id="trangthai" name="trang_thai" <?php echo old('trang_thai') ? 'checked="checked"' : "" ?> value="1" type="checkbox">
+                                <input class="form-control" id="trangthai" name="trang_thai" type="checkbox">
                             </div>
                             <hr>
                             <div style="text-align: center" id="taophieu">
