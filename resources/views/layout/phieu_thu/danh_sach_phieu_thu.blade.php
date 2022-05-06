@@ -71,7 +71,7 @@
                   <td>{{$item->MaHD}}</td>
                   <td>{{$item->NgayTT}}</td>
                   <td>{{$item->SoTienTT}}</td>
-                  <td>{{$item->TrangThai=="1"?"Hết Nợ":"Nợ"}}</td>
+                  <td>{{$item->TrangThai=="1"?"Còn Nợ":"Hết Nợ"}}</td>
                   <td>
                     <a href="{{ url('/phieu_thu/chi_tiet_phieu_thu') }}/{{$item->MaPT}}"><i class="fa fa-list" style=" font-size : 30px"></i></a>&ensp;&ensp;
                     <a href="{{url('/phieu_thu/xoa_phieu_thu') }}/{{$item->MaPT}}"><i class="fa fa-trash" style=" font-size : 30px"></i></a>&ensp;&ensp;

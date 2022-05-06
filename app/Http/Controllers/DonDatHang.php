@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\HoaDon;
 use App\Models\VatTu;
 use App\Models\ctBanHang;
 use App\Models\Customer;
@@ -146,6 +147,17 @@ class DonDatHang extends Controller
             DB::table('ct_ban_hang')->insert($data_vt);
         }
 
+        $data_hd = array();
+        $num = mt_rand(1, 9999); 
+        $data_hd['MaHD'] = 'HD' . $num;
+        $data_hd['MaKH'] = $request->ma_kh;
+        $data_hd['MaDDH'] = $request->ma_ddh;
+        $data_hd['ThanhTien'] = $thanhTien;
+        $data_hd['VAT'] = 10;
+        $data_hd['NgayNhanHang'] = $NgayGiaoHang;
+        DB::table('hoadon')->insert($data_hd);
+
+
         Alert::success('Thêm Thành Công');
         return redirect()->back();
     }
@@ -212,19 +224,20 @@ class DonDatHang extends Controller
         //var_dump($request->check);
 
         $ddh = Order::find($MaDDH);
+        $hd = HoaDon::where('MaDDH', $MaDDH)->first();
 
         //$ddh->MaDDH = $MaDDH;
         $ddh->DiaChi = $request->dia_chi;
         $ddh->MaKH = $request->ma_kh;
-        $ddh->MaNV = $MaNV;
-        $ddh->TrangThai = 0;
+        //$ddh->MaNV = $MaNV;
+        //$ddh->TrangThai = 0;
 
+        // $NgayLapDDH = Carbon::parse($request->ngay_dat);
+        // $NgayGiaoHang = Carbon::parse($request->ngay_giao);
 
-        $NgayLapDDH = Carbon::parse($request->ngay_dat);
-        $NgayGiaoHang = Carbon::parse($request->ngay_giao);
+        // $ddh->NgayLapDDH = $NgayLapDDH;
+        // $ddh->NgayGiaoHang = $NgayGiaoHang;
 
-        $ddh->NgayLapDDH = $NgayLapDDH;
-        $ddh->NgayGiaoHang = $NgayGiaoHang;
 
         $thanhTien = 0;
 
@@ -244,8 +257,10 @@ class DonDatHang extends Controller
         }
 
         $ddh->ThanhTien = $thanhTien;
+        $hd->ThanhTien = $thanhTien;
 
         $n = $ddh->save();
+        $hd->save();
 
         foreach ($id_vattu as $key => $id) {
             $data_vt = array();
